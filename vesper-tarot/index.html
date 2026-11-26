@@ -127,6 +127,7 @@ dialog{width:min(510px,calc(100% - 28px));background:#251c2b;color:var(--ink);bo
 .portrait-names{display:grid;gap:9px}.portrait-names article,.portrait-boundary{padding:12px 15px;border-left:2px solid #a88564;background:#2b202d}.portrait-names h4{font-size:1rem}.portrait-life .portrait-basis{color:var(--gold);font-size:.85rem;margin-bottom:6px}
 .portrait-boundary{margin:13px 0;font-size:.9rem}.name-math .bz-bars{margin:12px 0}.portrait-reasons dd,.portrait-names article p{font-size:.94rem;line-height:1.8}
 @media(max-width:480px){.portrait-reasons>div{grid-template-columns:1fr;gap:2px;padding:9px 0}.chart-evidence th,.chart-evidence td{padding:6px 3px}.chart-evidence th[scope=row]{max-width:3.8em}}
+.reader-takeaway{max-width:40em;border-left:3px solid var(--gold);padding:3px 0 3px 16px;margin:18px 0 20px}.reader-takeaway h3{font:600 clamp(1.25rem,2.8vw,1.6rem)/1.48 var(--serif);color:var(--gold);margin:0 0 5px}.reader-takeaway p,.reader-scenes p,.reader-next p{color:var(--ink);font-size:1rem;line-height:1.8;margin:0}.reader-scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.2vw,23px)}.reader-scenes section{padding:14px 16px;border:1px solid var(--line);border-radius:7px}.reader-scenes h3,.reader-next h3{color:var(--gold);font:600 1.06rem/1.5 var(--serif);margin:0 0 5px}.reader-next{padding:13px 16px}.reader-next p{font-size:1rem}.reader-note,.reader-time{margin:14px 0 0}.reader-time{color:var(--gold);font-size:.9rem}.reader-details[open]>summary{margin-bottom:16px}.reader-details .name-hint{font-size:.86rem}.reader-details .bz-dateline{margin-top:0}@media(max-width:650px){.reader-scenes{grid-template-columns:1fr}.reader-takeaway{margin-block:14px}.reader-scenes section{padding:11px 13px}}
 </style></head><body>
 <a class="skip" href="#main">跳到內容</a>
 <header><div class="wrap bar"><button class="brand" data-act="home" aria-label="星帷塔羅首頁"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19.3" stroke="currentColor" stroke-width=".75" stroke-dasharray="1 3"/><path d="M24 3v5m0 32v5M3 24h5m32 0h5m-3-14-3 3M9 39l3-3m26 2-3-3M9 10l4 4" stroke="currentColor"/><path d="M24 7c2.2 10 5.6 14.4 15 17-9.4 2.7-12.8 7-15 17-2.2-10-5.6-14.3-15-17 9.4-2.6 12.8-7 15-17Z" stroke="currentColor" stroke-width="1.1"/><path d="M24 15l2.9 6.3L33 24l-6.1 2.8L24 33l-2.9-6.2L15 24l6.1-2.7Z" fill="currentColor"/></svg></span><span class="brandtext"><b>星帷塔羅</b><small>VESPER TAROT</small></span></button>
@@ -1270,18 +1271,65 @@ function stemGod(dayStem,other){
 function plainRelation(day,other){
   return ['兩者同屬'+day,day+'生'+other,day+'剋'+other,other+'剋'+day,other+'生'+day][elementStep(day,other)];
 }
-const godReadings={
-  比肩:{work:'拿到共同任務時，你會不會先按自己的標準做一版？試著在動工前交換草圖，早一點發現彼此的差異。',close:'需要獨處時，直接提出自己想保留的時間，也問問對方希望何時再聯絡。'},
-  劫財:{work:'多人一起趕工時，觀察自己是否很快加入，卻沒確認誰收尾。下次先用一句話定下分工。',close:'兩人共用金錢或時間時，把「可以一起決定」和「各自作主」的範圍說清楚。'},
-  食神:{work:'如果你擅長示範，挑一件常被問的事，做成別人能照著完成的三步說明。',close:'想照顧一個人時，先問他現在最需要什麼。你樂意提供的，和他想收到的，有時是兩件事。'},
-  傷官:{work:'留意開會時，你是否比別人早一步指出流程卡在哪裡。下次提意見時，帶上一個能當場試的小改法。',close:'當你一下就看出問題，先問對方想聽建議，還是想把事情說完，再決定怎麼接話。'},
-  偏財:{work:'如果同時看到好幾個可行方案，替每個方案寫下需要的人力與時間，再選一個小規模試做。',close:'你表達在乎時，是否常直接安排事情或準備驚喜？下次先給兩個選擇，留一個讓對方決定。'},
-  正財:{work:'接到任務時，把「完成」拆成可核對的交付物與日期，看看這是否比口頭約定更合你的步調。',close:'把一個日常承諾說具體，例如「週三晚上由我安排晚餐」，再問這樣的分工對雙方是否公平。'},
-  七殺:{work:'遇到急件，先列「今天必須決定」和「還能等」各一項，觀察自己會不會把兩種事都當成緊急。',close:'氣氛緊繃時，先確認對方希望你陪他、給意見，還是一起採取行動，再決定要不要接手。'},
-  正官:{work:'任務要求模糊時，你是否傾向先弄清規則？試著在開始前向對方確認驗收標準與可調整的部分。',close:'對約定的理解可能有落差。選一件最近讓你介意的小事，具體說出原先以為雙方約好了什麼。'},
-  偏印:{work:'如果你容易看出別人略過的例外，記下一個反例，再找一條資料驗證那個直覺。',close:'察覺對方語氣有變時，把猜測改成一句確認，例如「剛才那件事還讓你掛心嗎？」'},
-  正印:{work:'遇到陌生任務時，先找一份可靠範例，再用自己的話整理重點，留意哪一步真正幫你理解。',close:'當你想支持對方，先問「你想要我陪你想，還是先聽你說？」讓照顧對上他當下的需要。'}
+const everydayReadings={
+  比肩:{
+    headline:'你可能喜歡先照自己的想法試一次',
+    work:'兩個人一起寫報告，你可能會先做一頁給對方看。看到實際的樣子，你比較容易說清楚自己想怎麼做。',
+    close:'和喜歡的人待了一整天，你可能還是想自己安靜一下。如果突然不回訊息，對方容易以為你在生氣。',
+    next:'想一個人待著時，試著說：「我想自己休息一下，晚點再打給你。」'},
+  劫財:{
+    headline:'大家忙不過來時，你可能很快就會伸手幫忙',
+    work:'看到同事趕不完，你可能會說「這個我來」。幫完才發現，自己的事也快到期限了。',
+    close:'朋友揪聚餐，你可能順手訂位、先墊錢。一次沒關係，幾次下來，如果總是你在處理，你也會累。',
+    next:'下次一起約吃飯，直接問：「我訂位，你幫忙問大家幾點方便，好嗎？」'},
+  食神:{
+    headline:'你可能很會把難懂的事講得簡單',
+    work:'有人問你一個步驟怎麼做，你可能會把畫面打開，陪他做一次。對方看過一次就會了，這正是你的做法能幫上忙的地方。',
+    close:'朋友忙到沒空吃飯，你可能會想直接幫他買。你很用心，但他那天最需要的也可能只是安靜休息。',
+    next:'想照顧對方時，問一句：「我可以幫你帶晚餐，還是你今天想自己休息？」'},
+  傷官:{
+    headline:'你可能很快看出事情卡在哪裡',
+    work:'開會時大家都說「再催一下」，你可能先發現其實是兩個人都在等對方回信。把這件事指出來，大家就知道下一步要找誰。',
+    close:'朋友才剛說和別人吵架，你可能已經想到他下次可以怎麼回。太快開口，他容易覺得你在挑他的錯。',
+    next:'朋友訴苦時，先讓他說完，再問：「你想聽我的想法嗎？」'},
+  偏財:{
+    headline:'你可能很會替大家想出其他選擇',
+    work:'原本的場地訂不到，你可能很快就想到另外兩間。真正容易卡住的地方，是選項愈找愈多，最後遲遲沒選。',
+    close:'朋友說最近很累，你可能馬上開始查週末去哪裡放鬆。有時他最想要的，只是有人聽他把今天的事說完。',
+    next:'下次想替對方安排事情前，先問：「你想聊聊，還是要我幫你想辦法？」'},
+  正財:{
+    headline:'你可能習慣把答應別人的事記得很清楚',
+    work:'大家說「下週再處理」，你可能會順手記下哪一天、誰要交什麼。遇上臨時改約時，你也會希望有人早點告訴你。',
+    close:'你可能用記得接人、買好早餐這些小事表達關心。對方偶爾忘記約定時，你在意的往往是自己等了很久。',
+    next:'約時間時可以說：「如果會晚到，傳個訊息給我，我就知道怎麼安排。」'},
+  七殺:{
+    headline:'事情一急，你可能會先站出來處理',
+    work:'快到截止時間才發現資料有錯，你可能先找人修好最要緊的地方。容易累的時候，是大家把每件事都交給你救急。',
+    close:'對方一說遇到麻煩，你可能已準備幫他打電話。先留一點空間，讓他決定這件事想自己處理多少。',
+    next:'想接手前問：「你希望我陪你一起處理，還是先聽你說？」'},
+  正官:{
+    headline:'你可能想先弄懂要求，再把事情做好',
+    work:'收到一句「幫我改好一點」，你可能最想知道對方要改內容還是版面。問清楚再開始，通常能少改幾次。',
+    close:'兩人約好晚上見面，你可能當成時間已經定了，對方卻還在等確認。你在意的是彼此對同一句話有沒有相同理解。',
+    next:'約好之後，多確認一句：「那我們就定週五七點，如果有變再互相說，好嗎？」'},
+  偏印:{
+    headline:'你可能會注意到別人略過的小細節',
+    work:'同一張表大家都說沒問題，你可能會停在一個跟平常不同的數字。先查一筆原資料，就能知道直覺有沒有抓對。',
+    close:'熟悉的人回訊息比平常短，你可能會想很久，是不是自己剛才說錯話。對方也可能只是剛好很忙。',
+    next:'與其猜一整晚，可以直接問：「你今天是不是很忙？等你有空我們再聊。」'},
+  正印:{
+    headline:'你可能看過一次好例子，就比較知道怎麼開始',
+    work:'第一次接手陌生的事，你可能會先找以前做過的版本。看懂對方為什麼那樣做之後，你就能用自己的方式完成。',
+    close:'在乎的人遇到困難，你可能會找資料或分享自己的經驗。先弄清楚他最擔心哪一點，你的用心更容易被收到。',
+    next:'對方說遇到麻煩時，先問：「這件事裡，你現在最煩的是哪一部分？」'}
 };
+const everydayNameThemes=[
+  '從名字的筆畫和生日一起看，你可能習慣先有自己的想法，再跟別人商量。',
+  '從名字的筆畫和生日一起看，你可能邊說邊想。把想法講給別人聽時，自己也會更清楚。',
+  '從名字的筆畫和生日一起看，你可能會把一句「改天約」變成真的約好時間、選好地點。',
+  '從名字的筆畫和生日一起看，你可能很在意彼此說好了什麼。突然改計畫時，知道原因會讓你比較好調整。',
+  '從名字的筆畫和生日一起看，你可能喜歡先找個信任的人聊聊，整理好想法再做決定。'
+];
 const tenGodGloss={比肩:'自主與並肩合作',劫財:'同伴與資源分配',食神:'示範與表達',傷官:'發現問題與改進',偏財:'調度資源與掌握機會',正財:'落實安排與守約',七殺:'應對壓力與時限',正官:'規則與責任',偏印:'另找角度與驗證',正印:'學習與支持'};
 
 function readStructure(b){
@@ -1357,10 +1405,15 @@ function nameAndBirth(person){
   }
   return '<h3 class="reading-subtitle">你的名字怎麼對上這張盤</h3><div class="portrait-names">'+[...groups].map(([e,labels])=>'<article><h4>'+labels.join('、')+' · '+e+'</h4><p>'+plainRelation(day,e)+'。姓名數理的'+e+interpretations[elementStep(day,e)]+elementPresence(b,e)+'</p></article>').join('')+'</div><p class="name-hint">姓名取康熙筆畫的五格數理。是否需要某種五行，還涉及全局與取用流派，不能從缺幾個字直接決定。</p>';
 }
-function lifeReading(b){
-  const day=b.day.stem, monthGod=stemGod(day,b.month.stem),seat=b.day.hidden[0],seatGod=stemGod(day,seat);
-  return '<h3 class="reading-subtitle">用兩個情境對照自己</h3><div class="name-links portrait-life"><article><h4>工作與分工</h4><p class="portrait-basis">月干'+b.month.stem+'對'+day+'日主為'+monthGod+'，傳統取象是'+tenGodGloss[monthGod]+'。</p><p>'+godReadings[monthGod].work+'</p></article>'+
-    '<article><h4>親近的人怎麼相處</h4><p class="portrait-basis">日支'+b.day.branch+'以'+seat+'為本氣，對日主為'+seatGod+'，取象是'+tenGodGloss[seatGod]+'。</p><p>'+godReadings[seatGod].close+'</p></article></div>';
+function readingForPlayer(person){
+  const b=person.bazi,day=b.day.stem;
+  const work=everydayReadings[stemGod(day,b.month.stem)];
+  const relationship=everydayReadings[stemGod(day,b.day.hidden[0])];
+  const nameTheme=everydayNameThemes[elementStep(b.day.upper,person.elements[1])];
+  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+
+    '<div class="reader-scenes"><section><h3>做事的時候</h3><p>'+work.work+'</p></section>'+
+    '<section><h3>和親近的人相處時</h3><p>'+relationship.close+'</p></section></div>'+
+    '<div class="name-action reader-next"><h3>下次可以試試</h3><p>'+relationship.next+'</p></div>';
 }
 function timeBoundary(b,calendar){
   const birth=b.birth;
@@ -1372,15 +1425,17 @@ function timeBoundary(b,calendar){
     const different=alternative.pillars.flatMap((p,i)=>p.text===b.pillars[i].text?[]:[pillarLabels[i]+'會由'+b.pillars[i].text+'變為'+p.text]);
     if(different.length)changes.push('若出生時間'+(delta<0?'早':'晚')+' 15 分鐘（'+iso.slice(5,10)+' '+iso.slice(11,16)+'），'+different.join('、')+'。');
   }
-  return changes.length?'<aside class="portrait-boundary"><strong>這個出生時間接近換柱</strong><p>'+changes.join('')+'如果填的是約略時間，可以先核對出生紀錄。</p></aside>':'';
+  return changes.join('');
 }
-function singleBazi(person,calendar){
+function singleBazi(person,boundary){
   const b=person.bazi,structure=readStructure(b),day=b.day.stem+b.day.upper, month=b.month.branch,mainStem=b.month.hidden[0];
-  const header='<p class="bz-dateline">國曆 '+esc(b.birth.date)+'　'+esc(b.birth.time)+'　'+offsetText(b.birth.offset)+'</p>'+pillarGrid(b)+timeBoundary(b,calendar);
+  const header='<p class="bz-dateline">國曆 '+esc(b.birth.date)+'　'+esc(b.birth.time)+'　'+offsetText(b.birth.offset)+'</p>'+pillarGrid(b)+(boundary?'<p class="portrait-boundary">'+boundary+'</p>':'');
   const intro='<div class="name-lead bz-lead"><div class="name-seal" aria-hidden="true">'+b.day.upper+'</div><div><h3>'+day+'生於'+month+'月</h3><p>'+structure.headline+'。'+plainRelation(b.day.upper,b.month.lower)+'。'+structure.takeaway+'</p></div></div>';
   const cards='<h3 class="reading-subtitle">這個判讀從哪裡來</h3><dl class="portrait-reasons"><div><dt>月令</dt><dd>月柱'+b.month.text+'，'+month+'藏'+b.month.hidden.join('、')+'。本氣'+mainStem+stemElement(mainStem)+'對'+b.day.stem+'日主為'+stemGod(b.day.stem,mainStem)+'。'+structure.seasonText+'</dd></div><div><dt>通根</dt><dd>'+structure.rootsText+'</dd></div><div><dt>生扶與制洩</dt><dd>'+structure.supportText+'</dd></div></dl>';
   const histogram='<details class="name-math"><summary>查看八個明字的五行分布</summary><div class="bz-bars">'+nameElements.map(e=>'<div><span>'+e+'</span><meter min="0" max="8" value="'+b.counts[e]+'" aria-label="'+e+'的明字數"></meter><strong>'+b.counts[e]+' 個</strong></div>').join('')+'</div><p>四個天干、四個地支本氣各計一次。其餘藏干已列於上表，與這八個數字分開閱讀。</p></details>';
-  return header+intro+cards+pillarEvidence(b)+lifeReading(b)+nameAndBirth(person)+histogram;
+  const workGod=stemGod(b.day.stem,b.month.stem),closeGod=stemGod(b.day.stem,b.day.hidden[0]);
+  const context='<p class="name-hint">「做事的時候」參考月干'+b.month.stem+'的'+workGod+'，取象為'+tenGodGloss[workGod]+'。「和親近的人相處時」參考日支'+b.day.branch+'的本氣'+b.day.hidden[0]+'，對應'+closeGod+'，取象為'+tenGodGloss[closeGod]+'。白話總結中的姓名解讀取人格五行與日主的關係。</p>';
+  return header+intro+cards+pillarEvidence(b)+context+nameAndBirth(person)+histogram;
 }
 
 const nameElements = ['木','火','土','金','水'];
@@ -1426,7 +1481,7 @@ const namePairTopics = [
 ];
 function nameEntrances(){
   return '<section class="wrap names-home"><div class="section-head"><div><div class="section-k"><span class="rule"></span> THE NAME ROOM</div><h2>從名字開始</h2></div></div><div class="names-doors">'+
-    [['name-test','名','八字姓名學','從出生年月日時排四柱，解讀日主與姓名五行。'],['name-match','合','姓名配對','用兩人的八字和姓名，看契合程度與相處建議。']].map(([route,mark,label,copy])=>
+    [['name-test','名','八字姓名學','從姓名和生日，看看你可能怎麼做事、怎麼關心別人。'],['name-match','合','姓名配對','用兩人的八字和姓名，看契合程度與相處建議。']].map(([route,mark,label,copy])=>
     '<button class="name-door" data-act="'+route+'"><span class="name-seal" aria-hidden="true">'+mark+'</span><span><strong>'+label+'</strong><small>'+copy+'</small></span><span class="door-arrow" aria-hidden="true">↗</span></button>').join('')+'</div></section>';
 }
 function nameMethod(pair){
@@ -1443,8 +1498,8 @@ function showNamePage(route){
   const pair = route==='name-match';
   view = route;
   const heading = pair?'姓名配對':'八字姓名學';
-  const intro = pair?'輸入兩人的生辰與姓名，看看契合程度，以及相處時最值得多聊的一件事。':'輸入姓名、出生年月日與時間，排出你的四柱，看看名字的五行如何呼應命盤。';
-  const aside = '<aside class="name-aside"><div class="name-orbit" aria-hidden="true"><span class="orbit-center">'+(pair?'合':'命')+'</span>'+nameElements.map((e,i)=>'<span class="orbit-glyph glyph-'+i+'">'+e+'</span>').join('')+'</div><h2>'+(pair?'你們在哪裡合拍？':'從生辰讀到名字')+'</h2><p>'+(pair?'完整合盤會列出契合等級、五項得分與相處建議。如果只知道名字，也能先看姓名簡測。':'先看日主在出生月份的狀態，再看地支藏干、工作與相處的線索，以及名字和命盤的關係。')+'</p></aside>';
+  const intro = pair?'輸入兩人的生辰與姓名，看看契合程度，以及相處時最值得多聊的一件事。':'填入姓名、出生日期和時間，看看你可能有哪些習慣，以及下次遇到類似情況可以怎麼做。';
+  const aside = '<aside class="name-aside"><div class="name-orbit" aria-hidden="true"><span class="orbit-center">'+(pair?'合':'命')+'</span>'+nameElements.map((e,i)=>'<span class="orbit-glyph glyph-'+i+'">'+e+'</span>').join('')+'</div><h2>'+(pair?'你們在哪裡合拍？':'先看看結果長什麼樣子')+'</h2><p>'+(pair?'完整合盤會列出契合等級、五項得分與相處建議。如果只知道名字，也能先看姓名簡測。':'按「試用範例」，就能先讀一份完整結果。想測自己時，再換成你的資料。')+'</p></aside>';
   const modes=pair?'<fieldset class="bz-modes"><legend>配對方式</legend><label><input type="radio" name="pair-mode" value="full" checked> 八字與姓名合盤</label><label><input type="radio" name="pair-mode" value="names"> 僅用姓名簡測</label></fieldset>':'';
   shell(page(back('回到占卜室','home')+title(pair?'COMPATIBILITY READING':'FOUR PILLARS & NAME',heading,intro)+
     '<div class="name-layout"><form class="box name-form" autocomplete="off">'+modes+nameFields('first',pair?'第一位':'你的資料')+(pair?nameFields('second','第二位'):'')+
@@ -1564,7 +1619,11 @@ function nameSingleResult(chart,calendar){
   const traditional='<details class="name-math"><summary>查看姓名五格與三才配置</summary><div class="grid-values">'+
     nameGrids.map(([grid,meaning],i)=>'<div><span>'+grid+'</span><strong>'+chart.values[i]+'<small>'+chart.elements[i]+'</small></strong><span>'+meaning+'</span></div>').join('')+'</div>'+
     '<h3 class="reading-subtitle">三才配置 <small>'+chart.elements.slice(0,3).join(' · ')+'</small></h3><div class="name-links">'+individualLink(chart,0)+individualLink(chart,1)+'</div></details>';
-  return '<section class="name-reading"><div class="section-k"><span class="rule"></span> 個人命盤</div><h2 tabindex="-1">'+esc(chart.full)+'的八字姓名解讀</h2>'+singleBazi(chart,calendar)+traditional+nameMath(chart)+'</section>';
+  const boundary=timeBoundary(chart.bazi,calendar);
+  const timeNote=boundary?'<p class="reader-time">如果出生時間差了 15 分鐘，這份解讀可能會不同。若你填的是大概時間，可以先核對出生紀錄。</p>':'';
+  return '<section class="name-reading player-reading"><h2 tabindex="-1">'+esc(chart.full)+'的測驗結果</h2>'+readingForPlayer(chart)+
+    timeNote+'<p class="name-hint reader-note">這是傳統姓名學的解讀，你可以用最近發生的事對照看看。</p>'+
+    '<details class="name-math reader-details"><summary>想知道怎麼算？查看命盤與筆畫</summary>'+singleBazi(chart,boundary)+traditional+nameMath(chart)+'</details></section>';
 }
 function nameMatchResult(charts){
   const [a,b]=charts;
