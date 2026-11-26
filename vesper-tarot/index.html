@@ -128,6 +128,16 @@ dialog{width:min(510px,calc(100% - 28px));background:#251c2b;color:var(--ink);bo
 .portrait-boundary{margin:13px 0;font-size:.9rem}.name-math .bz-bars{margin:12px 0}.portrait-reasons dd,.portrait-names article p{font-size:.94rem;line-height:1.8}
 @media(max-width:480px){.portrait-reasons>div{grid-template-columns:1fr;gap:2px;padding:9px 0}.chart-evidence th,.chart-evidence td{padding:6px 3px}.chart-evidence th[scope=row]{max-width:3.8em}}
 .reader-takeaway{max-width:40em;border-left:3px solid var(--gold);padding:3px 0 3px 16px;margin:18px 0 20px}.reader-takeaway h3{font:600 clamp(1.25rem,2.8vw,1.6rem)/1.48 var(--serif);color:var(--gold);margin:0 0 5px}.reader-takeaway p,.reader-scenes p,.reader-next p{color:var(--ink);font-size:1rem;line-height:1.8;margin:0}.reader-scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.2vw,23px)}.reader-scenes section{padding:14px 16px;border:1px solid var(--line);border-radius:7px}.reader-scenes h3,.reader-next h3{color:var(--gold);font:600 1.06rem/1.5 var(--serif);margin:0 0 5px}.reader-next{padding:13px 16px}.reader-next p{font-size:1rem}.reader-note,.reader-time{margin:14px 0 0}.reader-time{color:var(--gold);font-size:.9rem}.reader-details[open]>summary{margin-bottom:16px}.reader-details .name-hint{font-size:.86rem}.reader-details .bz-dateline{margin-top:0}@media(max-width:650px){.reader-scenes{grid-template-columns:1fr}.reader-takeaway{margin-block:14px}.reader-scenes section{padding:11px 13px}}
+.birth-fields .birth-unsure{display:flex;align-items:center;gap:8px;grid-column:1/-1;width:fit-content;cursor:pointer}
+.birth-fields .birth-unsure input{width:18px;height:18px;min-height:0;margin:0;accent-color:var(--gold)}
+.birth-fields input:disabled{opacity:.45}
+.profile-cards{display:grid;gap:12px;margin:16px 0 22px}
+.profile-card{padding:16px 19px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(115deg,rgba(119,73,110,.12),transparent 70%)}
+.profile-card h3{color:var(--ink);font:600 clamp(1.1rem,2vw,1.3rem)/1.52 var(--serif);margin:4px 0}
+.profile-card p{font-size:1rem;line-height:1.75;margin:0;color:var(--ink)}
+.profile-card .profile-label{font-size:.78rem;color:var(--gold);letter-spacing:.08em}
+.profile-card .profile-basis{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
+@media(max-width:470px){.profile-card{padding:13px}.profile-cards{gap:9px}}
 </style></head><body>
 <a class="skip" href="#main">跳到內容</a>
 <header><div class="wrap bar"><button class="brand" data-act="home" aria-label="星帷塔羅首頁"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19.3" stroke="currentColor" stroke-width=".75" stroke-dasharray="1 3"/><path d="M24 3v5m0 32v5M3 24h5m32 0h5m-3-14-3 3M9 39l3-3m26 2-3-3M9 10l4 4" stroke="currentColor"/><path d="M24 7c2.2 10 5.6 14.4 15 17-9.4 2.7-12.8 7-15 17-2.2-10-5.6-14.3-15-17 9.4-2.6 12.8-7 15-17Z" stroke="currentColor" stroke-width="1.1"/><path d="M24 15l2.9 6.3L33 24l-6.1 2.8L24 33l-2.9-6.2L15 24l6.1-2.7Z" fill="currentColor"/></svg></span><span class="brandtext"><b>星帷塔羅</b><small>VESPER TAROT</small></span></button>
@@ -1189,10 +1199,11 @@ function makeBirthChart(birth,calendar){
   for(const p of pillars){counts[p.upper]++;counts[p.lower]++;}
   return {birth,pillars,counts,day:pillars[2],month:pillars[1]};
 }
-function birthFields(prefix){
+function birthFields(prefix,optionalTime=false){
   const id=prefix+'-birth-';
   return '<div class="birth-fields"><label for="'+id+'date">出生年月日 <small>國曆／西元</small><input type="date" id="'+id+'date" min="1901-01-01" max="'+todayAtOffset(480)+'" required></label><label for="'+id+'time">出生時間 <small>當地時間，精確到分</small><input type="time" id="'+id+'time" step="60" required></label><label class="birth-zone" for="'+id+'zone">出生時區<select id="'+id+'zone">'+
-    offsetMinutes.map(n=>'<option value="'+n+'" '+(n===480?'selected':'')+'>'+offsetText(n)+(n===480?'　台灣標準時間':'')+'</option>').join('')+'</select></label></div>';
+    offsetMinutes.map(n=>'<option value="'+n+'" '+(n===480?'selected':'')+'>'+offsetText(n)+(n===480?'　台灣標準時間':'')+'</option>').join('')+'</select></label>'+
+    (optionalTime?'<label class="birth-unsure"><input type="checkbox" id="'+id+'unsure"> 我不知道出生時間</label>':'')+'</div>';
 }
 function birthValues(form,prefix){
   const field=k=>form.querySelector('#'+prefix+'-birth-'+k);
@@ -1405,12 +1416,12 @@ function nameAndBirth(person){
   }
   return '<h3 class="reading-subtitle">你的名字怎麼對上這張盤</h3><div class="portrait-names">'+[...groups].map(([e,labels])=>'<article><h4>'+labels.join('、')+' · '+e+'</h4><p>'+plainRelation(day,e)+'。姓名數理的'+e+interpretations[elementStep(day,e)]+elementPresence(b,e)+'</p></article>').join('')+'</div><p class="name-hint">姓名取康熙筆畫的五格數理。是否需要某種五行，還涉及全局與取用流派，不能從缺幾個字直接決定。</p>';
 }
-function readingForPlayer(person){
+function readingForPlayer(person,profile=''){
   const b=person.bazi,day=b.day.stem;
   const work=everydayReadings[stemGod(day,b.month.stem)];
   const relationship=everydayReadings[stemGod(day,b.day.hidden[0])];
   const nameTheme=everydayNameThemes[elementStep(b.day.upper,person.elements[1])];
-  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+
+  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+profile+
     '<div class="reader-scenes"><section><h3>做事的時候</h3><p>'+work.work+'</p></section>'+
     '<section><h3>和親近的人相處時</h3><p>'+relationship.close+'</p></section></div>'+
     '<div class="name-action reader-next"><h3>下次可以試試</h3><p>'+relationship.next+'</p></div>';
@@ -1436,6 +1447,161 @@ function singleBazi(person,boundary){
   const workGod=stemGod(b.day.stem,b.month.stem),closeGod=stemGod(b.day.stem,b.day.hidden[0]);
   const context='<p class="name-hint">「做事的時候」參考月干'+b.month.stem+'的'+workGod+'，取象為'+tenGodGloss[workGod]+'。「和親近的人相處時」參考日支'+b.day.branch+'的本氣'+b.day.hidden[0]+'，對應'+closeGod+'，取象為'+tenGodGloss[closeGod]+'。白話總結中的姓名解讀取人格五行與日主的關係。</p>';
   return header+intro+cards+pillarEvidence(b)+context+nameAndBirth(person)+histogram;
+}
+
+/* Unihan 17.0.0, kRSUnicode, primary radical only.
+UNICODE LICENSE V3
+
+COPYRIGHT AND PERMISSION NOTICE
+
+Copyright © 2001-2024 Unicode, Inc.
+
+NOTICE TO USER: Carefully read the following legal agreement. BY
+DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING DATA FILES, AND/OR
+SOFTWARE, YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE
+TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT
+DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of data files and any associated documentation (the "Data Files") or
+software and any associated documentation (the "Software") to deal in the
+Data Files or Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, and/or sell
+copies of the Data Files or Software, and to permit persons to whom the
+Data Files or Software are furnished to do so, provided that either (a)
+this copyright and permission notice appear with all copies of the Data
+Files or Software, or (b) this copyright and permission notice appear in
+associated Documentation.
+
+THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF
+THIRD PARTY RIGHTS.
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE
+BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES,
+OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA
+FILES OR SOFTWARE.
+
+Except as contained in this notice, the name of a copyright holder shall
+not be used in advertising or otherwise to promote the sale, use or other
+dealings in these Data Files or Software without prior written
+authorization of the copyright holder.
+
+SPDX-License-Identifier: Unicode-3.0
+*/
+// Each range stores the gap from the previous range, the length minus one, and the radical number.
+const radicalData = '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twEAkAO4AQAduQEAAEIAALkBAABCAAi5AQAsugEAqQO7AQCtAbwBADS9AQCVAr4BABW/AQAKwAEATcEBANEBwgEAwwTDAQDOBMQBAADPAQB2xAEANMUBAHDGAQAexwEAACIAdMcBACHIAQA5yQEAKcoBALMBywEABcwBACnNAQAA1QEABc0BAAjOAQAszwEARtABAADRAQAP0AEAM9EBAA/SAQC8AdMBABTUAQAj1QEADNYBAAAeAAAfAAEBAAAsAAAwAAAQAABgAABtIAcBAAECAAEDAAMEAAsFAAEGAAEHAAYIAFcJAAcKAAALAAUMAAANAAYOABoPAAQQAAcRABgSABATAAMVAAYWAAkYAAMZAAEaABgbAAYcAA4dAHUeAAgfAIABIAACIQAAIgAAIwAJJAAiJQBRJgAOJwAxKAAHKQAHKgABKwAYLAA+LgABLwAHMAAGMQAOMgAIMwABNAAfNQAGNgAGNwALOQABOgACOwARPABrPQAOPgADPwBoQAACQQAXQgAKQwAFRAAARQATRgBOSAADSQAXSgC3AUsAC0wACk0AB04AAU8AAEIACE8AAFAAAFEADFIABFQApAFVAH9WAA1XAAFYAABZAANaAARbAAFcAA1dABVeAGVgAAJhAAliAABjAARkAABlAB9mAABnABJoAApqAANrABRsACZtAAFuAAhvAC5wACRxAAByACNzABN0ABF1AEB2ACh3AF94AAV5AA16ABN7ABB8AAV9AAZ/ABOAAQABgQEALIIBAABKAACCAQAEgwEAA4QBAAOFAQABhgEABYcBAAmJAQAAiwEAtwGMAQAGjQEARY4BAAKPAQAEkAEAJ5EBAAGSAQARkwEAA5QBAE2VAQAClgEAAZcBAASYAQADmQEAHpoBAAObAQAOnAEAKZ0BAAeeAQAnnwEAA6ABADiiAQAbowEADKQBAAClAQAEpgEAjwGnAQABqAEAIakBAB6qAQAAqwEAAqwBABqtAQAErgEAAq8BAASwAQAGsQEACrIBAAW0AQAdtQEAELYBAAC3AQAouAEABbkBAAi6AQAsuwEAArwBAAK9AQALvgEAA8EBAAbCAQBewwEAWMQBAAPFAQAExgEABccBAAHIAQAAyQEAAssBAADMAQACzQEAAc4BAAHQAQAA0QEAC9MBAAHUAQAA1QEAANYBAAAEAACCAQAAowEAAB4AADoAAC4AAGAAAB0AAIABAACCAQAAPQADAQAABAAACAAFCQAACgAADQABDwAAEgAAEwACGAACGwAGHgACIAABJAABJQAIJgAAJwABKAAALAACLgABNQAAOwAAPQAFQAABRgACSAACSgAKSwAATQAATgABUwAHVQACVgAAXQABXgAEYAAAYwAAZgABaAAAagACbAABbQACcQABcwABdAABdQACdgAAdwAGeAAAewAAgAEAAIIBAACGAQAKjAEAAI4BAAGQAQAAkQEAAJIBAACTAQAFlQEAAJ0BAAKfAQADogEAAqMBAACkAQAApgEAEacBAACpAQAAqgEAAbIBAAC1AQABtgEAA7sBAAXDAQADxAEAAMUBAADQAQAD0wEAANUBAgA4ACEBAAsCABIEAA4FAAgHAAoIAFMJAAFLADsJABEKAAELAAsMAAANAAUOAB8PAAUQAAsRADMSABsTAAYUAAMVABIWAA8YAAoZAAgaACMbAAscABwdAPIBHgATHwBqIAAIIQAAIgABIwANJAAqJQCaASYAEycAdigACykAFSoABCsAGiwAAi0ANS4AAy8ACTAABzEAFjIACjMABTQAKzUABDYADjcAHjkABDoAATsAHzwAej0AIj4ACT8AjwFAAAJBAEZCAAVDAAVEAAZFACRGAABHADhIABBJACpKAMEBSwAYTAAaTQAMTgAXTwACUAACUQAMUgAFUwAEVACfAVUAb1YAFlcAAVgAAVkAE1oAA1sAAVwAD10AJV4AAF8AUWAAAWEADGIAAWMACWQAAWUAGWYAAGcAJ2gAAGkADmoABGsALWwAJ20AAm4ACG8AMnAAMXEAAXIAF3MAAMoBAAtzABB0ABV1AF52ADd3AIgBeAAIeQAWegAWewAFfAAFfQAAfgABfwAXgAEABIEBADKCAQAJgwEABIQBAAaFAQAMhgEAC4cBAAuJAQACiwEAxgGMAQAMjQEAR44BAACPAQAEkAEANZEBAAOSAQAYkwEABJQBAJcBlQEAA5YBAASXAQAMmAEABZkBADKaAQADmwEAGpwBAD+dAQAQngEAJJ8BAAWgAQBWogEAMqMBABOkAQABpQEABaYBAMEBpwEAAKgBADSpAQAvqgEADawBAB6tAQABrgEABq8BAAOwAQAFsQEADrIBAAW0AQA0tQEAFLYBAAG3AQBJuAEABrkBAAu6AQAouwEAArwBABK9AQAIvgEAAb8BAArBAQADwgEAesMBAHXEAQAHxQEAB8YBAAzHAQAAyAEAA8kBAADKAQAGywEAAMwBAAfNAQAHzgEAAdABAAHRAQAC0gEAItMBAAbUAQAA1QEAAtYBAAEBAAIIAAAMAAASAAAZAABeAAAuAABhAACQAQJBAQAHAgAEAwAWBAAfBQAGBgAFBwAdCAC0AQkAJAoACAsAGgwAEw0AEg4AIg8AERAABhEAWxIAJRMACxQAAxUAChYAABcADhgAAhkADRoAGBsACxwAEh0AoQMeAB8fAJcBIAAKIQABIgATIwAOJAAkJQBOJgAnJwBKKAAaKQAIKgAGKwApLAABLQB5LgAHLwAHMAAGMQAsMgAJMwAENABENQADNgAINwAFOAAnOQAFOgAIOwAuPADiAT0AED4ADT8AxgFAAAxBADJCAAdDAAJEAAdFACJGAABHAMwBSAALSQAzSgDrAUsAE0wAJE0AKk4AHk8AAlAAB1EAHVIAAVMAA1QAiAJVAKoBVgAPVwADWAAKWgAFWwADXAAkXQA8XgBhYAADYQAOYgAGYwAGZAAEZQBAZgAHZwA2aAAIaQAcagAYawAabABdbQAHbgANbwBQcABPcQACcgBIcwAudAAYdQCCAXYAPXcAbngAC3kAJXoAFXsAInwAA30AA34ACH8AFIABAAWBAQBEggEAB4MBAAuEAQAEhQEADoYBAAyHAQABiAEAFIkBAAKKAQADiwEAtwKMAQAYjQEAa44BAAWPAQABkAEAWpEBAA2SAQARkwEAF5QBAFSVAQAFlgEAB5cBAAqYAQAHmQEAQ5oBAACbAQAOnAEAbJ0BABCeAQA7nwEAAqABAAKhAQBoogEAKqMBADikAQADpQEAEaYBAJMBpwEADqgBADGpAQA6qgEAAasBAA2sAQA+rQEAAK4BAASvAQAJsAEAGrEBAAeyAQAJtAEAJbUBAA+2AQAAtwEAJ7gBAAe5AQAKugEAM7sBABG8AQAEvQEAFr4BAAG/AQACwAEAAsEBAA/CAQA4wwEARcQBAAXFAQAJxgEADMcBAAbIAQAAyQEAA8oBAAvLAQAAzAEAA80BAADOAQAFzwEAA9ABAAnRAQAC0gEAHNMBAADUAQAE1QEAANYBDwABAAADAAAEAAAIAA4JAAALAAEOAAIPAAIQAAASAAETAAEYAAEbAAAdAAMeAAAfABYgAAIhAAAiAAIlACQmAAEnAAIoAAEqAAArAA4uAAAyAAQ5AAA7AAQ8AAw9AAI+AANAAAJCAAFDAAFGAA9IAABKAACCAQARSwAATAAATQAATwABUgAWVQAfVgACXQACXgA6YAAAYQAAYgAGZgAAagADbQAOcAAHcQAEcwAFdQAOdgADdwAIeAAAegAGfAAEgAEAAYIBAACEAQADiQEAHowBAACNAQADjgEABJEBAACTAQAFlQEAAJcBAASaAQAAmwEAAJ0BAAKeAQAHnwEACaIBAAWjAQAApgEANKcBAACoAQACqQEAAqoBAAGtAQAArgEAALEBAAGyAQACtAEABrUBAAG2AQAAtwEAAbgBAAC6AQAPuwEAAMEBAADCAQAAwwEACMQBAADUAaITAAEAAAMAAAQAAAcACAkAABAAAgoAAgwAAAsAAQ0AAQ4AAAkAAQ8AAK4BAAARAAUSAAMTAAIUAAAVAAIYAAQaAAEbAAIdABEeAAAfAAAeAAAfAAEeAAASAAAhAAcgAAEhAAAiAAEkAAAlAAsmAAUoAAEpAAAqAAErAAAsAAAtAAcuAAEvAAExAAQyAAQ1AADIAQACNwAAhgEAATkAADoAAEgAAHgAATsAATwAFD0AAT4AE0AAAkIAAEcAAEkABEgAAQ0AAEkAAEgAAYIBAAJKABNLAANMAABNAABOAAJPAAAtAABQAB1VAAJWAAAMAARWAABXAABbAABcAAFdAAJeAAlgAABiAABkAANmAAAzAABoAAFqAAJsAAttAAVwAARxAARzAAB0AAJ1AAV2AAN3AAd4AAF5AAN6AAB7AAB8AAB9AAB+AAB/AAKAAQAASgAEggEAACYAAYIBAAFKAAGGAQAAoAEAAIkBAAKMAQAAEwAXjAEAAI4BAAaMAQADjQEAC44BAACQAQAFkQEAAA0AAJMBAAWVAQAAmAEAAJkBAAKaAQABnAEAABIAAp0BAAAUAAGfAQABogEABKMBAAanAQADqQEAAKoBAACsAQAALgABrQEAALABAAGxAQAAsgEAALMBAAS1AQAAtgEAArgBAAC6AQABuwEAALwBAAG+AQAAwwEAB8QBAADGAQAAyAEAAMoBAADMAQABzQEAAM4BAADPAQAA0QEAANMB4gsfAQAIAgAAAwAFBAAhBQACBgAGBwAECABoCQALCgAGCwAIDAAHDQAGDgAaDwAAEAAHEQAvEgAREwAFFAACFQAFFgACFwAVGAAGGQAKGgAXGwACHAAWHQCFAR4ABx8AciAABSEAACIAACMACCQAGyUAJiYAFicAMSgAASkABSoAAisAFywAAC0AOS4AAy8ABzAAATEAEDIADDMAAjQAFDUABTcABTgADzkAAjoABTsADTwAaT0ADz4AAj8AiAFAAAJBABZCAAJDAAlFAAhGAABHAE1IAARJAAtKAHlLAA9MACFNAAZOAAdPAAFRAClSAANTAAhUALEBVQCFAVYADlcAAlgACloABlsABVwAFl0AL14ALWAABmEABGIAA2MABGQAA2UAK2YAAWcAKWgABWkAC2oAE2sAGGwAQW0ABG4AEW8ASHAALHEAAHIAKHMAG3QAC3UAOXYAMHcAangABXkADnoABXsACXwABH0AA34AAn8ACIABAAGBAQBvggEABYMBAAOEAQAEhgEADIcBAACIAQAIiQEAAIoBAAaLAQB7jAEAEI0BAD2OAQACjwEABZABABqRAQACkgEAEJMBAAeUAQBolQEABpYBAAyXAQAMmAEAPZoBAAGbAQAPnAEAOJ0BAA2eAQBcnwEAB6ABAAChAQAwogEAI6MBABOkAQAApQEABqYBAKsBpwEAC6gBACmpAQBDqgEAC6wBAButAQABrgEAAK8BAACwAQANsQEADbIBAAGzAQAEtAEAJ7UBACS2AQApuAEAArkBAAK6AQBbuwEABrwBAAq9AQAJvgEAAL8BAADAAQAKwQEADMIBAHnDAQCYAcQBAAfFAQAExgEAK8cBAALIAQACyQEAAMoBAATLAQAOzQEAAs8BAAPQAQAF0QEAAtIBACPTAQAE1AEABdUBAAHWAQUaAQALAgAAAwAHBAAQBQAABgAFBwABCABJCQAMCgABCwAFDAADDQABDgANDwAEEQAWEgAOEwALFAABFQADFgADFwAHGAABGQADGgAFGwAOHAANHQD4AR4ADR8AmQEgAAIhAAAiAAEjAAYkABMlADMmAA0nABkoAAUpAAkqAAIrABMsAAAtAFAuAAAvAAYwAAIxABsyAAUzAA01AAI2AAQ3AAU5AAI6AAc7ABE8AF89AAU+AAY/AG1AAABBAAlCAAVDAABEAAdFAAdGADtIAAJJAAVKAHhLAANMAA9NAApOAARPAAJQAAlSAAFTAANUALICVQCSAVYAFVcAAFgAAVkAC1oACFsABlwACV0APl4AAF8AUWAAAmEADWIAAGMABGQAB2UAImYAAWcAKmgABWkABGoAC2sAF2wAN20AAW4ACm8AXXAAMnEAAnIAM3MAMnQACnUARHYANncARngAAnkAFHoADXsAD3wACH0AAX4ABH8AB4ABAACBAQAmggEAAIMBAACEAQADhQEABYYBAAGHAQAAiAEAEIkBAAGKAQABiwEAggGMAQAJjQEAPo4BAAOPAQAIkAEAJJEBAASSAQALkwEABpQBADaVAQAElgEAA5cBAAKYAQADmQEAHpoBAAGbAQAKnAEAQp0BABueAQAQnwEABaABAAChAQBDogEAFaMBABqkAQAApQEAA6YBAFynAQADqAEAIqkBAB2qAQAIrAEAJK0BAAOuAQAArwEAALABAAaxAQADsgEAALMBAAK0AQAZtQEADbYBAAG3AQAYuAEAALkBAAS6AQAYuwEACbwBAAO9AQAJvgEAAsABAAnCAQAowwEAL8QBAADFAQADxgEABMcBAADIAQAAyQEAAssBAADOAQACzwEAA9ABAADRAQAJ0wEAAdQBAADVAQAA1gEACQEABAIABgQAOgUAAAYACQcACAgAVgkADQoAAwsABQwAAg0AAw4AEg8AARAAAxEAHRIADhMACBQAARYADxgABBkACBoABxsAAhwABx0AkAIeABEfAHsgAAEhAAAjAAwkAA0lADEmAAwnABYoAAcpAAkqABAsAFcuAAEvAAowAAQxAAsyAAQzAAE0ABI1AAM2AAA3AAI5AAE6AAI7ABA8AFw9AAc+AAI/AJABQAADQQAEQgAJQwACRAACRQAIRgACRwBBSAAFSQAWSgB8SwAFTAAGTQAHTgACTwAAUQAPUgAbVACcAVUAbVYABFcABFgABVoABlsAB1wAEF0Abl4AAF8AOmAAAmEAC2IAAWMADWQAAGUAGWYAAWcAK2gAAWkABGoACWsACmwAI20AAm4ABm8AWnAAH3EAAXIAGHMABnQADXUAQXYAM3cASHgACnkABnoADHsAD3wAAH0AAX4AA38AG4ABAACBAQA+ggEAAYMBAAGEAQAChQEABIYBAAiHAQAAiAEAEIkBAAOLAQCRAYwBAAiNAQCJAY4BAAOPAQAUkAEAIpEBAAKSAQAHkwEAC5QBABaVAQAElgEAA5cBAAGYAQAHmQEAG5oBAAWbAQATnAEAKZ0BABGeAQAQnwEAAaABAAChAQAsogEAC6MBABSkAQADpQEABaYBAIUBpwEAAagBACKpAQAfqgEABqwBAFOtAQACrgEAAq8BAACwAQANsQEAALIBAAe0AQAMtQEAELYBAAC3AQAhuAEABrkBAAe6AQAVuwEABLwBAAO9AQALvgEAAMABABXCAQBgwwEAcMQBAAfFAQAlxgEAAscBAALKAQAFywEAAMwBAADNAQAAzgEAAM8BABDQAQAB0QEAANIBAAnTAQAG1AE=';
+let radicalRanges;
+function characterRadical(character){
+  if(!radicalRanges){
+    const bytes=atob(radicalData);
+    let cursor=0, next=0;
+    function number(){
+      let value=0, factor=1, byte;
+      do {byte=bytes.charCodeAt(cursor++);value+=(byte%128)*factor;factor*=128;} while(byte>=128);
+      return value;
+    }
+    radicalRanges=[];
+    while(cursor<bytes.length){
+      const start=next+number(), end=start+number(), radical=number();
+      radicalRanges.push({start,end,radical});next=end+1;
+    }
+  }
+  const point=character.codePointAt(0);
+  let lo=0, hi=radicalRanges.length-1;
+  while(lo<=hi){
+    const mid=(lo+hi)>>1, range=radicalRanges[mid];
+    if(point<range.start)hi=mid-1;
+    else if(point>range.end)lo=mid+1;
+    else return String.fromCodePoint(0x2f00+range.radical-1).normalize('NFKC');
+  }
+  return '';
+}
+
+const nameHabits={
+  木:['你可能喜歡把一個點子慢慢做大','朋友想辦聚會，你可能先提個主題，再找人一起完善。留意原本說好的小聚，會不會愈排愈滿。'],
+  火:['你可能習慣先開口，讓事情動起來','討論一時安靜下來，你可能先拋出想法。講完停一下，給還在想的人一點接話的時間。'],
+  土:['你可能是會把約定記在心上的人','大家約出遊，你可能先確認集合地點和回程。出發前分一件事給朋友準備，就不用一個人顧全場。'],
+  金:['你可能習慣先把標準說清楚','有人請你幫忙挑東西，你可能先問預算，再刪掉不合適的選項。對方猶豫時，可以問他最捨不得放棄哪一點。'],
+  水:['你可能習慣替事情留一點彈性','原本要去的店臨時休息，你可能很快就能換一家。同行的人還沒跟上時，先問他要換地點，還是改天再去。']
+};
+const birthNameLinks=[
+  ['名字加強了你自己的主見','遇到意見不同時，你可能很快知道自己要什麼。約行程前，先各說一個最想去的地方，會比一個人排好再問更好談。'],
+  ['名字把重點放在表達想法','你可能愈說愈清楚。下次腦中有很多點子，可以先講給一個人聽，再選出最想做的那個。'],
+  ['名字把重點放在把事情辦成','你可能會把一句「有空吃飯」真的排進行事曆。決定日期前，先問對方這週有沒有餘裕，彼此都更輕鬆。'],
+  ['名字提醒你把界線說清楚','別人臨時請你幫忙，你可能會想先弄清楚要做到哪一步。可以直接回答「我今天能幫你看第一版」，讓對方知道能期待什麼。'],
+  ['名字帶出先弄懂、再動手的一面','第一次接手陌生的事，你可能看過一個例子就比較有把握。與其一直找資料，可以挑一個範例，照著做出第一版。']
+];
+// Folk associations are a named, limited selection. Each row has an illustrative image
+// and two sets of primary radicals. Only given names are evaluated here.
+const animalImages={
+  鼠:['禾米豆','火刀','鼠找到穀物，有東西吃','火光或刀具使覓食的小鼠警戒'],
+  牛:['艸禾豆','火車','牛在草地上有草可吃','火象徵受驚，車則讓人想到負重'],
+  虎:['山木','田日','山林讓虎有地方棲身','開闊的田野或日照讓虎少了遮蔽'],
+  兔:['艸禾豆','犬刀','草叢裡有兔能吃的植物','犬的追逐或刀具讓兔需要避開危險'],
+  龍:['水魚','火宀','龍在水裡有活動的空間','火與水相對，屋簷則限制了龍的活動空間'],
+  蛇:['宀木竹','日刀','屋簷、樹木或竹叢可供蛇藏身','日照或刀具讓蛇少了安全的藏身處'],
+  馬:['艸禾豆','田車','草料和穀物能讓馬吃飽','田地或車輛容易讓人想到拉車耕作'],
+  羊:['艸禾豆','犬火','羊在草地上有食物','犬的追趕或火光會讓羊群受驚'],
+  猴:['木山','火刀','猴子在山林裡可以攀爬、棲息','火與刀具讓人想到山林裡的危險'],
+  雞:['禾米豆','犬刀','雞可以啄食穀粒','犬的追趕或刀具讓雞需要躲避'],
+  狗:['宀人','車刀','狗有屋簷可歇息，也有人作伴','車輛或刀具使狗需要提高警覺'],
+  豬:['宀米禾','犬刀','屋簷可以遮蔽，穀物可以充飢','犬的追逐或刀具讓豬感到威脅']
+};
+const radicalForms={艸:'艹',水:'氵',人:'亻',刀:'刂',犬:'犭',火:'灬'};
+function birthAnimal(date,calendar){
+  const [year,month,day]=date.split('-').map(Number);
+  const branch=calendar.fromYmd(year,month,day).getLunar().getYearZhi();
+  return '鼠牛虎兔龍蛇馬羊猴雞狗豬'[branchChars.indexOf(branch)];
+}
+function zodiacReading(given,animal){
+  const [fit,caution,goodImage,cautionImage]=animalImages[animal];
+  const chars=Array.from(given,c=>({c,rad:characterRadical(c)}));
+  const matched=(roots)=>chars.filter(v=>v.rad&&roots.includes(v.rad)).map(v=>'「'+esc(v.c)+'」').join('、');
+  const good=matched(fit),other=matched(caution);
+  const lines=[];
+  if(good)lines.push(good+'呼應了「'+goodImage+'」的畫面，傳統取名喜歡這樣的搭配。');
+  if(other)lines.push(other+'讓人聯想到「'+cautionImage+'」，是這種取名習俗較少選的搭配。這只是字形的聯想。');
+  if(!good&&!other)lines.push('這些字沒有出現在本站為屬'+animal+'挑選的字形裡，這一項就不評好壞。');
+  const evidence=chars.map(({c,rad})=>esc(c)+'：'+(rad?rad+'部'+(radicalForms[rad]?'（常見寫法 '+radicalForms[rad]+'）':''):'字表未收錄')).join('、');
+  return profileCard('生肖和名字的字形','你屬'+animal+'，'+(good&&other?'名字裡有兩種不同的意象':good?'名字裡的'+good+'有呼應':other?'可以看看'+other+'的傳統說法':'這組字沒有特別的生肖提示'),lines.join(''),evidence+'。生肖以農曆正月初一換年。');
+}
+function profileCard(label,heading,copy,basis){
+  return '<section class="profile-card"><p class="profile-label">'+label+'</p><h3>'+heading+'</h3><p>'+copy+'</p><p class="profile-basis">'+basis+'</p></section>';
+}
+function nameProfile(person,calendar){
+  const element=person.elements[1], [heading,scene]=nameHabits[element];
+  const last=Array.from(person.family).at(-1), first=Array.from(person.given)[0];
+  const strokeOf=c=>person.strokes.find(s=>s.c===c).n;
+  const tally='取姓的最後一字「'+esc(last)+'」'+strokeOf(last)+' 畫，加上名字的第一字「'+esc(first)+'」'+strokeOf(first)+' 畫，共 '+person.values[1]+' 畫，在姓名筆畫裡屬'+element+'。';
+  const [sky,middle,earth]=person.elements;
+  const outside=nameRelation(sky,middle).kind==='相剋',inside=nameRelation(middle,earth).kind==='相剋';
+  const balance=outside&&inside?'三組筆畫放在一起看，別人的期待、你自己的想法和每天能做的事，可能要花點力氣協調。':
+    outside?'三組筆畫放在一起看，比較容易卡在別人的期待。接下請託之前，先說清楚你能做到哪裡。':
+    inside?'三組筆畫放在一起看，你想做的事可能比一天能做的多。行程排滿時，先挑出今天一定要完成的一件。':
+    '三組筆畫放在一起看，別人的期待和你平常做事的方式比較容易搭在一起。';
+  const names=profileCard('從姓名筆畫看做事習慣',heading,scene+' '+balance,tally);
+  const date=person.birthDate||person.bazi.birth.date;
+  const zodiac=zodiacReading(person.given,birthAnimal(date,calendar));
+  let birth;
+  if(person.bazi){
+    const day=person.bazi.day.upper, [title,action]=birthNameLinks[elementStep(day,element)];
+    const seen=person.bazi.pillars.filter(p=>p.upper===element||p.lower===element).length;
+    const covered=person.bazi.pillars.some(p=>p.hidden.some(s=>stemElement(s)===element));
+    const presence=seen?'把出生年、月、日、時分開看，有 '+seen+' 組能直接看到'+element+'，名字呼應了命盤原有的五行。':
+      covered?'在出生年、月、日、時排出的八個字表面看不到'+element+'，把字的組成細分後才會找到它。名字讓這一項比較顯眼。':
+      '把出生年、月、日、時排出的八個字細分後，仍找不到'+element+'，名字的筆畫帶入了另一種五行意象。';
+    birth=profileCard('出生八字和名字怎麼搭',title,action,'你的生日在這套算法裡屬'+day+'。名字筆畫屬'+element+'，兩者的關係是「'+nameRelation(day,element).bond+'」。'+presence);
+    return readingForPlayer(person,'<div class="profile-cards">'+names+birth+zodiac+'</div>');
+  }
+  birth=profileCard('出生八字和名字怎麼搭','少了出生時間，這一項先留白','有了幾點幾分出生的資料，就能回來看看名字和完整八字怎麼搭。','這次只用姓名算筆畫、用生日查生肖。');
+  return '<div class="profile-cards">'+names+birth+zodiac+'</div>';
+}
+function nameProfileMethod(){
+  return '<p>個人報告從姓名筆畫、八字和生肖字形三方面解讀。筆畫習慣取人格，再與出生日的五行比較。生肖依出生地所填國曆日期換算，以農曆正月初一換年；八字年柱以立春換年，兩者在年初可能不同。生肖字形只看名字每字在 Unihan 的第一個部首，對照本站選取的常見民俗意象，各派也可能拆成別的字根。解讀與舉例由本站撰寫。</p><p class="name-refs"><a href="https://www.click108.com.tw/unit001/free-name/index.php" target="_blank" rel="noopener noreferrer">解析方向參考 · 科技紫微網</a><a href="https://m.zhqm.com.cn/twqimingchangshi_m.aspx" target="_blank" rel="noopener noreferrer">生肖取名字形參考 · 中華起名網</a><a href="https://www.unicode.org/reports/tr38/#kRSUnicode" target="_blank" rel="noopener noreferrer">漢字部首 · Unicode Unihan</a></p>';
 }
 
 const nameElements = ['木','火','土','金','水'];
@@ -1486,28 +1652,35 @@ function nameEntrances(){
 }
 function nameMethod(pair){
   return '<details class="name-method"><summary>查看算法與資料來源</summary><p>採用熊崎氏五格的單姓、複姓算法。天格取姓的總筆畫，單姓加一。人格取姓的末字加名的首字。地格取名的總筆畫，單名加一。外格為天格加地格減人格。總格為所有實際筆畫之和。</p><p>各格尾數 1、2 屬木，3、4 屬火，5、6 屬土，7、8 屬金，9、0 屬水。天格、人格、地格依序構成三才。</p>'+
-    birthMethod(pair)+
+    birthMethod(pair)+(pair?'':nameProfileMethod())+
     '<p>解讀屬傳統民俗，供娛樂與自我觀察。不同流派或字形可能採用不同筆畫。</p><p class="name-refs"><a target="_blank" rel="noopener noreferrer" href="https://nhuir.nhu.edu.tw/retrieve/23128/098NHU05672046-001.pdf#page=55">五格公式 · 南華大學學位論文</a><a target="_blank" rel="noopener noreferrer" href="https://github.com/breezyreeds/kangxi-strokecount">筆畫字表 · Kawai Lo</a></p></details>';
 }
-function nameFields(prefix,label){
+function nameFields(prefix,label,optionalTime=false){
   return '<fieldset class="name-fieldset"><legend>'+label+'</legend><div class="name-fields">'+
     [['family','姓氏','單姓或複姓'],['given','名字','一或二個漢字']].map(([part,title,placeholder])=>
-    '<label for="'+prefix+'-'+part+'">'+title+'<input id="'+prefix+'-'+part+'" type="text" autocomplete="off" spellcheck="false" placeholder="'+placeholder+'" required></label>').join('')+'</div>'+birthFields(prefix)+'</fieldset>';
+    '<label for="'+prefix+'-'+part+'">'+title+'<input id="'+prefix+'-'+part+'" type="text" autocomplete="off" spellcheck="false" placeholder="'+placeholder+'" required></label>').join('')+'</div>'+birthFields(prefix,optionalTime)+'</fieldset>';
 }
 function showNamePage(route){
   const pair = route==='name-match';
   view = route;
   const heading = pair?'姓名配對':'八字姓名學';
-  const intro = pair?'輸入兩人的生辰與姓名，看看契合程度，以及相處時最值得多聊的一件事。':'填入姓名、出生日期和時間，看看你可能有哪些習慣，以及下次遇到類似情況可以怎麼做。';
+  const intro = pair?'輸入兩人的生辰與姓名，看看契合程度，以及相處時最值得多聊的一件事。':'用你的姓名和生日，看看自己做事、跟人相處時有哪些習慣，也讀一讀名字裡和生肖有關的字。';
   const aside = '<aside class="name-aside"><div class="name-orbit" aria-hidden="true"><span class="orbit-center">'+(pair?'合':'命')+'</span>'+nameElements.map((e,i)=>'<span class="orbit-glyph glyph-'+i+'">'+e+'</span>').join('')+'</div><h2>'+(pair?'你們在哪裡合拍？':'先看看結果長什麼樣子')+'</h2><p>'+(pair?'完整合盤會列出契合等級、五項得分與相處建議。如果只知道名字，也能先看姓名簡測。':'按「試用範例」，就能先讀一份完整結果。想測自己時，再換成你的資料。')+'</p></aside>';
   const modes=pair?'<fieldset class="bz-modes"><legend>配對方式</legend><label><input type="radio" name="pair-mode" value="full" checked> 八字與姓名合盤</label><label><input type="radio" name="pair-mode" value="names"> 僅用姓名簡測</label></fieldset>':'';
   shell(page(back('回到占卜室','home')+title(pair?'COMPATIBILITY READING':'FOUR PILLARS & NAME',heading,intro)+
-    '<div class="name-layout"><form class="box name-form" autocomplete="off">'+modes+nameFields('first',pair?'第一位':'你的資料')+(pair?nameFields('second','第二位'):'')+
+    '<div class="name-layout"><form class="box name-form" autocomplete="off">'+modes+nameFields('first',pair?'第一位':'你的資料',!pair)+(pair?nameFields('second','第二位'):'')+
     '<p class="name-hint">請用繁體姓名，複姓完整填在姓氏欄。<span class="zone-hint">若出生地當年使用夏令時間，請選當時的 UTC 時差。</span></p><div id="name-unknown"></div><p id="name-error" role="alert" hidden></p><div class="btns"><button type="submit" class="btn gold">'+(pair?'查看合適程度':'查看八字姓名解讀')+'</button><button type="button" class="btn ghost name-example">試用範例</button></div><p class="name-privacy">姓名與生辰只在本頁計算，離開後即清除。</p></form>'+aside+'</div><div id="name-results"></div>'+nameMethod(pair),'names-page'));
   const form=main.querySelector('.name-form'), missingBox=form.querySelector('#name-unknown'), error=form.querySelector('#name-error'), output=main.querySelector('#name-results');
   const peopleIds=pair?['first','second']:['first'];
   const fullMode=()=>!pair || form.elements['pair-mode'].value==='full';
   const button=form.querySelector('[type=submit]');
+  const unsure=form.querySelector('#first-birth-unsure');
+  function updateBirthTime(){
+    if(!unsure)return;
+    const time=form.querySelector('#first-birth-time');
+    time.disabled=unsure.checked;time.required=!unsure.checked;
+    button.textContent=unsure.checked?'查看姓名與生肖解讀':'查看八字姓名解讀';
+  }
   let revision=0,request=0;
   function clearError(){error.hidden=true;error.textContent='';form.querySelectorAll('[aria-invalid]').forEach(field=>field.removeAttribute('aria-invalid'));}
   function report(message,field){error.textContent=message;error.hidden=false;field.setAttribute('aria-invalid','true');field.focus();}
@@ -1531,14 +1704,17 @@ function showNamePage(route){
     invalidate();
     if(event.target.type==='text')missingBox.replaceChildren();
     if(event.target.name==='pair-mode')updateMode();
+    if(event.target===unsure)updateBirthTime();
     if(event.target.tagName==='SELECT')updateDateLimits();
   });
   form.addEventListener('change',event=>{
     if(event.target.name==='pair-mode')updateMode();
+    if(event.target===unsure)updateBirthTime();
     if(event.target.tagName==='SELECT')updateDateLimits();
   });
   form.querySelector('.name-example').addEventListener('click',()=>{
-    const sample=[['林','子涵','1992-06-18','09:30'],['陳','以安','1994-11-07','20:15']];
+    const sample=[['林',pair?'子涵':'梓涵','1992-06-18','09:30'],['陳','以安','1994-11-07','20:15']];
+    if(unsure){unsure.checked=false;updateBirthTime();}
     peopleIds.forEach((id,i)=>{
       const [family,given,date,time]=sample[i];
       for(const [key,value] of Object.entries({family,given,'birth-date':date,'birth-time':time,'birth-zone':480}))
@@ -1581,7 +1757,8 @@ function showNamePage(route){
       try{
         const calendar=await getBirthCalendar();
         if(!form.isConnected||ticket!==request||version!==revision)return;
-        charts.forEach((person,i)=>person.bazi=makeBirthChart(birthData[i],calendar));
+        if(!unsure?.checked)charts.forEach((person,i)=>person.bazi=makeBirthChart(birthData[i],calendar));
+        if(!pair)charts[0].birthDate=birthData[0].date;
         output.innerHTML=pair?baziMatchResult(charts):nameSingleResult(charts[0],calendar);
       }catch{
         if(form.isConnected && ticket===request && version===revision){
@@ -1619,11 +1796,11 @@ function nameSingleResult(chart,calendar){
   const traditional='<details class="name-math"><summary>查看姓名五格與三才配置</summary><div class="grid-values">'+
     nameGrids.map(([grid,meaning],i)=>'<div><span>'+grid+'</span><strong>'+chart.values[i]+'<small>'+chart.elements[i]+'</small></strong><span>'+meaning+'</span></div>').join('')+'</div>'+
     '<h3 class="reading-subtitle">三才配置 <small>'+chart.elements.slice(0,3).join(' · ')+'</small></h3><div class="name-links">'+individualLink(chart,0)+individualLink(chart,1)+'</div></details>';
-  const boundary=timeBoundary(chart.bazi,calendar);
+  const boundary=chart.bazi?timeBoundary(chart.bazi,calendar):'';
   const timeNote=boundary?'<p class="reader-time">如果出生時間差了 15 分鐘，這份解讀可能會不同。若你填的是大概時間，可以先核對出生紀錄。</p>':'';
-  return '<section class="name-reading player-reading"><h2 tabindex="-1">'+esc(chart.full)+'的測驗結果</h2>'+readingForPlayer(chart)+
+  return '<section class="name-reading player-reading"><h2 tabindex="-1">'+esc(chart.full)+'的測驗結果</h2>'+nameProfile(chart,calendar)+
     timeNote+'<p class="name-hint reader-note">這是傳統姓名學的解讀，你可以用最近發生的事對照看看。</p>'+
-    '<details class="name-math reader-details"><summary>想知道怎麼算？查看命盤與筆畫</summary>'+singleBazi(chart,boundary)+traditional+nameMath(chart)+'</details></section>';
+    '<details class="name-math reader-details"><summary>'+(chart.bazi?'想知道怎麼算？查看命盤與筆畫':'想知道怎麼算？查看姓名筆畫')+'</summary>'+(chart.bazi?singleBazi(chart,boundary):'')+traditional+nameMath(chart)+'</details></section>';
 }
 function nameMatchResult(charts){
   const [a,b]=charts;
