@@ -1308,65 +1308,69 @@ function stemGod(dayStem,other){
 function plainRelation(day,other){
   return ['兩者同屬'+day,day+'生'+other,day+'剋'+other,other+'剋'+day,other+'生'+day][elementStep(day,other)];
 }
-const everydayReadings={
-  比肩:{
-    headline:'你可能喜歡先照自己的想法試一次',
-    work:'兩個人一起寫報告，你可能會先做一頁給對方看。看到實際的樣子，你比較容易說清楚自己想怎麼做。',
-    close:'和喜歡的人待了一整天，你可能還是想自己安靜一下。如果突然不回訊息，對方容易以為你在生氣。',
-    next:'想一個人待著時，試著說：「我想自己休息一下，晚點再打給你。」'},
-  劫財:{
-    headline:'大家忙不過來時，你可能很快就會伸手幫忙',
-    work:'看到同事趕不完，你可能會說「這個我來」。幫完才發現，自己的事也快到期限了。',
-    close:'朋友揪聚餐，你可能順手訂位、先墊錢。一次沒關係，幾次下來，如果總是你在處理，你也會累。',
-    next:'下次一起約吃飯，直接問：「我訂位，你幫忙問大家幾點方便，好嗎？」'},
-  食神:{
-    headline:'你可能很會把難懂的事講得簡單',
-    work:'有人問你一個步驟怎麼做，你可能會把畫面打開，陪他做一次。對方看過一次就會了，這正是你的做法能幫上忙的地方。',
-    close:'朋友忙到沒空吃飯，你可能會想直接幫他買。你很用心，但他那天最需要的也可能只是安靜休息。',
-    next:'想照顧對方時，問一句：「我可以幫你帶晚餐，還是你今天想自己休息？」'},
-  傷官:{
-    headline:'你可能很快看出事情卡在哪裡',
-    work:'開會時大家都說「再催一下」，你可能先發現其實是兩個人都在等對方回信。把這件事指出來，大家就知道下一步要找誰。',
-    close:'朋友才剛說和別人吵架，你可能已經想到他下次可以怎麼回。太快開口，他容易覺得你在挑他的錯。',
-    next:'朋友訴苦時，先讓他說完，再問：「你想聽我的想法嗎？」'},
-  偏財:{
-    headline:'你可能很會替大家想出其他選擇',
-    work:'原本的場地訂不到，你可能很快就想到另外兩間。真正容易卡住的地方，是選項愈找愈多，最後遲遲沒選。',
-    close:'朋友說最近很累，你可能馬上開始查週末去哪裡放鬆。有時他最想要的，只是有人聽他把今天的事說完。',
-    next:'下次想替對方安排事情前，先問：「你想聊聊，還是要我幫你想辦法？」'},
-  正財:{
-    headline:'你可能習慣把答應別人的事記得很清楚',
-    work:'大家說「下週再處理」，你可能會順手記下哪一天、誰要交什麼。遇上臨時改約時，你也會希望有人早點告訴你。',
-    close:'你可能用記得接人、買好早餐這些小事表達關心。對方偶爾忘記約定時，你在意的往往是自己等了很久。',
-    next:'約時間時可以說：「如果會晚到，傳個訊息給我，我就知道怎麼安排。」'},
-  七殺:{
-    headline:'事情一急，你可能會先站出來處理',
-    work:'快到截止時間才發現資料有錯，你可能先找人修好最要緊的地方。容易累的時候，是大家把每件事都交給你救急。',
-    close:'對方一說遇到麻煩，你可能已準備幫他打電話。先留一點空間，讓他決定這件事想自己處理多少。',
-    next:'想接手前問：「你希望我陪你一起處理，還是先聽你說？」'},
-  正官:{
-    headline:'你可能想先弄懂要求，再把事情做好',
-    work:'收到一句「幫我改好一點」，你可能最想知道對方要改內容還是版面。問清楚再開始，通常能少改幾次。',
-    close:'兩人約好晚上見面，你可能當成時間已經定了，對方卻還在等確認。你在意的是彼此對同一句話有沒有相同理解。',
-    next:'約好之後，多確認一句：「那我們就定週五七點，如果有變再互相說，好嗎？」'},
-  偏印:{
-    headline:'你可能會注意到別人略過的小細節',
-    work:'同一張表大家都說沒問題，你可能會停在一個跟平常不同的數字。先查一筆原資料，就能知道直覺有沒有抓對。',
-    close:'熟悉的人回訊息比平常短，你可能會想很久，是不是自己剛才說錯話。對方也可能只是剛好很忙。',
-    next:'與其猜一整晚，可以直接問：「你今天是不是很忙？等你有空我們再聊。」'},
-  正印:{
-    headline:'你可能看過一次好例子，就比較知道怎麼開始',
-    work:'第一次接手陌生的事，你可能會先找以前做過的版本。看懂對方為什麼那樣做之後，你就能用自己的方式完成。',
-    close:'在乎的人遇到困難，你可能會找資料或分享自己的經驗。先弄清楚他最擔心哪一點，你的用心更容易被收到。',
-    next:'對方說遇到麻煩時，先問：「這件事裡，你現在最煩的是哪一部分？」'}
+// Keys match the calendar library. The report displays only the three passages.
+const birthdayReadings={
+  '白羊':{
+    personality:'臨時發現一條沒走過的小路，你可能已經轉進去了，才想到要問同行的人。對你來說，親自試一下，通常比站在原地想半天更有意思。',
+    work:'事情卡住、大家都在等人開頭時，你容易先做出第一版。若後面還有人要接手，開工前先問他需要什麼格式，就能保留速度，也少一次重做。',
+    close:'意見不同時，你可能當下就說，講開了便覺得事情過了。對方若還很安靜，可以多問一句：「剛才我說得有點快，你怎麼想？」'
+  },
+  '金牛':{
+    personality:'碰到喜歡的小店，你可能會一去再去，連習慣坐哪個位置都很清楚。要換個選擇時，你會想先知道有什麼地方真的比較好。',
+    work:'你容易把常做的事磨得很熟。遇到要全面更換工具的提案，拿一筆熟悉的資料實際跑過一遍，比聽完一整場介紹更能幫你做決定。',
+    close:'你可能會記得對方愛喝什麼，見面時順手帶一杯。若臨時被改約，你在意的常是整天已經排好了。說清楚「下次能早點告訴我嗎」，對方比較知道怎麼體貼你。'
+  },
+  '双子':{
+    personality:'聊天時，一個細節就可能勾起你好幾個問題。朋友才說換了工作，你已經想問新同事怎麼樣、通勤遠不遠，也很快想起另一個有類似經驗的人。',
+    work:'同事給你兩種說法，你可能很快就聽出他們其實在講同一件事，能換句話讓雙方聽懂。討論愈熱鬧，點子也愈容易岔開。散會前留一句「所以我們先做哪一件？」會很有用。',
+    close:'你可能用分享文章、傳一個好笑的片段來維持聯絡。朋友認真訴苦時，先把剛想到的故事放一下，問他「後來呢？」讓他把話說完。'
+  },
+  '巨蟹':{
+    personality:'一桌人吃飯時，你可能最先發現平常很愛講話的人今天特別安靜。你會記得別人的小習慣，自己遇到煩心事時，卻常要等到回到熟悉的地方才說得出口。',
+    work:'新人第一天沒人帶，你可能會主動告訴他檔案在哪裡、遇到問題要問誰。這份細心很有用，忙的時候也可以先約個時間，免得自己的工作一直被打斷。',
+    close:'你往往會把對方隨口說的事放在心上，也希望自己的心情能被發現。真的需要陪伴時，可以直接說「我今天有點累，晚餐後陪我走一下好嗎？」'
+  },
+  '狮子':{
+    personality:'大家想慶祝卻沒人起頭時，你可能會先張羅，也很會讓壽星覺得今天是真的為他而聚。你花過心思的地方被人記住，一句具體的稱讚就能讓你開心很久。',
+    work:'要上台說明或替小組扛責任時，你可能願意站到前面。成果發表時，順手說出哪一段是誰完成的，能把你帶大家往前走的能力用得更好。',
+    close:'你喜歡讓在乎的人感覺受到重視，對方若在眾人面前拿你的認真開玩笑，你可能特別受傷。私下告訴他「剛才那件事我其實準備很久」，往往更容易被理解。'
+  },
+  '处女':{
+    personality:'出門前你可能會再看一次地址，也會發現訂位簡訊寫的是另一家分店。你常靠這些小檢查省去麻煩，只是偶爾連休息時都還想著有沒有漏掉什麼。',
+    work:'交件前，你很容易抓出日期不一致、表格少一欄這類問題。時間有限時，先修會影響別人使用的錯，再調字距和版面，會比較容易準時收工。',
+    close:'在乎一個人時，你可能會幫他查路線，也忍不住指出哪裡可以做得更好。對方心情低落時，先問「要我一起想辦法，還是陪你坐一下？」你的細心比較容易被收到。'
+  },
+  '天秤':{
+    personality:'幾個人一起選餐廳，你可能先看誰吃素、誰回家比較遠，最後才想到自己想吃什麼。你很會照顧氣氛，也可以提早把自己的偏好算進去。',
+    work:'兩邊意見不合時，你擅長把各自在意的條件說清楚。若會議一直停在比較方案，試著問「我們這次最不能犧牲的是時間、預算，還是品質？」通常就比較選得下去。',
+    close:'你可能為了相處愉快，連續幾次都說「我都可以」，後來才發現自己也想被遷就一次。下一次約會，不妨先提「上次你選電影，這次我想挑餐廳」。'
+  },
+  '天蝎':{
+    personality:'第一次認識一個人，你可能先聽他怎麼說，再留意他後來怎麼做。等到建立信任，你會願意聊得很深，也會認真守住對方交給你的祕密。',
+    work:'同一個問題反覆發生時，你可能願意往前查好幾步，直到找到最早出錯的環節。若還要花時間追原因，先把已確認的事告訴同事，大家就不用一直猜進度。',
+    close:'碰到對方前後說法不一，你可能很在意，卻還想先觀察。用「你上次說週末有空，今天說不能，我想知道中間發生什麼事」開口，比悶著等他解釋容易談下去。'
+  },
+  '射手':{
+    personality:'朋友臨時問要不要去一個沒去過的地方，你可能先問「有什麼好玩的？」才想怎麼到。能自己探索會讓你很有精神，行程排太滿反而容易失去興致。',
+    work:'接到新任務，你通常先想它做成之後有什麼用，也容易帶大家看見其他做法。點子獲得認同後，當場約定第一個交付日期，才不會一轉身就忙起下一件新鮮事。',
+    close:'你可能很願意帶喜歡的人嘗試新東西，也珍惜各自安排時間的空間。想臨時改行程時，先問「你會不會其實很期待原來那個地方？」能少一次無心的掃興。'
+  },
+  '摩羯':{
+    personality:'遇到很想完成的事，你可能先算自己每週能挪幾個晚上。別人只看到你做得穩，你心裡其實很清楚，哪些成果是靠一次次守住小約定累積起來的。',
+    work:'碰到期限明確的案子，你擅長從交件日往回排。最容易累的時候，是連別人還沒決定的事也先扛下來。把「週三前要誰確認」也寫進計畫，責任就清楚多了。',
+    close:'你可能習慣用準時赴約、幫忙處理麻煩來表示在乎。就算已經默默幫了很多忙，偶爾補一句「這件事對你很重要，所以我想來」，對方更容易懂你的心意。'
+  },
+  '水瓶':{
+    personality:'聽到「大家一直都這樣做」，你可能第一個想問為什麼。只要有人願意讓你把奇怪的想法講完，你通常也很樂意聽聽他的不同看法。',
+    work:'看到三個人重複抄同一份資料，你可能會想改掉整個流程。先挑一個大家每天都覺得麻煩的小步驟試做，讓同事親自省一次時間，往往比一次提十項改動更有效。',
+    close:'你可能很重視能聊得來，也需要一些不被打擾的時間。想暫時離線時，留一句「我今晚想自己待著，明天再一起吃飯」，就能讓對方安心。'
+  },
+  '双鱼':{
+    personality:'看完一部電影，你可能忘了情節順序，卻一直記得某個眼神或一句台詞。你對氣氛很敏銳，也容易把別人的低落一路帶回家。',
+    work:'碰到「這段介紹寫得很冷」這種模糊回饋，你可能會想到用一個故事讓人有感。先寫兩三句給對方看，確認他喜歡的語氣，再把整篇寫完，會少繞很多路。',
+    close:'朋友半夜說心情不好，你可能願意陪他聊很久。當自己也累了，可以說「我還能陪你聊十分鐘，明天午休我再找你」，既讓他知道你在，也顧得到自己。'
+  }
 };
-const everydayNameThemes=[
-  '從名字的筆畫和生日一起看，你可能習慣先有自己的想法，再跟別人商量。',
-  '從名字的筆畫和生日一起看，你可能邊說邊想。把想法講給別人聽時，自己也會更清楚。',
-  '從名字的筆畫和生日一起看，你可能會把一句「改天約」變成真的約好時間、選好地點。',
-  '從名字的筆畫和生日一起看，你可能很在意彼此說好了什麼。突然改計畫時，知道原因會讓你比較好調整。',
-  '從名字的筆畫和生日一起看，你可能喜歡先找個信任的人聊聊，整理好想法再做決定。'
-];
 const tenGodGloss={比肩:'自主與並肩合作',劫財:'同伴與資源分配',食神:'示範與表達',傷官:'發現問題與改進',偏財:'調度資源與掌握機會',正財:'落實安排與守約',七殺:'應對壓力與時限',正官:'規則與責任',偏印:'另找角度與驗證',正印:'學習與支持'};
 
 function readStructure(b){
@@ -1442,15 +1446,11 @@ function nameAndBirth(person){
   }
   return '<h3 class="reading-subtitle">你的名字怎麼對上這張盤</h3><div class="portrait-names">'+[...groups].map(([e,labels])=>'<article><h4>'+labels.join('、')+' · '+e+'</h4><p>'+plainRelation(day,e)+'。姓名數理的'+e+interpretations[elementStep(day,e)]+elementPresence(b,e)+'</p></article>').join('')+'</div><p class="name-hint">姓名取康熙筆畫的五格數理。是否需要某種五行，還涉及全局與取用流派，不能從缺幾個字直接決定。</p>';
 }
-function readingForPlayer(person){
-  const b=person.bazi,day=b.day.stem;
-  const work=everydayReadings[stemGod(day,b.month.stem)];
-  const relationship=everydayReadings[stemGod(day,b.day.hidden[0])];
-  const nameTheme=everydayNameThemes[elementStep(b.day.upper,person.elements[1])];
-  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+
-    '<div class="reader-scenes"><section><h3>做事的時候</h3><p>'+work.work+'</p></section>'+
-    '<section><h3>和親近的人相處時</h3><p>'+relationship.close+'</p></section></div>'+
-    '<div class="name-action reader-next"><h3>下次可以試試</h3><p>'+relationship.next+'</p></div>';
+function readingForPlayer(solar){
+  const {personality,work,close}=birthdayReadings[solar.getXingZuo()];
+  return '<section class="reader-takeaway"><h3>個性</h3><p>'+personality+'</p></section>'+
+    '<div class="reader-scenes"><section><h3>工作方式</h3><p>'+work+'</p></section>'+
+    '<section><h3>相處方式</h3><p>'+close+'</p></section></div>';
 }
 function timeBoundary(b,calendar){
   const birth=b.birth;
@@ -1471,7 +1471,7 @@ function singleBazi(person,boundary){
   const cards='<h3 class="reading-subtitle">這個判讀從哪裡來</h3><dl class="portrait-reasons"><div><dt>月令</dt><dd>月柱'+b.month.text+'，'+month+'藏'+b.month.hidden.join('、')+'。本氣'+mainStem+stemElement(mainStem)+'對'+b.day.stem+'日主為'+stemGod(b.day.stem,mainStem)+'。'+structure.seasonText+'</dd></div><div><dt>通根</dt><dd>'+structure.rootsText+'</dd></div><div><dt>生扶與制洩</dt><dd>'+structure.supportText+'</dd></div></dl>';
   const histogram='<details class="name-math"><summary>查看八個明字的五行分布</summary><div class="bz-bars">'+nameElements.map(e=>'<div><span>'+e+'</span><meter min="0" max="8" value="'+b.counts[e]+'" aria-label="'+e+'的明字數"></meter><strong>'+b.counts[e]+' 個</strong></div>').join('')+'</div><p>四個天干、四個地支本氣各計一次。其餘藏干已列於上表，與這八個數字分開閱讀。</p></details>';
   const workGod=stemGod(b.day.stem,b.month.stem),closeGod=stemGod(b.day.stem,b.day.hidden[0]);
-  const context='<p class="name-hint">「做事的時候」參考月干'+b.month.stem+'的'+workGod+'，取象為'+tenGodGloss[workGod]+'。「和親近的人相處時」參考日支'+b.day.branch+'的本氣'+b.day.hidden[0]+'，對應'+closeGod+'，取象為'+tenGodGloss[closeGod]+'。白話總結中的姓名解讀取人格五行與日主的關係。</p>';
+  const context='<p class="name-hint">月干'+b.month.stem+'對應'+workGod+'，傳統上取象為'+tenGodGloss[workGod]+'。日支'+b.day.branch+'以'+b.day.hidden[0]+'為本氣，對應'+closeGod+'，取象為'+tenGodGloss[closeGod]+'。</p>';
   return header+intro+cards+pillarEvidence(b)+context+nameAndBirth(person)+histogram;
 }
 
@@ -1547,13 +1547,6 @@ function characterRadical(character){
   return '';
 }
 
-const nameHabits={
-  木:['你可能喜歡把一個點子慢慢做大','朋友想辦聚會，你可能先提個主題，再找人一起完善。留意原本說好的小聚，會不會愈排愈滿。'],
-  火:['你可能習慣先開口，讓事情動起來','討論一時安靜下來，你可能先拋出想法。講完停一下，給還在想的人一點接話的時間。'],
-  土:['你可能是會把約定記在心上的人','大家約出遊，你可能先確認集合地點和回程。出發前分一件事給朋友準備，就不用一個人顧全場。'],
-  金:['你可能習慣先把標準說清楚','有人請你幫忙挑東西，你可能先問預算，再刪掉不合適的選項。對方猶豫時，可以問他最捨不得放棄哪一點。'],
-  水:['你可能習慣替事情留一點彈性','原本要去的店臨時休息，你可能很快就能換一家。同行的人還沒跟上時，先問他要換地點，還是改天再去。']
-};
 // Folk associations are a named, limited selection. Each row has an illustrative image
 // and two sets of primary radicals. Only given names are evaluated here.
 const animalImages={
@@ -1622,7 +1615,8 @@ function balanceDirection(b){
 }
 function getNameReport(chart,calendar){
   const date=chart.birthDate||chart.bazi.birth.date;
-  const lunar=calendar.fromYmd(...date.split('-').map(Number)).getLunar();
+  const solar=calendar.fromYmd(...date.split('-').map(Number));
+  const lunar=solar.getLunar();
   const branch=lunar.getYearZhi(),animal='鼠牛虎兔龍蛇馬羊猴雞狗豬'[branchChars.indexOf(branch)];
   const letters=Array.from(chart.given,c=>givenCharacter(c,animal));
   const grids=chart.values.map(numberRating);
@@ -1638,7 +1632,7 @@ function getNameReport(chart,calendar){
   const zodiacGrade=zodiacScore===null?'未評':signs.every(n=>n===1)?'平':reportGrade(zodiacScore);
   const assessed=[gridScore,birthScore,zodiacScore].filter(v=>v!==null);
   const total=average(assessed);
-  return {date,lunar,branch,animal,letters,grids,direction,gridScore,birthScore,zodiacScore,zodiacGrade,total,assessed:assessed.length};
+  return {date,solar,lunar,branch,animal,letters,grids,direction,gridScore,birthScore,zodiacScore,zodiacGrade,total,assessed:assessed.length};
 }
 function reportSection(id,label,mark,content){
   return '<section class="folio-part" id="folio-'+id+'"><div class="folio-rule"><h3 tabindex="-1">'+label+'</h3>'+(mark?'<span class="folio-grade">'+mark+'</span>':'')+'</div>'+content+'</section>';
@@ -1686,8 +1680,8 @@ function renderSuggestions(chart,r){
     '這次先依生肖'+r.animal+'的字形搭配挑字，也把字義列出來，方便你選喜歡的意思。';
   return reportSection('suggest','綜合命名建議','', '<p>'+text+'</p><ul class="name-options">'+picked.map(ch=>'<li><strong>'+ch.c+'</strong><div><b>'+ch.meaning+'</b><small>'+ch.element+'行'+(ch.sign===2?' · 生肖呼應':' · 生肖中性')+'</small></div></li>').join('')+'</ul><p class="folio-caption">這些是單字參考。換成完整名字後，五格筆畫會跟著改變。</p>');
 }
-function nameReportView(chart,calendar){
-  const r=getNameReport(chart,calendar),l=r.lunar;
+function nameReportView(chart,r){
+  const l=r.lunar;
   const civil=r.date.split('-').map(Number);
   const known=chart.bazi, clock=known?'　'+known.birth.time+'（'+known.pillars[3].branch+'時）':'　時辰未知';
   const subs=[['grids','姓名五格',reportGrade(r.gridScore)],['birth','八字五行',reportGrade(r.birthScore)],['animal','生肖姓名',r.zodiacGrade]];
@@ -1699,7 +1693,7 @@ function nameReportView(chart,calendar){
   return summary+links+renderGridReport(chart,r)+renderBirthReport(chart,r)+renderAnimalReport(r)+renderSuggestions(chart,r);
 }
 function nameProfileMethod(){
-  return '<p>五格以康熙筆畫對照八十一數理表，每格「吉、半吉、較弱」依序記 2、1、0。超過 81 逐次減 80。天格由姓氏決定，五格評等取其餘四格的平均。</p><p>八字採簡化扶抑法。出生月份支持日主計 2，同類在地支本氣或其餘藏干計 2 或 1，年、月、時干每有一個生扶日主計 1，最多 2。合計 0–2 優先取生扶，4–6 優先取洩、耗、制，3 保留。姓名用字按本站部首表取象，各派歸類可能不同。符合取名方向記 2，其餘記 0，取各字平均。未知時辰、五行不明或命盤接近均衡，這項列為未評。</p><p>生肖以農曆正月初一換年，八字年柱以立春換年。依 Unicode 第一部首看本頁所列生肖意象，呼應、中性、避用計 2、1、0，全部中性標「平」，部首不明則不評。綜合評等取可評項目的等權平均，門檻依序為 1.85 大吉、1.45 中吉、1 小吉、0.5 平，其餘宜留意。這套合併方式與建議文字由本站設計。</p><p class="name-refs"><a href="https://lightpath.tw/naming/shuli" target="_blank" rel="noopener noreferrer">81 數理表 · 逐光</a><a href="https://www.click108.com.tw/unit001/free-name/index.php" target="_blank" rel="noopener noreferrer">報告結構參考 · 科技紫微網</a><a href="https://m.zhqm.com.cn/twqimingchangshi_m.aspx" target="_blank" rel="noopener noreferrer">生肖字形參考 · 中華起名網</a><a href="https://www.unicode.org/reports/tr38/#kRSUnicode" target="_blank" rel="noopener noreferrer">部首 · Unicode</a></p>';
+  return '<p>五格以康熙筆畫對照八十一數理表，每格「吉、半吉、較弱」依序記 2、1、0。超過 81 逐次減 80。天格由姓氏決定，五格評等取其餘四格的平均。</p><p>八字採簡化扶抑法。出生月份支持日主計 2，同類在地支本氣或其餘藏干計 2 或 1，年、月、時干每有一個生扶日主計 1，最多 2。合計 0–2 優先取生扶，4–6 優先取洩、耗、制，3 保留。姓名用字按本站部首表取象，各派歸類可能不同。符合取名方向記 2，其餘記 0，取各字平均。未知時辰、五行不明或命盤接近均衡，這項列為未評。</p><p>生肖以農曆正月初一換年，八字年柱以立春換年。依 Unicode 第一部首看本頁所列生肖意象，呼應、中性、避用計 2、1、0，全部中性標「平」，部首不明則不評。綜合評等取可評項目的等權平均，門檻依序為 1.85 大吉、1.45 中吉、1 小吉、0.5 平，其餘宜留意。這套合併方式與建議文字由本站設計。「個性、工作與相處方式」依國曆出生月日提供生活情境，供自我對照，獨立於姓名評等。</p><p class="name-refs"><a href="https://lightpath.tw/naming/shuli" target="_blank" rel="noopener noreferrer">81 數理表 · 逐光</a><a href="https://www.click108.com.tw/unit001/free-name/index.php" target="_blank" rel="noopener noreferrer">報告結構參考 · 科技紫微網</a><a href="https://m.zhqm.com.cn/twqimingchangshi_m.aspx" target="_blank" rel="noopener noreferrer">生肖字形參考 · 中華起名網</a><a href="https://www.unicode.org/reports/tr38/#kRSUnicode" target="_blank" rel="noopener noreferrer">部首 · Unicode</a></p>';
 }
 
 const nameElements = ['木','火','土','金','水'];
@@ -1909,10 +1903,9 @@ function nameSingleResult(chart,calendar){
     '<h3 class="reading-subtitle">三才配置 <small>'+chart.elements.slice(0,3).join(' · ')+'</small></h3><div class="name-links">'+individualLink(chart,0)+individualLink(chart,1)+'</div></details>';
   const boundary=chart.bazi?timeBoundary(chart.bazi,calendar):'';
   const timeNote=boundary?'<p class="reader-time">如果出生時間差了 15 分鐘，這份解讀可能會不同。若你填的是大概時間，可以先核對出生紀錄。</p>':'';
-  const [habit,scene]=nameHabits[chart.elements[1]];
-  const life=chart.bazi?readingForPlayer(chart):'<h3>'+habit+'</h3><p>'+scene+'</p>';
-  const extra='<details class="folio-more"><summary>看個性、工作與相處方式</summary>'+life+'</details>';
-  return '<article class="name-folio">'+nameReportView(chart,calendar)+timeNote+extra+
+  const report=getNameReport(chart,calendar);
+  const extra='<details class="folio-more"><summary>看個性、工作與相處方式</summary>'+readingForPlayer(report.solar)+'</details>';
+  return '<article class="name-folio">'+nameReportView(chart,report)+timeNote+extra+
     '<details class="name-math reader-details folio-detail"><summary>'+(chart.bazi?'查看完整命盤與計算依據':'查看姓名的計算依據')+'</summary>'+(chart.bazi?singleBazi(chart,boundary):'')+traditional+'</details>'+
     '<div class="folio-actions"><button class="btn ghost" type="button" data-edit-name>修改資料</button><button class="btn" type="button" data-act="name-test">再測一次</button></div></article>';
 }
