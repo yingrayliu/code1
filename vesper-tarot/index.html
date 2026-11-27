@@ -138,6 +138,32 @@ dialog{width:min(510px,calc(100% - 28px));background:#251c2b;color:var(--ink);bo
 .profile-card .profile-label{font-size:.78rem;color:var(--gold);letter-spacing:.08em}
 .profile-card .profile-basis{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
 @media(max-width:470px){.profile-card{padding:13px}.profile-cards{gap:9px}}
+/* The single-person assessment opens as a standalone reading sheet. */
+.report-open>.wrap>.subhead,.report-open>.wrap>.name-layout{display:none}
+.report-open #name-results{margin:0;scroll-margin-top:92px}
+.name-folio{--paper:#fcf8ef;--paper-deep:#f3ead9;--gold-ink:#785c2a;--red:#853e47;--text:#312a2b;--soft:#655750;--edge:#d8c7a8;max-width:790px;margin:auto;color:var(--text);background:var(--paper);border:1px solid #c5ad84;border-radius:14px;box-shadow:0 16px 55px #100b1555;padding:clamp(17px,4vw,46px);font-size:1rem;line-height:1.75}
+.name-folio :is(h1,h2,h3,h4){color:var(--text);font-family:var(--serif);line-height:1.45}
+.folio-cover{border:1px solid var(--edge);outline:1px solid var(--edge);outline-offset:-6px;padding:clamp(24px,5vw,46px) 14px;text-align:center;background:radial-gradient(ellipse at 50% 62%,#f4e9d8,transparent 67%)}
+.folio-cover .folio-kicker{color:var(--gold-ink);font-weight:650;letter-spacing:.16em;font-size:.91rem}
+.folio-cover h1{font-size:clamp(2.1rem,7vw,3.65rem);letter-spacing:.13em;margin:4px 0 7px;overflow-wrap:anywhere}
+.folio-cover p{color:var(--soft);margin:0;font-size:.92rem}
+.folio-stamp{display:grid;justify-content:center;justify-items:center;align-content:center;margin:18px auto 14px;min-width:100px;min-height:100px;width:fit-content;padding:9px 13px;border:3px double var(--red);color:var(--red);border-radius:21px 16px 20px 14px}
+.folio-stamp span{font:600 .73rem/1.6 var(--serif);letter-spacing:.11em}.folio-stamp strong{font:700 clamp(2rem,5vw,2.55rem)/1.3 var(--serif)}
+.folio-cover .folio-summary{font-size:1rem;color:var(--text);line-height:1.75}.name-folio .folio-caption{font-size:.82rem;color:var(--soft);margin:8px 0 0}
+.grade-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 8px}
+.grade-links button{display:grid;justify-items:center;align-content:center;padding:9px 3px;line-height:1.5;color:var(--text);background:#f8f0e1;border:1px solid var(--edge);border-radius:6px;font-size:.89rem;cursor:pointer}.grade-links b{font:650 1.21rem/1.6 var(--serif);color:var(--red)}.grade-links small{color:var(--gold-ink);line-height:1}.grade-links button:hover,.grade-links button:focus-visible{background:#ecdfc8}
+.folio-part{margin-top:clamp(26px,5vw,46px)}.folio-rule{padding:0 0 9px;border-bottom:2px solid var(--edge);display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.folio-rule h3{margin:0;font-size:clamp(1.35rem,3.4vw,1.75rem);scroll-margin-top:112px;letter-spacing:.035em}.folio-grade{background:#f3e4dc;border:1px solid #d5b2a7;color:#793b40;border-radius:5px;font-size:.9rem;font-weight:650;padding:0 8px}
+.folio-part h4{font-size:1.08rem;margin:10px 0 3px}.folio-part p{margin:6px 0}.stroke-map{text-align:center;background:#f5eddd;border-radius:6px;padding:16px 8px}.stroke-letters{display:flex;justify-content:center;gap:clamp(15px,5vw,35px)}
+.stroke-letters div{display:grid}.stroke-letters b,.name-options strong{font:600 2.1rem/1.35 var(--serif);color:var(--text)}.stroke-letters span,.stroke-map p{font-size:.86rem;color:var(--soft)}.stroke-bracket{border:1px solid #bc9d68;border-top:0;width:43%;max-width:220px;height:7px;margin:5px auto 0}.stroke-map p{margin-bottom:0}.stroke-map strong{color:var(--red);font-size:1.15rem}
+.folio-intro{color:var(--soft);font-size:.94rem}.grid-rows,.word-lines,.name-options{list-style:none;padding:0;margin:0}
+.grid-rows li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--edge)}.grid-rows h4,.grid-rows p{margin:0}.grid-rows p,.word-lines span{font-size:.94rem}.grid-seal,.animal-seal{display:grid;place-items:center;border:3px double currentColor;font:650 1.02rem/1.3 var(--serif);width:45px;height:45px;border-radius:12px 8px;color:#744967}.seal-1{color:#4a6778}.seal-2{color:#546c4a}.seal-3{color:#8a6035}.seal-4{color:var(--red)}.row-verdict{display:grid;justify-items:end;font-size:.88rem;white-space:nowrap}.row-verdict span{color:var(--red)}
+.folio-pillars{width:100%;text-align:center;border-collapse:collapse;margin-bottom:14px;font-variant-numeric:tabular-nums}.folio-pillars caption{font-weight:600;text-align:left;padding-bottom:5px}.folio-pillars th,.folio-pillars td{padding:8px 2px;border:1px solid var(--edge)}.folio-pillars th{font-size:.88rem;color:var(--gold-ink);background:var(--paper-deep)}.folio-pillars td{font-family:var(--serif)}
+.word-lines{margin:10px 0}.word-lines li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--edge)}.word-lines b{color:var(--red);font:650 1.46rem/1.4 var(--serif);flex:none}.folio-callout{background:var(--paper-deep);padding:9px 12px;border-radius:5px}.animal-heading{display:flex;align-items:center;gap:14px}.animal-seal{flex:none;color:var(--red);border-radius:50%;width:50px;height:50px;font-size:1.65rem}.animal-heading h4,.animal-heading p{margin:0}
+.name-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.name-options li{display:flex;align-items:center;gap:12px;border:1px solid var(--edge);border-radius:6px;padding:9px 12px}.name-options strong{color:var(--red);font-size:1.65rem}.name-options b,.name-options small{display:block}.name-options b{font-weight:550;font-size:.95rem}.name-options small{color:var(--soft);font-size:.8rem}
+.name-folio .name-math,.folio-more{border:1px solid var(--edge);border-radius:6px;color:var(--soft);padding:10px 13px;margin-top:14px}.name-folio summary{color:var(--gold-ink);font-weight:600;cursor:pointer}
+.name-folio .name-strokes span{background:var(--paper-deep)}.name-folio .name-math dt,.name-folio .name-math dd b{color:var(--text)}.name-folio .folio-detail[open],.folio-more[open]{background:#281f2c;color:#ebdfe4;--gold-ink:#e8c98e;--edge:#655361;--text:#f7e9db;--paper-deep:#423142}.folio-more[open] :is(h3,h4){color:var(--gold-ink)}.name-folio .reader-time{color:#794d30}.folio-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:25px}.folio-actions .btn{background:#5e374a;border:1px solid #5e374a;color:white}.folio-actions .btn.ghost{color:#673b47;background:transparent}.report-open .name-method{max-width:790px;margin:16px auto 0}
+@media(max-width:500px){.name-folio{padding:13px;border-radius:9px}.grid-rows li{gap:8px}.grid-seal{width:38px;height:38px;font-size:.9rem}.grid-rows h4{font-size:1rem}.name-options li{padding:7px;gap:7px}.folio-cover{padding-inline:10px}.folio-pillars{font-size:.91rem}.folio-rule h3{scroll-margin-top:136px}}
 </style></head><body>
 <a class="skip" href="#main">跳到內容</a>
 <header><div class="wrap bar"><button class="brand" data-act="home" aria-label="星帷塔羅首頁"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19.3" stroke="currentColor" stroke-width=".75" stroke-dasharray="1 3"/><path d="M24 3v5m0 32v5M3 24h5m32 0h5m-3-14-3 3M9 39l3-3m26 2-3-3M9 10l4 4" stroke="currentColor"/><path d="M24 7c2.2 10 5.6 14.4 15 17-9.4 2.7-12.8 7-15 17-2.2-10-5.6-14.3-15-17 9.4-2.6 12.8-7 15-17Z" stroke="currentColor" stroke-width="1.1"/><path d="M24 15l2.9 6.3L33 24l-6.1 2.8L24 33l-2.9-6.2L15 24l6.1-2.7Z" fill="currentColor"/></svg></span><span class="brandtext"><b>星帷塔羅</b><small>VESPER TAROT</small></span></button>
@@ -1262,7 +1288,7 @@ function baziMatchResult(persons){
 }
 function birthMethod(pair){
   return '<p>輸入國曆及出生地當時鐘錶時間。預設台灣標準時間 UTC+08:00。若當地當時實施夏令時間，請選用當時實際時差。年柱以立春、月柱以十二節交節時刻為界，日柱在當地 23:00 換日，時柱每兩小時一個時辰。採民用鐘錶時間，未校正出生地經度的真太陽時。</p><p>八字的五行分布計四個天干與四個地支本氣，各一票。姓名五行取五格數理的尾數，與日主對照。</p>'+
-    (pair?'':'<p>個人解讀依月支本氣、四支所藏天干及年、月、時干的生剋，逐項列出對日主的支持及消耗。此處將地支含有日主同五行稱為通根，並標明本氣或其餘藏干。十神以日干對照各干的五行與陰陽。此法供民俗自我觀察，不推算格局成敗、喜用神或事件日期。</p><p class="name-refs"><a href="https://www.donglishuzhai.net/chapter/3719.html" target="_blank" rel="noopener noreferrer">《子平真詮》論得時與通根</a><a href="https://zhizhou.app/zh-tw/method/shishen-table" target="_blank" rel="noopener noreferrer">十神對照表</a></p>')+
+    (pair?'':'<p>個人解讀依月支本氣、四支所藏天干及年、月、時干的生剋，逐項列出對日主的支持及消耗。此處將地支含有日主同五行稱為通根，並標明本氣或其餘藏干。十神以日干對照各干的五行與陰陽。命名方向採本頁列出的簡化扶抑法，特殊格局、調候與事件日期不在推算範圍內。</p><p class="name-refs"><a href="https://www.donglishuzhai.net/chapter/3719.html" target="_blank" rel="noopener noreferrer">《子平真詮》論得時與通根</a><a href="https://zhizhou.app/zh-tw/method/shishen-table" target="_blank" rel="noopener noreferrer">十神對照表</a></p>')+
     (pair?'<p>完整合盤滿分 100。日支占 30 分，月支與時支各占 10 分：六合、同支、一般、六害、六沖依序取該項的 100%、80%、60%、40%、20%。「一般」指未落入這四種指定關係。日干占 25 分：天干五合 25、相生 22、同行 20、相剋 10。兩盤合見一種五行得 3 分，最多 15 分。姓名三格相生得 2、同行得 1、相剋得 0，總和按比例換為 10 分，四捨五入。</p><p>80 分以上為高度契合，65–79 分為相當契合，50–64 分為互有契合也有磨合，49 分以下為需要較多磨合。僅用姓名的簡測另以 0 至 6 分顯示。權重、級距及生活建議由本站設計。</p>':'')+
     '<p class="name-refs"><a href="https://github.com/6tail/lunar-javascript" target="_blank" rel="noopener noreferrer">排盤曆法 · lunar-javascript 1.7.8</a><a href="https://www.hko.gov.hk/tc/gts/astronomy/Solar_Term.htm" target="_blank" rel="noopener noreferrer">交節時刻 · 香港天文台</a>'+(pair?'<a href="https://divinationhub.tw/blog/love/bazi/compatibility.html" target="_blank" rel="noopener noreferrer">合婚中的日干與夫妻宮</a>':'')+'</p>';
 }
@@ -1416,12 +1442,12 @@ function nameAndBirth(person){
   }
   return '<h3 class="reading-subtitle">你的名字怎麼對上這張盤</h3><div class="portrait-names">'+[...groups].map(([e,labels])=>'<article><h4>'+labels.join('、')+' · '+e+'</h4><p>'+plainRelation(day,e)+'。姓名數理的'+e+interpretations[elementStep(day,e)]+elementPresence(b,e)+'</p></article>').join('')+'</div><p class="name-hint">姓名取康熙筆畫的五格數理。是否需要某種五行，還涉及全局與取用流派，不能從缺幾個字直接決定。</p>';
 }
-function readingForPlayer(person,profile=''){
+function readingForPlayer(person){
   const b=person.bazi,day=b.day.stem;
   const work=everydayReadings[stemGod(day,b.month.stem)];
   const relationship=everydayReadings[stemGod(day,b.day.hidden[0])];
   const nameTheme=everydayNameThemes[elementStep(b.day.upper,person.elements[1])];
-  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+profile+
+  return '<div class="reader-takeaway"><h3>'+work.headline+'</h3><p>'+nameTheme+'</p></div>'+
     '<div class="reader-scenes"><section><h3>做事的時候</h3><p>'+work.work+'</p></section>'+
     '<section><h3>和親近的人相處時</h3><p>'+relationship.close+'</p></section></div>'+
     '<div class="name-action reader-next"><h3>下次可以試試</h3><p>'+relationship.next+'</p></div>';
@@ -1528,13 +1554,6 @@ const nameHabits={
   金:['你可能習慣先把標準說清楚','有人請你幫忙挑東西，你可能先問預算，再刪掉不合適的選項。對方猶豫時，可以問他最捨不得放棄哪一點。'],
   水:['你可能習慣替事情留一點彈性','原本要去的店臨時休息，你可能很快就能換一家。同行的人還沒跟上時，先問他要換地點，還是改天再去。']
 };
-const birthNameLinks=[
-  ['名字加強了你自己的主見','遇到意見不同時，你可能很快知道自己要什麼。約行程前，先各說一個最想去的地方，會比一個人排好再問更好談。'],
-  ['名字把重點放在表達想法','你可能愈說愈清楚。下次腦中有很多點子，可以先講給一個人聽，再選出最想做的那個。'],
-  ['名字把重點放在把事情辦成','你可能會把一句「有空吃飯」真的排進行事曆。決定日期前，先問對方這週有沒有餘裕，彼此都更輕鬆。'],
-  ['名字提醒你把界線說清楚','別人臨時請你幫忙，你可能會想先弄清楚要做到哪一步。可以直接回答「我今天能幫你看第一版」，讓對方知道能期待什麼。'],
-  ['名字帶出先弄懂、再動手的一面','第一次接手陌生的事，你可能看過一個例子就比較有把握。與其一直找資料，可以挑一個範例，照著做出第一版。']
-];
 // Folk associations are a named, limited selection. Each row has an illustrative image
 // and two sets of primary radicals. Only given names are evaluated here.
 const animalImages={
@@ -1552,56 +1571,135 @@ const animalImages={
   豬:['宀米禾','犬刀','屋簷可以遮蔽，穀物可以充飢','犬的追逐或刀具讓豬感到威脅']
 };
 const radicalForms={艸:'艹',水:'氵',人:'亻',刀:'刂',犬:'犭',火:'灬'};
-function birthAnimal(date,calendar){
-  const [year,month,day]=date.split('-').map(Number);
-  const branch=calendar.fromYmd(year,month,day).getLunar().getYearZhi();
-  return '鼠牛虎兔龍蛇馬羊猴雞狗豬'[branchChars.indexOf(branch)];
+const auspiciousNumbers=new Set([1,3,5,6,7,8,11,13,15,16,21,23,24,29,31,32,33,35,37,41,45,47,48,52,57,61,63,65,67,68,81]);
+const mixedNumbers=new Set([17,18,25,30,38,39,49,50,51,53,55,58,71,73,75,77,78]);
+const gridReadings=[
+  ['由姓氏帶來的起點','遇到不熟悉的事，先問問有經驗的家人或前輩。','可以保留家裡教你的做法，也替自己留一點調整空間。','熟悉的人或環境可能成為助力，有問題時可以主動開口。'],
+  ['你做決定的方式','遇到別人催你表態，先弄清楚自己願意答應的範圍。','你可能在自己拿主意和聽取意見之間擺盪。替決定設個期限會更輕鬆。','你可能很快抓到事情的重點。把判斷理由說出來，也方便別人跟上。'],
+  ['你面對新環境的步調','第一次接觸陌生任務，先拆出一個能在今天完成的小步驟。','剛開始有衝勁，也可能突然想換方向。先做完一小段再決定。','遇到新任務時，你可能容易上手。把有效的方法記下來，下次就能再用。'],
+  ['你和別人怎麼合作','合作卡住時，先問清楚誰負責哪一部分，少靠猜測。','熟人之間溝通順手，換個對象時，多確認一次彼此的期待。','別人可能願意和你合作。提早說出需要什麼，比一個人扛著更容易得到回應。'],
+  ['長期做一件事的習慣','一次接太多事容易分心。先把最重要的一件收尾，再開下一件。','計畫中途可能會調整。每隔一段時間，看看原來的目標還適不適合。','你可能適合慢慢累積成果。回頭比對前後兩次的作品，比只看眼前進度更有感。']
+];
+function numberRating(n){
+  while(n>81)n-=80;
+  return auspiciousNumbers.has(n)?2:mixedNumbers.has(n)?1:0;
 }
-function zodiacReading(given,animal){
-  const [fit,caution,goodImage,cautionImage]=animalImages[animal];
-  const chars=Array.from(given,c=>({c,rad:characterRadical(c)}));
-  const matched=(roots)=>chars.filter(v=>v.rad&&roots.includes(v.rad)).map(v=>'「'+esc(v.c)+'」').join('、');
-  const good=matched(fit),other=matched(caution);
-  const lines=[];
-  if(good)lines.push(good+'呼應了「'+goodImage+'」的畫面，傳統取名喜歡這樣的搭配。');
-  if(other)lines.push(other+'讓人聯想到「'+cautionImage+'」，是這種取名習俗較少選的搭配。這只是字形的聯想。');
-  if(!good&&!other)lines.push('這些字沒有出現在本站為屬'+animal+'挑選的字形裡，這一項就不評好壞。');
-  const evidence=chars.map(({c,rad})=>esc(c)+'：'+(rad?rad+'部'+(radicalForms[rad]?'（常見寫法 '+radicalForms[rad]+'）':''):'字表未收錄')).join('、');
-  return profileCard('生肖和名字的字形','你屬'+animal+'，'+(good&&other?'名字裡有兩種不同的意象':good?'名字裡的'+good+'有呼應':other?'可以看看'+other+'的傳統說法':'這組字沒有特別的生肖提示'),lines.join(''),evidence+'。生肖以農曆正月初一換年。');
+function reportGrade(value){
+  if(value===null)return '未評';
+  if(value>=1.85)return '大吉';
+  if(value>=1.45)return '中吉';
+  if(value>=1)return '小吉';
+  if(value>=.5)return '平';
+  return '宜留意';
 }
-function profileCard(label,heading,copy,basis){
-  return '<section class="profile-card"><p class="profile-label">'+label+'</p><h3>'+heading+'</h3><p>'+copy+'</p><p class="profile-basis">'+basis+'</p></section>';
+const shapeElements={木:'木艸竹禾米豆麥瓜耒',火:'火日光',土:'土山石田瓦阜',金:'金玉刀辛',水:'水雨冫魚舟'};
+const nameExamples={
+  木:[['芷','香草'],['若','如同、自在'],['杉','挺立的杉樹'],['禾','穀物生長'],['桐','桐樹'],['筠','竹的外皮']],
+  火:[['昕','清晨的光'],['晴','雨後放晴'],['煦','溫暖'],['昀','日光'],['昭','明亮']],
+  土:[['岑','小而高的山'],['均','平衡'],['岳','高山'],['墨','書寫用的墨'],['培','培育']],
+  金:[['鈞','衡量、公允'],['鈴','清亮的鈴聲'],['珂','似玉的美石'],['銘','刻下、記住'],['瑜','美玉']],
+  水:[['涵','包容'],['清','清澈'],['霏','細雨飄落'],['沐','沐浴、潤澤'],['澄','沉澱後清澈']]
+};
+function givenCharacter(c,animal){
+  const rad=characterRadical(c);
+  const element=nameElements.find(e=>rad&&shapeElements[e].includes(rad))||'';
+  const [good,caution]=animalImages[animal];
+  const sign=!rad?null:good.includes(rad)?2:caution.includes(rad)?0:1;
+  return {c,rad,element,sign};
 }
-function nameProfile(person,calendar){
-  const element=person.elements[1], [heading,scene]=nameHabits[element];
-  const last=Array.from(person.family).at(-1), first=Array.from(person.given)[0];
-  const strokeOf=c=>person.strokes.find(s=>s.c===c).n;
-  const tally='取姓的最後一字「'+esc(last)+'」'+strokeOf(last)+' 畫，加上名字的第一字「'+esc(first)+'」'+strokeOf(first)+' 畫，共 '+person.values[1]+' 畫，在姓名筆畫裡屬'+element+'。';
-  const [sky,middle,earth]=person.elements;
-  const outside=nameRelation(sky,middle).kind==='相剋',inside=nameRelation(middle,earth).kind==='相剋';
-  const balance=outside&&inside?'三組筆畫放在一起看，別人的期待、你自己的想法和每天能做的事，可能要花點力氣協調。':
-    outside?'三組筆畫放在一起看，比較容易卡在別人的期待。接下請託之前，先說清楚你能做到哪裡。':
-    inside?'三組筆畫放在一起看，你想做的事可能比一天能做的多。行程排滿時，先挑出今天一定要完成的一件。':
-    '三組筆畫放在一起看，別人的期待和你平常做事的方式比較容易搭在一起。';
-  const names=profileCard('從姓名筆畫看做事習慣',heading,scene+' '+balance,tally);
-  const date=person.birthDate||person.bazi.birth.date;
-  const zodiac=zodiacReading(person.given,birthAnimal(date,calendar));
-  let birth;
-  if(person.bazi){
-    const day=person.bazi.day.upper, [title,action]=birthNameLinks[elementStep(day,element)];
-    const seen=person.bazi.pillars.filter(p=>p.upper===element||p.lower===element).length;
-    const covered=person.bazi.pillars.some(p=>p.hidden.some(s=>stemElement(s)===element));
-    const presence=seen?'把出生年、月、日、時分開看，有 '+seen+' 組能直接看到'+element+'，名字呼應了命盤原有的五行。':
-      covered?'在出生年、月、日、時排出的八個字表面看不到'+element+'，把字的組成細分後才會找到它。名字讓這一項比較顯眼。':
-      '把出生年、月、日、時排出的八個字細分後，仍找不到'+element+'，名字的筆畫帶入了另一種五行意象。';
-    birth=profileCard('出生八字和名字怎麼搭',title,action,'你的生日在這套算法裡屬'+day+'。名字筆畫屬'+element+'，兩者的關係是「'+nameRelation(day,element).bond+'」。'+presence);
-    return readingForPlayer(person,'<div class="profile-cards">'+names+birth+zodiac+'</div>');
+function balanceDirection(b){
+  const day=b.day.upper, related=e=>[0,4].includes(elementStep(day,e));
+  const season=related(b.month.lower)?2:0;
+  const hasMain=b.pillars.some(p=>p.lower===day),hasRoot=b.pillars.some(p=>p.hidden.some(h=>stemElement(h)===day));
+  const roots=hasMain?2:hasRoot?1:0;
+  const peers=Math.min(2,b.pillars.filter((p,i)=>i!==2&&related(p.upper)).length);
+  const total=season+roots+peers;
+  const side=total<=2?'扶助':total>=4?'疏通':'均衡';
+  const groups=side==='扶助'?[0,4]:side==='疏通'?[1,2,3]:[];
+  const likes=nameElements.filter(e=>groups.includes(elementStep(day,e)));
+  const reason='出生月份'+(season?'能':'較少')+'直接支持'+day+'，四柱中'+(hasMain?'有一柱以上以'+day+'為主要五行':hasRoot?'有'+day+'藏在地支裡':'沒有找到同屬'+day+'的根')+'。';
+  return {side,likes,reason};
+}
+function getNameReport(chart,calendar){
+  const date=chart.birthDate||chart.bazi.birth.date;
+  const lunar=calendar.fromYmd(...date.split('-').map(Number)).getLunar();
+  const branch=lunar.getYearZhi(),animal='鼠牛虎兔龍蛇馬羊猴雞狗豬'[branchChars.indexOf(branch)];
+  const letters=Array.from(chart.given,c=>givenCharacter(c,animal));
+  const grids=chart.values.map(numberRating);
+  const direction=chart.bazi?balanceDirection(chart.bazi):null;
+  const known=letters.filter(ch=>ch.element);
+  const average=list=>list.length?list.reduce((a,b)=>a+b,0)/list.length:null;
+  const gridScore=average(grids.slice(1));
+  const birthScore=direction&&direction.likes.length&&known.length===letters.length?
+    average(known.map(ch=>direction.likes.includes(ch.element)?2:0)):null;
+  const signs=letters.map(ch=>ch.sign);
+  // A neutral zodiac mark means no specific association, independent of the auspicious scale.
+  const zodiacScore=signs.includes(null)?null:average(signs);
+  const zodiacGrade=zodiacScore===null?'未評':signs.every(n=>n===1)?'平':reportGrade(zodiacScore);
+  const assessed=[gridScore,birthScore,zodiacScore].filter(v=>v!==null);
+  const total=average(assessed);
+  return {date,lunar,branch,animal,letters,grids,direction,gridScore,birthScore,zodiacScore,zodiacGrade,total,assessed:assessed.length};
+}
+function reportSection(id,label,mark,content){
+  return '<section class="folio-part" id="folio-'+id+'"><div class="folio-rule"><h3 tabindex="-1">'+label+'</h3>'+(mark?'<span class="folio-grade">'+mark+'</span>':'')+'</div>'+content+'</section>';
+}
+function renderGridReport(chart,r){
+  const chips=chart.strokes.map(({c,n,manual})=>'<div><b>'+esc(c)+'</b><span>'+n+' 畫'+(manual?'（手填）':'')+'</span></div>').join('');
+  const rows=chart.values.map((v,i)=>{
+    const g=r.grids[i],info=gridReadings[i];
+    return '<li><div class="grid-seal seal-'+i+'">'+nameGrids[i][0]+'</div><div><h4>'+info[0]+'</h4><p>'+info[g+1]+'</p></div><div class="row-verdict"><b>'+v+' 畫</b><span>'+['較弱','半吉','吉'][g]+'</span></div></li>';
+  }).join('');
+  return reportSection('grids','姓名五格',reportGrade(r.gridScore),
+    '<div class="stroke-map"><div class="stroke-letters">'+chips+'</div><div class="stroke-bracket" aria-hidden="true"></div><p>姓名合計 <strong>'+chart.values[4]+'</strong> 畫</p></div>'+
+    '<p class="folio-intro">同一個名字，拆成五組筆畫，各看一件事。天格由姓氏決定，其餘四格用來評這個名字。</p><ul class="grid-rows">'+rows+'</ul>'+nameMath(chart));
+}
+function renderBirthReport(chart,r){
+  if(!chart.bazi)return reportSection('birth','八字五行','未評','<p>你選了「我不知道出生時間」。這次只評姓名筆畫和生肖，補上出生時間後就可以看完整命盤。</p>');
+  const b=chart.bazi,d=r.direction;
+  const row=(title,fn)=>'<tr><th scope="row">'+title+'</th>'+b.pillars.map(p=>'<td>'+fn(p)+'</td>').join('')+'</tr>';
+  const table='<table class="folio-pillars"><caption>你的四柱命盤</caption><thead><tr><th scope="col">四柱</th>'+pillarLabels.map(l=>'<th scope="col">'+l+'</th>').join('')+'</tr></thead><tbody>'+row('八字',p=>p.text)+row('五行',p=>p.upper+'・'+p.lower)+'</tbody></table>';
+  const fit=d.likes.length?'取名時可優先看<strong>'+d.likes.join('、')+'</strong>。':'各項線索接近，這次不指定要補哪一種五行。';
+  const scoreText=r.birthScore===null?(d.likes.length?'有名字用字尚無五行分類，這項保留。':'命盤方向接近均衡，這項保留。'):r.birthScore===2?'名字中每個字的五行都符合這個方向。':r.birthScore===0?'名字中已辨識的字，都落在這次優先方向之外。':'名字裡有符合的字，也有其他五行。';
+  const wordLines=r.letters.map(ch=>'<li><b>'+esc(ch.c)+'</b><span>'+(ch.element?ch.rad+'部，依本站字形取象屬'+ch.element+(d.likes.length?'，'+(d.likes.includes(ch.element)?'符合這次的取名方向':'是另一種五行'):''):'這個部首未收錄五行對照，保留判斷')+'。</span></li>').join('');
+  return reportSection('birth','八字五行',reportGrade(r.birthScore),table+'<h4>名字和八字合不合？</h4><p>出生日以「'+b.day.stem+b.day.upper+'」代表你。'+d.reason+fit+'</p><ul class="word-lines">'+wordLines+'</ul><p class="folio-callout">'+scoreText+'</p>');
+}
+function renderAnimalReport(r){
+  const [fit,caution,goodImage,cautionImage]=animalImages[r.animal];
+  const lines=r.letters.map(ch=>{
+    const shape=ch.rad?'部首是「'+ch.rad+'」'+(radicalForms[ch.rad]?'（常寫作'+radicalForms[ch.rad]+'）':''):'字表沒有收錄這個字的部首';
+    const reading=ch.sign===2?'呼應「'+goodImage+'」的意象，是這種取名法偏好的字形':ch.sign===0?'在這種取名法裡會聯想到「'+cautionImage+'」，較少優先採用':ch.sign===1?'沒有落在這個生肖的偏好或避用表，視為中性':'這個字先不判定';
+    return '<li><b>'+esc(ch.c)+'</b><span>'+shape+'。'+reading+'。</span></li>';
+  }).join('');
+  return reportSection('animal','生肖姓名',r.zodiacGrade,'<div class="animal-heading"><b class="animal-seal">'+r.animal+'</b><div><h4>'+r.branch+r.animal+'年出生</h4><p>取名時常看的部首有'+Array.from(fit).join('、')+'；較少用的有'+Array.from(caution).join('、')+'。</p></div></div><ul class="word-lines">'+lines+'</ul>');
+}
+function renderSuggestions(chart,r){
+  const likes=r.direction?.likes||[];
+  const options=[];
+  for(const e of nameElements)for(const [c,meaning] of nameExamples[e]){
+    const ch=givenCharacter(c,r.animal);
+    if(chart.full.includes(c)||ch.sign===0||!ch.element||likes.length&&!likes.includes(ch.element))continue;
+    options.push({...ch,meaning});
   }
-  birth=profileCard('出生八字和名字怎麼搭','少了出生時間，這一項先留白','有了幾點幾分出生的資料，就能回來看看名字和完整八字怎麼搭。','這次只用姓名算筆畫、用生日查生肖。');
-  return '<div class="profile-cards">'+names+birth+zodiac+'</div>';
+  options.sort((a,b)=>b.sign-a.sign);
+  const picked=options.slice(0,4);
+  const text=likes.length?'依這張命盤，先從'+likes.join('、')+'的字裡挑，再看哪些字形和生肖'+r.animal+'呼應。':
+    '這次先依生肖'+r.animal+'的字形搭配挑字，也把字義列出來，方便你選喜歡的意思。';
+  return reportSection('suggest','綜合命名建議','', '<p>'+text+'</p><ul class="name-options">'+picked.map(ch=>'<li><strong>'+ch.c+'</strong><div><b>'+ch.meaning+'</b><small>'+ch.element+'行'+(ch.sign===2?' · 生肖呼應':' · 生肖中性')+'</small></div></li>').join('')+'</ul><p class="folio-caption">這些是單字參考。換成完整名字後，五格筆畫會跟著改變。</p>');
+}
+function nameReportView(chart,calendar){
+  const r=getNameReport(chart,calendar),l=r.lunar;
+  const civil=r.date.split('-').map(Number);
+  const known=chart.bazi, clock=known?'　'+known.birth.time+'（'+known.pillars[3].branch+'時）':'　時辰未知';
+  const subs=[['grids','姓名五格',reportGrade(r.gridScore)],['birth','八字五行',reportGrade(r.birthScore)],['animal','生肖姓名',r.zodiacGrade]];
+  const headline=r.letters.filter(ch=>ch.sign===2).map(ch=>'「'+esc(ch.c)+'」').join('、');
+  const detail=headline?'生肖這一項，'+headline+'的字形和'+r.animal+'有呼應。':r.zodiacGrade==='平'?'就生肖來看，名字的部首都屬中性。':'下方可逐字查看生肖與部首的搭配。';
+  const focus=r.birthScore===2?'名字用字都呼應這張命盤的取名方向。':r.birthScore===0?'這個名字主要用到其他五行，想比較新名字時，可以先看下方建議的字。':r.birthScore!==null?'名字裡有些字符合八字的取名方向。往下可以看到是哪個字。':r.letters.some(ch=>ch.sign===2)?'從名字的部首，可以找到和生肖呼應的字。':'先看每個字的筆畫，就能知道這次評等是怎麼來的。';
+  const summary='<div class="folio-cover"><p class="folio-kicker">八字姓名鑑定</p><h1 tabindex="-1">'+esc(chart.full)+'</h1><p>國曆 '+civil[0]+' 年 '+civil[1]+' 月 '+civil[2]+' 日'+clock+'</p><p>農曆 '+l.getYearInGanZhi()+'年'+l.getMonthInChinese().replace('闰','閏').replace('腊','臘')+'月'+l.getDayInChinese()+' · 生肖'+r.animal+'</p><div class="folio-stamp"><span>綜合評等</span><strong>'+reportGrade(r.total)+'</strong></div><p class="folio-summary">'+focus+'<br>'+detail+'</p><p class="folio-caption">依本次可評的 '+r.assessed+' 項綜合判讀 · 傳統民俗參考</p></div>';
+  const links='<div class="grade-links" aria-label="查看各項解讀">'+subs.map(([id,label,g])=>'<button type="button" data-folio-jump="'+id+'"><span>'+label+'</span><b>'+g+'</b><small aria-hidden="true">↓</small></button>').join('')+'</div>';
+  return summary+links+renderGridReport(chart,r)+renderBirthReport(chart,r)+renderAnimalReport(r)+renderSuggestions(chart,r);
 }
 function nameProfileMethod(){
-  return '<p>個人報告從姓名筆畫、八字和生肖字形三方面解讀。筆畫習慣取人格，再與出生日的五行比較。生肖依出生地所填國曆日期換算，以農曆正月初一換年；八字年柱以立春換年，兩者在年初可能不同。生肖字形只看名字每字在 Unihan 的第一個部首，對照本站選取的常見民俗意象，各派也可能拆成別的字根。解讀與舉例由本站撰寫。</p><p class="name-refs"><a href="https://www.click108.com.tw/unit001/free-name/index.php" target="_blank" rel="noopener noreferrer">解析方向參考 · 科技紫微網</a><a href="https://m.zhqm.com.cn/twqimingchangshi_m.aspx" target="_blank" rel="noopener noreferrer">生肖取名字形參考 · 中華起名網</a><a href="https://www.unicode.org/reports/tr38/#kRSUnicode" target="_blank" rel="noopener noreferrer">漢字部首 · Unicode Unihan</a></p>';
+  return '<p>五格以康熙筆畫對照八十一數理表，每格「吉、半吉、較弱」依序記 2、1、0。超過 81 逐次減 80。天格由姓氏決定，五格評等取其餘四格的平均。</p><p>八字採簡化扶抑法。出生月份支持日主計 2，同類在地支本氣或其餘藏干計 2 或 1，年、月、時干每有一個生扶日主計 1，最多 2。合計 0–2 優先取生扶，4–6 優先取洩、耗、制，3 保留。姓名用字按本站部首表取象，各派歸類可能不同。符合取名方向記 2，其餘記 0，取各字平均。未知時辰、五行不明或命盤接近均衡，這項列為未評。</p><p>生肖以農曆正月初一換年，八字年柱以立春換年。依 Unicode 第一部首看本頁所列生肖意象，呼應、中性、避用計 2、1、0，全部中性標「平」，部首不明則不評。綜合評等取可評項目的等權平均，門檻依序為 1.85 大吉、1.45 中吉、1 小吉、0.5 平，其餘宜留意。這套合併方式與建議文字由本站設計。</p><p class="name-refs"><a href="https://lightpath.tw/naming/shuli" target="_blank" rel="noopener noreferrer">81 數理表 · 逐光</a><a href="https://www.click108.com.tw/unit001/free-name/index.php" target="_blank" rel="noopener noreferrer">報告結構參考 · 科技紫微網</a><a href="https://m.zhqm.com.cn/twqimingchangshi_m.aspx" target="_blank" rel="noopener noreferrer">生肖字形參考 · 中華起名網</a><a href="https://www.unicode.org/reports/tr38/#kRSUnicode" target="_blank" rel="noopener noreferrer">部首 · Unicode</a></p>';
 }
 
 const nameElements = ['木','火','土','金','水'];
@@ -1672,6 +1770,18 @@ function showNamePage(route){
     '<p class="name-hint">請用繁體姓名，複姓完整填在姓氏欄。<span class="zone-hint">若出生地當年使用夏令時間，請選當時的 UTC 時差。</span></p><div id="name-unknown"></div><p id="name-error" role="alert" hidden></p><div class="btns"><button type="submit" class="btn gold">'+(pair?'查看合適程度':'查看八字姓名解讀')+'</button><button type="button" class="btn ghost name-example">試用範例</button></div><p class="name-privacy">姓名與生辰只在本頁計算，離開後即清除。</p></form>'+aside+'</div><div id="name-results"></div>'+nameMethod(pair),'names-page'));
   const form=main.querySelector('.name-form'), missingBox=form.querySelector('#name-unknown'), error=form.querySelector('#name-error'), output=main.querySelector('#name-results');
   const peopleIds=pair?['first','second']:['first'];
+  if(!pair)output.addEventListener('click',event=>{
+    const jump=event.target.closest('[data-folio-jump]');
+    if(jump){
+      const target=output.querySelector('#folio-'+jump.dataset.folioJump+' h3');
+      target.focus({preventScroll:true});target.scrollIntoView({block:'start'});return;
+    }
+    if(event.target.closest('[data-edit-name]')){
+      output.closest('.names-page').classList.remove('report-open');
+      output.replaceChildren();
+      form.querySelector('#first-family').focus();form.scrollIntoView({block:'start'});
+    }
+  });
   const fullMode=()=>!pair || form.elements['pair-mode'].value==='full';
   const button=form.querySelector('[type=submit]');
   const unsure=form.querySelector('#first-birth-unsure');
@@ -1769,7 +1879,8 @@ function showNamePage(route){
         if(ticket===request && version===revision){button.disabled=false;form.removeAttribute('aria-busy');}
       }
     }else output.innerHTML=nameMatchResult(charts);
-    const resultTitle=output.querySelector('h2');resultTitle.focus({preventScroll:true});
+    if(!pair)output.closest('.names-page').classList.add('report-open');
+    const resultTitle=output.querySelector(pair?'h2':'h1');resultTitle.focus({preventScroll:true});
     output.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   });
 }
@@ -1798,9 +1909,12 @@ function nameSingleResult(chart,calendar){
     '<h3 class="reading-subtitle">三才配置 <small>'+chart.elements.slice(0,3).join(' · ')+'</small></h3><div class="name-links">'+individualLink(chart,0)+individualLink(chart,1)+'</div></details>';
   const boundary=chart.bazi?timeBoundary(chart.bazi,calendar):'';
   const timeNote=boundary?'<p class="reader-time">如果出生時間差了 15 分鐘，這份解讀可能會不同。若你填的是大概時間，可以先核對出生紀錄。</p>':'';
-  return '<section class="name-reading player-reading"><h2 tabindex="-1">'+esc(chart.full)+'的測驗結果</h2>'+nameProfile(chart,calendar)+
-    timeNote+'<p class="name-hint reader-note">這是傳統姓名學的解讀，你可以用最近發生的事對照看看。</p>'+
-    '<details class="name-math reader-details"><summary>'+(chart.bazi?'想知道怎麼算？查看命盤與筆畫':'想知道怎麼算？查看姓名筆畫')+'</summary>'+(chart.bazi?singleBazi(chart,boundary):'')+traditional+nameMath(chart)+'</details></section>';
+  const [habit,scene]=nameHabits[chart.elements[1]];
+  const life=chart.bazi?readingForPlayer(chart):'<h3>'+habit+'</h3><p>'+scene+'</p>';
+  const extra='<details class="folio-more"><summary>看個性、工作與相處方式</summary>'+life+'</details>';
+  return '<article class="name-folio">'+nameReportView(chart,calendar)+timeNote+extra+
+    '<details class="name-math reader-details folio-detail"><summary>'+(chart.bazi?'查看完整命盤與計算依據':'查看姓名的計算依據')+'</summary>'+(chart.bazi?singleBazi(chart,boundary):'')+traditional+'</details>'+
+    '<div class="folio-actions"><button class="btn ghost" type="button" data-edit-name>修改資料</button><button class="btn" type="button" data-act="name-test">再測一次</button></div></article>';
 }
 function nameMatchResult(charts){
   const [a,b]=charts;
