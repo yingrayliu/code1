@@ -20,14 +20,53 @@
 .portrait-aspect{border-top:1px solid var(--line);margin-top:1rem;padding-top:.8rem;font-size:.92rem}
 .portrait-aspect summary{cursor:pointer;color:var(--teal);font-weight:650}
 .portrait-aspect p{max-width:52em;margin:.6rem 0 0;line-height:1.8}
+
+.catalog-picks{display:flex;flex-wrap:wrap;gap:1rem;margin:0 0 1.1rem}
+.catalog-picks label{display:grid;gap:.28rem;color:var(--muted);font-size:.86rem;font-weight:600}
+.catalog-picks select{background-color:#fff;min-width:9.2rem}
+.catalog-reader{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:1rem}
+.catalog-reader article{padding:clamp(1.2rem,2.5vw,2.3rem);border-radius:16px}
+.catalog-reader h2{margin:0 0 .65rem;font:600 clamp(1.45rem,3vw,2.15rem)/1.45 var(--serif)}
+.catalog-reader h3{font-size:1.04rem;color:var(--teal);margin:.25rem 0 .65rem}
+.catalog-reader p{line-height:1.85;margin:.45rem 0}
+.catalog-role{background:#183f40;color:#f0f2e7}
+#catalogTopics{font-weight:650;color:#e5d4a2}
+.catalog-placement{background:#fcfcf7;border:1px solid var(--line)}
+.catalog-sources{border:0;margin:.5rem 0 1.6rem}
+.catalog-index-title{font:600 1.4rem var(--serif);margin:0 0 .7rem}
+#catalogIndex{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:.6rem;margin-bottom:1rem}
+#catalogIndex a{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--ink);padding:.7rem .9rem;border:1px solid var(--line);border-radius:9px;background:#fcfcf7}
+#catalogIndex a[aria-current],#catalogIndex a:hover{background:#e5eee5;border-color:#98b3a3}
+#catalogIndex a>span:first-child{width:1.85rem;text-align:center;color:var(--teal);font:1.45rem Georgia,'DejaVu Sans',serif}
+#catalogIndex strong,#catalogIndex small{display:block}
+#catalogIndex small{color:#4d6256;font-size:.83rem}
+.reading .role-summary,.guide-chart .role-summary{font-size:.87rem;color:#395e52;font-weight:650}
+.reading .trait-line{font-weight:700;margin-bottom:.25rem}
+.reading #readingRole{margin-bottom:1rem}
+.guide-links{flex-wrap:wrap;gap:.25rem 1rem}
+.guide-links a{display:inline-flex;align-items:center}
+@media(max-width:650px){.catalog-reader{grid-template-columns:1fr;gap:.65rem}.catalog-picks{gap:.6rem}.catalog-picks select{min-width:8rem}.mast{row-gap:.15rem}.catalog-index-title{font-size:1.25rem}}
+@media(max-width:400px){.mast{padding:.4rem 0}.mast nav{order:3;flex-basis:100%;justify-content:space-between;margin:0}.mast .navtab{min-height:36px}.mast>.pill{margin-left:auto}}
 </style></head><body>
-<header><div class="frame mast"><a href="#chart" class="brand" aria-label="星序首頁"><span class="brandmark" aria-hidden="true">✧</span><strong>星序</strong><span class="brand-en">ASTRAL ATLAS</span></a><nav aria-label="主選單"><button data-page="chart" class="navtab">個人命盤</button><button data-page="daily" class="navtab">每日運勢</button></nav><button id="archive" class="pill quiet"><span aria-hidden="true">▤</span> 已存命盤</button></div></header>
+<header><div class="frame mast"><a href="#chart" class="brand" aria-label="星序首頁"><span class="brandmark" aria-hidden="true">✧</span><strong>星序</strong><span class="brand-en">ASTRAL ATLAS</span></a><nav aria-label="主選單"><button data-page="chart" class="navtab">個人命盤</button><button data-page="guide" class="navtab">星體指南</button><button data-page="daily" class="navtab">每日運勢</button></nav><button id="archive" class="pill quiet"><span aria-hidden="true">▤</span> 已存命盤</button></div></header>
 <main class="frame">
 <section id="chartPage"><div class="intro"><div><p class="eyebrow">Natal chart</p><h1>我的星盤</h1><p class="meta" id="birthmeta"></p></div><div class="actions"><button id="edit" class="pill quiet">調整出生資料</button><button id="save" class="pill solid">儲存命盤</button></div></div>
 <section class="portrait" id="portrait" aria-labelledby="portraitHeading"></section>
 <div class="hero"><section class="wheelcard" aria-labelledby="wheelTitle"><div class="wheelbar"><h2 id="wheelTitle">本命星盤</h2><label class="switch"><input type="checkbox" id="aspectToggle" checked><span></span>相位線</label></div><div id="wheel"></div><p class="wheelhint" id="wheelhint"></p></section>
-<section class="detail" aria-label="選取的星體解讀" aria-live="polite"><div class="detailhero"><div class="globe" id="globe" aria-hidden="true"></div><div class="identity"><p class="eyebrow" id="planetEn"></p><h2 id="planetName" tabindex="-1"></h2></div></div><div class="readouts" id="readouts"></div><div class="reading"><h3 id="placementTitle">落點解讀</h3><p id="reading"></p><p id="houseReading"></p><div class="guide-links" id="bodyGuideLinks"></div></div><div class="pager"><button id="prev" aria-label="上一個星體">‹</button><span id="counter"></span><button id="next" aria-label="下一個星體">›</button></div></section></div>
+<section class="detail" aria-label="選取的星體解讀" aria-live="polite"><div class="detailhero"><div class="globe" id="globe" aria-hidden="true"></div><div class="identity"><p class="eyebrow" id="planetEn"></p><h2 id="planetName" tabindex="-1"></h2></div></div><div class="readouts" id="readouts"></div><div class="reading"><p class="role-summary" id="readingTopics"></p><p id="readingRole"></p><h3 id="placementTitle">落點解讀</h3><p class="trait-line" id="readingTrait"></p><p id="reading"></p><p id="houseReading"></p><div class="guide-links" id="bodyGuideLinks"></div></div><div class="pager"><button id="prev" aria-label="上一個星體">‹</button><span id="counter"></span><button id="next" aria-label="下一個星體">›</button></div></section></div>
 <div class="tabs" id="tabs" aria-label="星盤資料"><button data-tab="positions">星體落點</button><button data-tab="signs">十二星座</button><button data-tab="aspects">主要相位</button><button data-tab="about">排盤說明</button></div><section id="lower"></section></section>
+<section id="catalogPage" hidden>
+<div class="intro"><div><h1>星體指南</h1><p class="meta">選擇星體與星座，讀它掌管的主題，以及這個落點的特質。</p></div></div>
+<div class="catalog-picks"><label>星體或上升點<select id="catalogPlanet"></select></label><label>落入星座<select id="catalogSign"></select></label></div>
+<section class="catalog-reader" aria-live="polite" aria-atomic="true" aria-label="所選星體與星座的解讀">
+  <article class="catalog-role"><h2 id="catalogRole"></h2><p id="catalogTopics"></p><p id="catalogMeaning"></p></article>
+  <article class="catalog-placement"><h2 id="catalogPlacement" tabindex="-1"></h2><h3 id="catalogTrait"></h3><p id="catalogCopy"></p></article>
+</section>
+<details class="catalog-sources guide-sources"><summary>解讀資料來源</summary><ul>
+<li><a href="https://www.astrology.com/article/birth-chart-astrology-houses-planets-signs-aspects/" target="_blank" rel="noopener">Astrology.com・本命盤中的星體、星座與宮位</a></li>
+<li><a href="https://astro.how/zh/articles/planets/" target="_blank" rel="noopener">astro.how・十大星體的象徵與世代主題</a></li>
+<li><a id="catalogSource" target="_blank" rel="noopener"></a></li><li id="catalogCapricornSource" hidden><a href="https://www.astrology.com/planets/venus-in-capricorn" target="_blank" rel="noopener">Astrology.com・金星在摩羯座</a></li></ul></details>
+<h2 class="catalog-index-title">各星體掌管的主題</h2><div id="catalogIndex"></div></section>
 <section id="dailyPage" hidden><div class="intro"><div><p class="eyebrow">Daily horoscope</p><h1>每日運勢</h1><p class="meta" id="dayStamp"></p></div><div class="actions"><select id="sunSign" aria-label="選擇太陽星座"></select><button id="rememberSign" class="pill quiet">記住星座</button></div></div>
 <div class="daynav" id="daynav"><button data-offset="-1">昨天</button><button data-offset="0">今天</button><button data-offset="1">明天</button></div><div id="dayContent"></div></section>
 </main><footer class="frame"><span>✧　星序</span><span>西洋占星・繁體中文</span></footer>
@@ -427,18 +466,18 @@ const placementNotes={
  '這個水星會試著改寫問題本身。若兩個選項都卡住，換一套分類方法，可能看見第三條路。',
  '影像與比喻常先於定義出現。先把腦中的畫面說出來，再核對細節，能讓靈感轉成可分享的語言。'],
  Venus:[
- '吸引力可能從新鮮的第一眼開始。主動選一件真正喜歡的作品，可以看出當下什麼最能點燃興趣。',
- '價值感建立在親身感受上。選一件器物時，手感、材質和用過多年是否仍然喜歡，都算進了美感。',
- '美感藏在有趣的連結裡。把兩張原本無關的照片並排，新產生的雙關意味可能正是吸引人的地方。',
- '喜愛的物品常帶著一段回憶。收藏一張手寫食譜，可能是為了留住做這道菜的人與時光。',
- '慷慨表達欣賞是這個金星的主題。替喜歡的作品仔細挑一個相框，就是把重視化為看得見的形式。',
- '美感來自恰到好處的細節。書封的一點留白、縫線的收尾，都能讓人察覺有人為它花過心思。',
- '它關注部分之間能否相互襯托。選花時，一枝的位置可能比多添幾枝更能讓整束花顯得完整。',
- '吸引力帶著情感的重量。一件能喚回深刻記憶的舊物，往往比標價更能解釋它為何珍貴。',
- '美感與發現相連。從一種陌生的曲調追到它背後的文化，喜歡的世界便往外延伸了一點。',
- '這個金星看重能經得起使用的美。器物如何保養、修補後能否繼續陪伴，也是欣賞的一部分。',
- '它容易在意外的組合裡看見美。為舊物換一種用途，或讓共同創作容納不同筆跡，都能表達這個主題。',
- '氣氛能把平凡的東西染上色彩。光線、旋律和一個短暫瞬間相遇時，可能留下格外深的美感。'],
+ '你可能會被直率、有活力的人吸引。喜歡就主動約對方，找一件兩人都沒試過的事一起做，也是一種示好。新鮮感過後，你還願意為誰留時間，往往更能說明這份喜歡。',
+ '一頓合口味的晚餐、一個習慣的擁抱，都可能讓你感到被愛。你容易欣賞穩定可靠的人，選喜歡的物品時也很在意材質、觸感，以及每天用起來舒不舒服。',
+ '一句有意思的回覆，可能比盛大的約會更讓你期待下次見面。你喜歡可以接住話題、一起發現新事物的人，有時連分享一個只有彼此懂的笑話，都是在說喜歡。',
+ '對方記得你不吃什麼、知道你累的時候想安靜，這些小事容易比排場更動人。你表達喜歡的方式，可能是留一份飯、收好一張票根，把兩人的回憶放進日常。',
+ '心動時，你可能會大方稱讚對方，把很平常的一天安排成值得記住的日子。你也喜歡心意獲得明確回應；一句真誠的「我很高興你來」就很有分量。',
+ '喜歡一個人時，你可能先注意到哪件小事能讓對方輕鬆些。你看重細心與體貼，也許記得對方哪天要早起，卻忘了親口告訴對方，自己其實很期待見面。',
+ '你容易欣賞願意聽、也有自己品味的人。約會地點怎麼選、談話有沒有留空間給彼此，都會影響好感。太在乎氣氛時，你有時會把自己的偏好留到最後才說。',
+ '讓你心動的可能是一次坦白的對話，或對方守住了你託付的小祕密。你願意投入得深，也會在意彼此的忠誠；信任一旦被動搖，單靠漂亮的話很難讓你安心。',
+ '你可能在一趟小旅行或一場天南地北的聊天中喜歡上誰。能一起試新事物、容許彼此保有空間，會讓感情有活力。你也容易欣賞能替你打開新視野的作品。',
+ '你可能會先觀察對方說過的話有沒有做到，經過幾次相處才放心投入。喜歡一個人時，你願意把時間留給對方，也會把兩個人的事排進未來。你欣賞耐看、做工紮實的東西。偶爾心裡已經很在乎，表面仍客氣得讓對方猜不透。',
+ '你容易被有獨立想法、能自在做自己的人吸引。感情常從友誼和共同興趣發展，留給彼此獨處的空間，也是一種親近。風格獨特、打破慣例的作品可能特別合你胃口。',
+ '一段旋律、一個替你留意情緒的眼神，都可能引起好感。你重視溫柔與共鳴，也容易看見一個人最美的可能。當想像跑得很遠時，對方平日怎麼對待你也是值得留意的線索。'],
  Mars:[
  '行動傾向從明確的第一步展開。替眼前挑戰設一個短回合，就有機會立即試出方向。',
  '這種力道擅長持續推進。找到能長久維持的速度以後，重複的小動作也足以造成變化。',
@@ -449,7 +488,7 @@ const placementNotes={
  '行動前會衡量雙方條件。先談好一條彼此都明白的規則，接下來反而更容易果斷出手。',
  '力道容易集中在一個深處的目標。辨認眼前最要緊的阻力，再把資源投入那一處，是這個火星的讀法。',
  '清楚的目的地能喚起行動力。設定一次想完成的探索，走到途中再依眼前地形修正路線。',
- '它偏好把力氣分段使用。先處理決定後續能不能進行的一步，讓每一次投入都留下進度。',
+ '你可能先確認目標、期限和手邊資源，再決定第一步怎麼走。遇到阻力時，你有耐性換方法繼續，生氣時也可能先收住反應，等能把問題處理好再開口。',
  '行動可能指向規則本身。發現同一個限制反覆出現時，先做一個可試用的新做法，看看大家如何使用。',
  '力氣隨感受找到方向。先用草圖或即興動作試一遍，往往比一開始就訂死流程更容易起步。'],
  Jupiter:[
@@ -639,9 +678,10 @@ try{let items=JSON.parse(localStorage.getItem(storageKey)||'[]');if(Array.isArra
 function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('toast').hidden=true,2400);}
 function persist(key,value){try{localStorage.setItem(key,value);return true;}catch{toast('這個瀏覽器暫時無法儲存資料。');return false;}}
 function birthLine(i){return i.date.replaceAll('-',' / ')+'　·　'+(i.unknown?'出生時間未知':i.time)+'　·　'+i.city;}
-function activate(page){currentPage=page;$('chartPage').hidden=page!=='chart';$('dailyPage').hidden=page!=='daily';document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);b.setAttribute('aria-current',b.dataset.page===page?'page':'false')});if(page==='daily')renderDaily();}
+function activate(page){const changed=currentPage!==page;currentPage=page;$('catalogPage').hidden=page!=='guide';$('chartPage').hidden=page!=='chart';$('dailyPage').hidden=page!=='daily';document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);b.setAttribute('aria-current',b.dataset.page===page?'page':'false')});if(page==='daily')renderDaily();if(page==='guide')renderCatalog();if(changed)window.scrollTo(0,0);}
 function gotoPage(page){if(location.hash!=='#'+page)location.hash=page;activate(page);}
-window.addEventListener('hashchange',()=>activate(location.hash==='#daily'?'daily':'chart'));
+function route(){const page=location.hash.slice(1).split('/')[0];activate(page==='daily'||page==='guide'?page:'chart');}
+window.addEventListener('hashchange',route);
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>gotoPage(b.dataset.page));
 const posSign=b=>chart.input.unknown?b.possible.map(s=>signs[s]+'座').join('／'):signs[b.sign]+'座';
 function svgWheel(){
@@ -679,17 +719,22 @@ function renderDetails(){
  $('globe').className='globe'+(b.id==='Moon'?' moon':'');$('globe').textContent=b.id==='Moon'?'':b.glyph;
  $('readouts').innerHTML=[['星座',where],['度數',un?'待補時間':b.deg+'°'],['宮位',housesLabel(b.house)]].map(([k,v])=>'<div><small>'+k+'</small><b>'+v+'</b></div>').join('');
  const candidates=candidateSigns(b),uncertain=candidates.length>1;
+ const [topics,description]=guideTopics[b.id];
+ $('readingTopics').textContent=(b.id==='Ascendant'?'上升點象徵':'掌管主題')+'｜'+topics;
+ $('readingRole').textContent=description;
+ $('readingTrait').hidden=uncertain;
+ $('readingTrait').textContent=uncertain?'':signHeadlines[b.id][candidates[0]];
  $('placementTitle').textContent=uncertain?b.name+'的兩個可能落點':b.name+'在'+where;
  $('reading').replaceChildren();
  if(uncertain){
   $('reading').append('出生時間決定實際落點。可對照兩種讀法：');
   for(const s of candidates){
    const note=document.createElement('span');note.className='possible-note';
-   note.textContent=signs[s]+'座｜'+placementNotes[b.id][s];$('reading').append(note);
+   note.textContent=signs[s]+'座｜'+signHeadlines[b.id][s]+'。'+placementNotes[b.id][s];$('reading').append(note);
   }
  }else{$('reading').textContent=placementNotes[b.id][candidates[0]];}
- $('bodyGuideLinks').innerHTML=candidates.map(guideButton).join('');
- $('houseReading').textContent=b.meaning+' '+(b.house?'落在'+housesLabel(b.house)+'，可從「'+houseNames[b.house-1]+'」的經驗觀察。':'補上出生時間後可查看宮位。');
+ $('bodyGuideLinks').innerHTML=candidates.map(s=>'<a class="textlink" href="'+catalogLink(b.id,s)+'">查看'+b.name+'在'+signs[s]+'座的指南</a>').join('')+candidates.map(guideButton).join('');
+ $('houseReading').textContent=(b.house?'落在'+housesLabel(b.house)+'，可從「'+houseNames[b.house-1]+'」的經驗觀察。':'補上出生時間後可查看宮位。');
  $('counter').textContent=(selected+1)+' / '+chart.bodies.length;
 }
 function choose(i,fromWheel=false){
@@ -799,7 +844,7 @@ function renderGuide(index) {
     $('guideBodies').innerHTML=placements.map(({body,i})=>{
       const uncertain=candidateSigns(body).length>1;
       const suffix=uncertain?'（可能落入，待確認時間）':body.house?'・'+housesLabel(body.house):'（宮位待確認）';
-      return '<article><h4>'+body.name+suffix+'</h4><p>'+placementNotes[body.id][index]+'</p><button class="textlink" data-jump-body="'+i+'">在星盤查看'+body.name+'</button></article>';
+      return '<article><h4>'+body.name+suffix+'</h4><p class="role-summary">'+guideTopics[body.id][0]+'</p><p><strong>'+signHeadlines[body.id][index]+'</strong></p><p>'+placementNotes[body.id][index]+'</p><button class="textlink" data-jump-body="'+i+'">在星盤查看'+body.name+'</button></article>';
     }).join('');
   }
   if(chart.input.unknown){
@@ -833,5 +878,76 @@ document.addEventListener('click',e=>{
   if(target)openGuide(Number(target.dataset.guide));
 });
 
-renderChart();activate(location.hash==='#daily'?'daily':'chart');
+// Reference pages for the published natal interpretations. Sign arrays start at Aries.
+const signKeys = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+const guideTopics = {
+  Sun: ['自我認同、意志、人生方向', '什麼事讓你覺得「這是我自己想做的」？太陽描述你願意主動投入、也希望活出來的那一面。', 'index/suninsigns.html'],
+  Moon: ['情緒、習慣、安全感', '遇到委屈時，你想立刻說出來，還是需要有人安靜陪著？月亮描述情緒的第一個反應，也關乎什麼能讓你安心。', 'articles/mooninsigns.html'],
+  Mercury: ['思考、學習、溝通', '聽到陌生的說法，你先抓大意還是先問細節？水星描述你怎麼理解訊息、組織想法，以及把話說給別人聽。', 'articles/mercuryinsigns.html'],
+  Venus: ['愛情、吸引力、審美與價值觀', '什麼樣的人會讓你心動？你怎麼讓對方知道「我喜歡你」？金星也連著品味，以及什麼值得你花時間或金錢珍惜。', 'natal/venusinsigns.html'],
+  Mars: ['行動力、慾望、競爭與怒氣', '想要一樣東西時，你怎麼爭取？被踩到底線時，你會立刻回應，還是等時機成熟再開口？火星描述你使力的方式。', 'articles/marsinsigns.html'],
+  Jupiter: ['成長、信念、拓展視野', '碰到未知的事，什麼讓你相信值得一試？木星描述你如何向外學習、看見機會，也能用來觀察自己在哪些事上容易過度樂觀。', 'natal/jupiterinsigns.html'],
+  Saturn: ['責任、界線、紀律與時間', '哪件事讓你起初覺得吃力，練久了卻變得可靠？土星談你如何面對限制、承擔後果，慢慢建立能信得過的本事。', 'natal/saturn-signs.html'],
+  Uranus: ['自由、革新、打破慣例', '當原有做法行不通，一個世代會從哪裡開始改變？天王星的星座常描述同齡人共享的變革主題，個人表現還要合看宮位與相位。', 'natal/uranus-signs.html'],
+  Neptune: ['想像、同理、理想化', '什麼願景容易打動一整個世代？海王星連著共同的夢想，也提醒人留意哪些期待可能被想得太美。個人經驗可再看宮位與相位。', 'natal/neptune-pluto-signs.html'],
+  Pluto: ['權力、失去、深層轉變', '一套秩序走到盡頭，誰要放手、什麼會被重建？冥王星的星座常描述一個世代面對的權力與轉變，宮位和相位能把範圍縮小到個人。', 'natal/neptune-pluto-signs.html'],
+  Ascendant: ['第一印象、面對新環境的方式', '上升點是出生時東方地平線與黃道的交點。占星用它看你初到陌生場合時自然採取的姿態，以及別人最先注意到的那一面。', 'articles/housesofthehoroscope.html']
+};
+const signHeadlines = {
+  Sun: ['靠主動選擇確認自己','重視能長久累積的事物','從好奇與交流找方向','願意守護有歸屬感的人事物','透過創作與表達發光','從把事情做得更好獲得成就感','透過比較與協調找到立場','想追到問題的核心','被遠方與新觀點吸引','重視承諾能否化成成果','願意挑戰習以為常的想法','用想像和感受尋找方向'],
+  Moon: ['情緒來得快，需要能行動的空間','熟悉的感官經驗讓心情安定','常在說出口之後才理清心情','熟悉的照料和記憶帶來安全感','真心被看見時較容易安心','把一個小細節整理好就能鬆口氣','在和緩、能對話的氣氛中自在','需要足夠的信任才說出深層感受','換個視角，心情就有了出口','事情有著落，心裡才踏實','拉開一點距離後更懂自己的情緒','對周遭氣氛敏感，需要安靜沉澱'],
+  Mercury: ['先說結論，再邊做邊想','親手試過的事最容易記住','善於連結線索、追問和換角度','藉著情境與語氣理解訊息','把觀點說成讓人記住的故事','能把模糊的說法拆成可核對的細節','能聽懂兩方的理由，再形成看法','習慣追問表面說法底下的原因','先抓大意，喜歡用例子講觀點','先釐清順序，再說出結論','擅長換一種問法看問題','用畫面、語感和比喻理解事情'],
+  Venus: ['心動時願意主動靠近','在穩定陪伴與感官享受裡感受愛','有來有往的對話最能引發心動','容易被體貼與熟悉感打動','樂於明白表達欣賞，也期待熱情回應','用記得的小事表達喜歡','看重互相欣賞，也在意分寸','需要深度與信任，才願意交付真心','容易愛上能一起探索世界的人','慢慢建立信任，用長期承諾表達愛','喜歡保有自由、也像朋友的感情','容易被共鳴、想像與溫柔打動'],
+  Mars: ['看準目標便先行動','蓄好力就能持續很久','靠嘗試和交換意見推動事情','守護在意的人事物時特別有力','有表現空間時更想全力以赴','把力氣用在修正最關鍵的一步','先衡量雙方，再決定怎麼出手','擅長集中力量突破阻礙','有值得追的目標就能動起來','善於分配力氣，為長期目標持續行動','遇到不合理的規則就想改變做法','有感覺、有想像時更容易開始'],
+  Jupiter: ['透過率先嘗試拓展經驗','從長久耕耘中發現機會','好問題會帶來新的學習機會','從照料與歸屬中擴大世界','勇於展示作品時容易發現潛能','從方法的改進累積成長','公平交換打開新視野','願意深入探究，才能看見隱藏資源','在見識新世界的過程中形成信念','把學到的事累積成長久的能力','在社群與不同觀點間發現可能','用同理與想像拓展理解'],
+  Saturn: ['學習承擔率先做決定的責任','練習在有限資源中建立安穩','對說出口的話和資訊負責','慢慢建立能照料自己也照顧他人的界線','學習在眾人面前容許自己生澀','把高標準調整到能長久維持','學習承擔承諾，也把約定談清楚','練習信任、分享與劃清責任','願意讓信念接受檢驗','能在規則與責任中累積耐力','練習在團體責任與獨立判斷間取捨','為感受與想像建立合適的界線'],
+  Uranus: ['世代對自主與開創的突破','世代對資源與生活方式的革新','世代對訊息流通方式的革新','世代重新想像家與歸屬','世代嘗試新的創作與表達方式','世代改造技術與日常制度','世代重新協商平等與關係規則','世代挑戰禁忌和資源分配','世代重新提問信念與知識的界線','世代改造既有的權威與制度','世代試驗網絡與集體行動','世代突破藝術與想像的界線'],
+  Neptune: ['世代對開拓者的想像','世代對富足與安穩的想像','世代對知識與訊息的想像','世代對故鄉與歸屬的理想','世代對明星、創造與舞台的想像','世代對服務與完善秩序的理想','世代對和諧關係的理想','世代對親密與禁忌的想像','世代對遠方與信念的理想','世代對成就與秩序的理想','世代對社群與科技的理想','世代對共感、藝術與精神生活的想像'],
+  Pluto: ['世代重問誰能掌握主動權','世代重估資源與所有權','世代重分資訊與發言權','世代面對家庭、歸屬背後的權力','世代重估領袖與個人權威','世代透過技術和分工經歷轉變','世代重整契約與關係中的權力','世代深入面對失去、共享與重建','世代重問誰能定義真理','世代面對制度與權威的重組','世代透過網絡重分集體力量','世代轉變共同的信念與想像'],
+  Ascendant: ['用行動打開局面','先找穩自己的步調','用好奇與提問進入場合','先尋找能安心停留的位置','帶著鮮明的表情和風格出場','先觀察細節、釐清流程','先感受分寸與彼此的位置','先觀察氣氛與界線','先看見眼前值得探索的事','先確認時間、規則與責任','保留獨立觀察的位置','先感受環境的氣氛']
+};
+function catalogLink(bodyId, sign) {
+  return '#guide/' + bodyId + '/' + signKeys[sign];
+}
+function renderCatalog() {
+  const [, requestBody, requestSign] = location.hash.slice(1).split('/');
+  const body = planetData.find(([id]) => id === requestBody) || planetData[3];
+  const requestedIndex = signKeys.indexOf(requestSign);
+  const sign = requestedIndex >= 0 ? requestedIndex : 9;
+  const [id, name] = body;
+  const [topics, meaning, path] = guideTopics[id];
+  $('catalogPlanet').value=id;
+  $('catalogSign').value=sign;
+  $('catalogRole').textContent=name + (id === 'Ascendant' ? '代表什麼' : '掌管什麼');
+  $('catalogTopics').textContent=topics;
+  $('catalogMeaning').textContent=meaning;
+  $('catalogPlacement').textContent=name + '在' + signs[sign] + '座';
+  $('catalogTrait').textContent=signHeadlines[id][sign];
+  $('catalogCopy').textContent=placementNotes[id][sign];
+  $('catalogSource').href='https://cafeastrology.com/' + path;
+  $('catalogSource').textContent='Cafe Astrology・' + name + (id === 'Ascendant' ? '與第一宮' : '落座解讀');
+  $('catalogCapricornSource').hidden=!(id === 'Venus' && sign === 9);
+  $('catalogIndex').querySelectorAll('a').forEach(link=>{
+    const chosen=link.dataset.catalogBody;
+    link.href=catalogLink(chosen,sign);
+    if(chosen === id) link.setAttribute('aria-current','true'); else link.removeAttribute('aria-current');
+  });
+}
+$('catalogPlanet').innerHTML=planetData.map(([id,name])=>'<option value="'+id+'">'+name+'</option>').join('');
+$('catalogSign').innerHTML=signs.map((sign,i)=>'<option value="'+i+'">'+sign+'座</option>').join('');
+$('catalogIndex').innerHTML=planetData.map(([id,name,glyph])=>'<a data-catalog-body="'+id+'" href="'+catalogLink(id,9)+'"><span aria-hidden="true">'+glyph+'</span><span><strong>'+name+'</strong><small>'+guideTopics[id][0]+'</small></span></a>').join('');
+function changeCatalog(){location.hash=catalogLink($('catalogPlanet').value,Number($('catalogSign').value));}
+$('catalogPlanet').onchange=changeCatalog;
+$('catalogSign').onchange=changeCatalog;
+$('catalogIndex').addEventListener('click',event=>{
+  const link=event.target.closest('a[data-catalog-body]');
+  if (!link || event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  location.hash=link.hash;
+  renderCatalog();
+  $('catalogPlacement').focus({preventScroll:true});
+  document.querySelector('.catalog-picks').scrollIntoView({block:'start'});
+});
+
+renderChart();route();
 </script></body></html>
