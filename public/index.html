@@ -2,18 +2,24 @@
 @media(max-width:780px){.mast{gap:1rem}.hero{grid-template-columns:1.05fr 1fr;gap:.75rem}.brand-en{display:none}.reading,.detailhero{padding-left:1rem;padding-right:1rem}.readouts{padding:1rem .8rem;gap:.3rem}.readouts div+div{padding-left:.4rem}.frame{width:93%}.wheelbar{padding:.9rem .8rem 0}.globe{width:64px;height:64px;right:7%}.detailhero{min-height:105px}}
 @media(max-width:650px){.mast{min-height:60px;gap:.5rem;flex-wrap:wrap}.brand strong{font-size:1.3rem}.brandmark{width:25px;height:25px;font-size:24px}.brand{gap:.45rem}nav{margin-left:auto;gap:.25rem}.navtab{font-size:.85rem;padding:0 .32rem}.mast>.pill{margin-left:0;font-size:.8rem;min-height:34px;padding:.3rem .5rem}.mast>.pill span{display:none}.frame{width:calc(100% - 28px)}.intro{display:block;padding:1.55rem 0 1.05rem}.intro .actions{margin:.8rem 0 0}.hero{grid-template-columns:1fr;gap:.8rem}.wheelbar{padding:1rem 1rem 0}#wheel svg{width:min(100%,375px)}.detailhero{min-height:92px}.readouts{padding:.85rem 1rem}.reading{padding:.95rem 1rem .3rem}.pager{padding:.25rem 1rem .8rem}.tabs{gap:1.15rem;margin-top:.8rem}.tabs button{font-size:.93rem}.planet-table th,.planet-table td{padding:.6rem .38rem}.planet-table td{font-size:.9rem}.dayhero{padding:1.2rem}.tiles{grid-template-columns:1fr}.wheelhint{margin-bottom:.8rem}.meta{font-size:.88rem}.detailhero h2{font-size:2rem}.globe{width:74px;height:74px}.pill{min-height:39px;padding:.45rem .8rem}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.sign-sector{cursor:pointer;outline:none}.sign-sector path{fill:transparent}.sign-sector:hover path,.sign-sector:focus-visible path{fill:#36615a;stroke:#ded4a0;stroke-width:1.2px}.sign-sector text,.sign-sector line{pointer-events:none}.textlink{color:var(--teal);text-decoration:underline;text-decoration-color:#b4c9bc;text-underline-offset:.25em;font-size:.93rem;font-weight:600;min-height:36px;padding:.16rem 0}.guide-links{display:flex;gap:1rem}.possible-note{display:block;margin-top:.5rem}.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:.65rem;margin-top:1rem}.guide-item{border:1px solid var(--line);background:#fcfcf8;border-radius:10px;text-align:left;padding:.8rem;display:flex;align-items:center;gap:.8rem}.guide-item:hover{background:#edf1e7}.guide-item strong,.guide-item small{display:block}.guide-item small{font-size:.86rem;color:var(--muted);margin-top:.15rem}.guide-icon,#guideGlyph{font:1.65rem/1 Georgia,'DejaVu Sans',serif;color:var(--teal)}#signGuide{width:min(555px,calc(100% - 26px));padding:1.4rem;overscroll-behavior:contain}.guide-toolbar{margin-bottom:1rem}.guide-toolbar select{width:auto;padding:.4rem 2rem .4rem .75rem}.guide-heading{background:#e7ede1;border-radius:12px;display:flex;align-items:center;gap:1rem;padding:1rem 1.15rem}.guide-heading h2{font:600 2.25rem var(--serif);margin:.05rem 0}.guide-heading p{margin:0;font-size:.86rem;color:#476054}#guideGlyph{background:#f7f8ed;font-size:2.2rem;border-radius:50%;width:62px;height:62px;display:grid;place-items:center}.guide-copy p,.guide-chart p,.guide-sources p,.guide-sources li{line-height:1.83}.guide-copy h3,.guide-chart h3{font-size:1.1rem;margin:1rem 0 .3rem}.guide-copy p,.guide-chart p{margin:.35rem 0 .55rem}.guide-chart{border-top:1px solid var(--line);margin-top:1rem}.guide-chart h4{font-weight:600;margin:.9rem 0 .2rem}.guide-chart article{border-left:2px solid #b8c9b7;padding-left:.8rem}.guide-sources{border-top:1px solid var(--line);margin-top:1.15rem;padding-top:.75rem;font-size:.9rem;color:var(--muted)}.guide-sources summary{cursor:pointer;color:var(--teal);font-weight:600}.guide-sources a{color:var(--teal)}.guide-sources ul{padding-left:1.3rem}.guide-sources li{margin:.4rem 0}@media(max-width:650px){.tabs{gap:clamp(.4rem,3.1vw,1.1rem)}.tabs button{white-space:nowrap}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-item{gap:.5rem;padding:.7rem}.guide-icon{font-size:1.25rem}}
 </style></head><body>
 <header><div class="frame mast"><a href="#chart" class="brand" aria-label="星序首頁"><span class="brandmark" aria-hidden="true">✧</span><strong>星序</strong><span class="brand-en">ASTRAL ATLAS</span></a><nav aria-label="主選單"><button data-page="chart" class="navtab">個人命盤</button><button data-page="daily" class="navtab">每日運勢</button></nav><button id="archive" class="pill quiet"><span aria-hidden="true">▤</span> 已存命盤</button></div></header>
 <main class="frame">
 <section id="chartPage"><div class="intro"><div><p class="eyebrow">Natal chart</p><h1>我的星盤</h1><p class="meta" id="birthmeta"></p></div><div class="actions"><button id="edit" class="pill quiet">調整出生資料</button><button id="save" class="pill solid">儲存命盤</button></div></div>
 <div class="hero"><section class="wheelcard" aria-labelledby="wheelTitle"><div class="wheelbar"><h2 id="wheelTitle">本命星盤</h2><label class="switch"><input type="checkbox" id="aspectToggle" checked><span></span>相位線</label></div><div id="wheel"></div><p class="wheelhint" id="wheelhint"></p></section>
-<section class="detail" aria-label="選取的星體解讀" aria-live="polite"><div class="detailhero"><div class="globe" id="globe" aria-hidden="true"></div><div class="identity"><p class="eyebrow" id="planetEn"></p><h2 id="planetName"></h2></div></div><div class="readouts" id="readouts"></div><div class="reading"><h3>落點解讀</h3><p id="reading"></p><p id="houseReading"></p></div><div class="pager"><button id="prev" aria-label="上一個星體">‹</button><span id="counter"></span><button id="next" aria-label="下一個星體">›</button></div></section></div>
-<div class="tabs" id="tabs" aria-label="星盤資料"><button data-tab="positions">星體落點</button><button data-tab="aspects">主要相位</button><button data-tab="about">排盤說明</button></div><section id="lower"></section></section>
+<section class="detail" aria-label="選取的星體解讀" aria-live="polite"><div class="detailhero"><div class="globe" id="globe" aria-hidden="true"></div><div class="identity"><p class="eyebrow" id="planetEn"></p><h2 id="planetName" tabindex="-1"></h2></div></div><div class="readouts" id="readouts"></div><div class="reading"><h3 id="placementTitle">落點解讀</h3><p id="reading"></p><p id="houseReading"></p><div class="guide-links" id="bodyGuideLinks"></div></div><div class="pager"><button id="prev" aria-label="上一個星體">‹</button><span id="counter"></span><button id="next" aria-label="下一個星體">›</button></div></section></div>
+<div class="tabs" id="tabs" aria-label="星盤資料"><button data-tab="positions">星體落點</button><button data-tab="signs">十二星座</button><button data-tab="aspects">主要相位</button><button data-tab="about">排盤說明</button></div><section id="lower"></section></section>
 <section id="dailyPage" hidden><div class="intro"><div><p class="eyebrow">Daily horoscope</p><h1>每日運勢</h1><p class="meta" id="dayStamp"></p></div><div class="actions"><select id="sunSign" aria-label="選擇太陽星座"></select><button id="rememberSign" class="pill quiet">記住星座</button></div></div>
 <div class="daynav" id="daynav"><button data-offset="-1">昨天</button><button data-offset="0">今天</button><button data-offset="1">明天</button></div><div id="dayContent"></div></section>
 </main><footer class="frame"><span>✧　星序</span><span>西洋占星・繁體中文</span></footer>
 <dialog id="sheet"><form id="editForm"><div class="dialogtitle"><h2>出生資料</h2><button type="button" class="close" aria-label="關閉">×</button></div><label>出生日期<input id="birthDate" type="date" required min="1901-01-01"></label><label>出生時間<input id="birthTime" type="time" required></label><label class="check"><input type="checkbox" id="unknown"> 不知道出生時間</label><label>出生縣市<select id="city"></select></label><p class="note">以台灣各縣市代表座標與出生當地時間計算。選擇時間未知可查看當天可確定的星體落點。</p><p id="error" role="alert"></p><button class="pill solid wide" type="submit">產生我的命盤</button></form></dialog>
-<dialog id="stash"><div class="dialogtitle"><h2>已存命盤</h2><button type="button" class="close" aria-label="關閉">×</button></div><div id="stashItems"></div></dialog>
+<dialog id="signGuide" aria-labelledby="guideName">
+ <div class="dialogtitle guide-toolbar"><select aria-label="切換解讀星座" id="guidePick"></select><button type="button" class="close" aria-label="關閉星座解讀">×</button></div>
+ <div class="guide-heading"><span id="guideGlyph" aria-hidden="true"></span><div><p id="guideMeta"></p><h2 id="guideName"></h2></div></div>
+ <section class="guide-copy"><h3 id="guideTitle"></h3><p id="guideText"></p></section>
+ <section class="guide-chart"><h3>這張命盤的落點</h3><div id="guideBodies"></div></section><div id="guideSourcesHost"></div></dialog>
+ <dialog id="stash"><div class="dialogtitle"><h2>已存命盤</h2><button type="button" class="close" aria-label="關閉">×</button></div><div id="stashItems"></div></dialog>
 <div id="toast" role="status" hidden></div>
 <script>/*
  MIT
@@ -289,7 +295,6 @@ const planetData = [
  ['Ascendant','上升點','AC','上升點是出生時東方地平線與黃道的交點，也是這張星盤第一宮的起點。']
 ];
 const houseNames=['自我與當下','資源與價值','學習與訊息','居所與根源','創作與樂趣','日常與習慣','一對一連結','共有資源','遠行與探索','公共角色','社群與願景','沉澱與休息'];
-const signTheme=['開始、嘗試與推進','累積、穩定與感官經驗','訊息、提問與交換','歸屬、記憶與滋養','創作、表達與熱情','整理、辨識與調整','平衡、協調與美感','深度、轉化與資源','遠行、意義與探索','結構、時間與累積','想像未來與群體連結','感受、聯想與流動'];
 const cnNums=['一','二','三','四','五','六','七','八','九','十','十一','十二'];
 const housesLabel=n=>n?'第'+cnNums[n-1]+'宮':'時間待補';
 const aspectTypes=[[0,'合相',7],[60,'六合',4],[90,'四分相',6],[120,'三分相',6],[180,'對分相',7]];
@@ -346,6 +351,124 @@ function calcChart(input){
  aspects.sort((a,b)=>a.diff-b.diff);
  return {input,bodies,cusps,aspects};
 }
+</script><script>// Entries follow the zodiac from Aries to Pisces. Planet keys match the chart engine.
+const elementNames=['火象','土象','風象','水象'];
+const modeNames=['開創','固定','變動'];
+const signNotes=[
+ {title:'先跨出一步',text:'牡羊把注意力放在開始的那一刻。站在一道沒開過的門前，這個星座的象徵是伸手去推，從門後的風景決定下一步。讀盤時，可以觀察落在這裡的星體如何發起一件事，又如何在第一股衝勁過後繼續。'},
+ {title:'從親身感受辨認價值',text:'金牛透過觸感、味道與反覆的使用，慢慢確認什麼值得留下。像選一只每天用的杯子，重量和握感可能比新奇更重要。星體落在這裡，適合從累積與維持來讀，也可以留意熟悉何時變成捨不得放手。'},
+ {title:'讓一個問題接到另一個',text:'雙子喜歡讓資訊流動。一個陌生詞彙可能引出一場訪談、一張地圖和兩種不同的說法。星體落在這裡時，可以看它如何透過提問與比較獲得線索，又在哪一刻需要停下來，把線索整理成自己的理解。'},
+ {title:'為記憶留一個位置',text:'巨蟹和歸屬、照料及記憶有關。同一道菜隔了多年仍能喚起一張餐桌的氣氛，正是這個符號的切入點。讀盤時，可以觀察星體如何建立可安心返回的地方，也留意舊經驗是否左右了對眼前事物的感受。'},
+ {title:'讓創作有自己的署名',text:'獅子關心的是一份心意如何被完整表達。把練習許久的一首曲子彈給人聽，重要的不只是掌聲，還有演奏者願意為這個版本署名。落在這裡的星體，可以從創作、遊戲和持續投入的熱情來看。'},
+ {title:'在一次修正裡更接近想要的樣子',text:'處女看得見預想與實際之間的小差距。試烤第二盤餅乾時，只調整烤溫，便能知道哪一處改動真的有用。星體落在這裡，常以辨識、練習和修整表達；值得一起看的，是什麼時候已經足夠，可以收手。'},
+ {title:'把兩邊放到同一張桌上',text:'天秤透過對照尋找合適的比例。排一張海報時，移動標題也會改變留白的重量。落在這裡的星體，適合觀察它如何衡量選項、調整彼此的位置，以及兩邊都說得通時，最後依據什麼做出選擇。'},
+ {title:'沿著表面下的線索往深處讀',text:'天蠍把注意力停在那些有分量、卻未必已經說清楚的事。一件傳下來的物品，價值可能藏在它經過誰的手。星體落在這裡時，可從信任、共享與告別來理解，也可以留意何時需要鬆開已經結束的事。'},
+ {title:'把經驗放進更大的世界',text:'射手會追問，一次親眼所見能讓原本的想法改變多少？旅行、閱讀和接觸異地觀點，都是這種探索的具體形狀。讀到這個星座，除了看星體如何尋找方向，也可以看看新的經驗會不會讓原先的信念轉彎。'},
+ {title:'讓時間看得見成果',text:'摩羯關注承諾怎麼經得起時間。修復一間老屋時，先看地基、再排工序，往往比一口氣開始更踏實。星體落在這裡時，可以從界線、階段和責任來理解，也能問一句：眼前維持的結構，還在支持原本的目的嗎？'},
+ {title:'退一步，重看大家習以為常的規則',text:'水瓶從群體和制度的角度觀察事物。若圖書交換總是同幾個人參加，它會想到借閱規則能否讓新來的人也有位置。落在這裡的星體與構想、實驗及共同理想相連，也值得看一個好點子能否容納不同意見。'},
+ {title:'讓兩種經驗產生共鳴',text:'雙魚關注感受如何越過界線。聽到一段旋律，眼前浮現的也許是未曾到過的海邊；聲音、影像和記憶在此接起來。星體落在這裡時，可從想像、共感和放下來理解，也要留意哪些感受屬於自己。'}
+];
+const placementNotes={
+ Sun:[
+ '這個太陽的主題是發起。親自決定一次從哪裡開始，比等待完整說明更能讓方向浮現。',
+ '生命力可以放進一件願意長久照看的事。親手栽種或反覆練習，都讓投入有了可見的分量。',
+ '透過學習、提問和交換消息，想做的事逐漸清晰。一個好問題可能比過早選定答案更有力量。',
+ '尋找歸屬是發展方向的一部分。建立一個能夠接納記憶、也能迎接新成員的空間，是這種象徵的具體表達。',
+ '創作讓主題變得鮮明。當一件作品能留下自己的選擇，持續投入的動力也就有了落腳處。',
+ '太陽照亮的是精進的過程。記下這次練習比上次多掌握了什麼，便能看清一路建立起來的能力。',
+ '太陽在此藉由選擇來確認立場。為兩種各有好處的方案取捨時，用了什麼尺度尤其值得觀察。',
+ '這個太陽關乎深入與更新。願意追查事情的來龍去脈，也願意在發現新事實時重新選擇方向。',
+ '探索帶來活力。走進陌生的地方或讀到相反的觀點時，可以看看什麼經驗值得成為自己的信念。',
+ '這個太陽藉由實際完成的階段辨認方向。每走完一段回頭看，才知道哪份承諾還值得長久投入。',
+ '長期投入的目標可能連著一個共同理想。試著把想改變的規則畫出來，便能看見自己想把力氣放在哪裡。',
+ '想像為方向留下彈性。透過一幅畫、一段音樂或一則故事，原本說不清楚的願望可能逐漸有了輪廓。'],
+ Moon:[
+ '情緒想要一個立即的出口。出門走一圈，或先把卡住的一個動作做完，常比繼續坐著琢磨更貼近這個落點。',
+ '安定感與身體的節奏有關。一頓熟悉的飯、一條走慣的路，都能成為日常回復平穩的線索。',
+ '心情需要被說出來或寫下來。試著替同一段感受找兩個不同的說法，第二個詞也許更貼切。',
+ '月亮在這裡與記憶特別靠近。熟悉的聲音、有人記得的小習慣，可能比一句籠統的安慰更有用。',
+ '安定感與真心的回應相連。分享珍惜的片段時，可以觀察怎樣的回應讓人感到自己的心意被看見。',
+ '心裡掛著好幾件事時，把明早需要的東西先放好，可能就能鬆一口氣。這個月亮常從一個可處理的小細節找回安定。',
+ '環境裡不協調的聲音格外容易引起注意。挪一盞燈、說開一句沒有說完的話，都可能讓心情恢復平衡。',
+ '感受往往需要時間沉澱。一個能守住祕密的空間，可能比立刻把所有感受攤開更令人安心。',
+ '換個視野能讓情緒有呼吸的空間。走去沒逛過的街區，或找一本帶人看遠一點的書，都是這種節奏。',
+ '事情有了下一步，心裡也比較有底。把擔心化成一個可完成的安排之餘，也可以給休息留個位置。',
+ '暫時拉開距離可能有助於辨認心情。等思緒清楚，再回到能自在表達的群體裡，是一種安定的路徑。',
+ '氣氛和聲音容易替感受著色。聽完一首歌後留幾分鐘安靜，有助於辨認哪些情緒原本就屬於自己。'],
+ Mercury:[
+ '思考從直接的提問開始。先用一句話提出假設，再找能驗證它的資料，會讓靈光有機會往前走。',
+ '理解需要可觸摸的例子。一個實物、一段親手做過的步驟，往往比連續幾個抽象定義更容易記住。',
+ '概念會在比較中長出新的連結。把兩個近義詞放進不同句子，比背一條孤立的定義更能看出差別。',
+ '訊息常連著一段情境進入記憶。想還原某句話時，當時的場所、語氣和前後文都可能是線索。',
+ '表達帶有敘事的色彩。同一件事從哪個畫面開始說，會影響聽者最後記住什麼。',
+ '這個水星擅長把含糊拆開。遇到兩個看似矛盾的說法，先核對單位、日期和詞義，差異可能就會浮現。',
+ '想法透過對照而清楚。為同一個問題各寫一句贊成與保留的理由，可以辨認自己真正看重的標準。',
+ '思考會追問被略去的環節。把已知證據和推測分開列出，有助於深入問題，也替不同解釋保留空間。',
+ '它會先問整段話想通往哪裡。抓到大意之後，再找一個具體例子檢驗，能讓觀點說得更準。',
+ '思緒偏向有層次的結構。先列出前提、步驟與結論，就能看出哪一段還缺少根據。',
+ '這個水星會試著改寫問題本身。若兩個選項都卡住，換一套分類方法，可能看見第三條路。',
+ '影像與比喻常先於定義出現。先把腦中的畫面說出來，再核對細節，能讓靈感轉成可分享的語言。'],
+ Venus:[
+ '吸引力可能從新鮮的第一眼開始。主動選一件真正喜歡的作品，可以看出當下什麼最能點燃興趣。',
+ '價值感建立在親身感受上。選一件器物時，手感、材質和用過多年是否仍然喜歡，都算進了美感。',
+ '美感藏在有趣的連結裡。把兩張原本無關的照片並排，新產生的雙關意味可能正是吸引人的地方。',
+ '喜愛的物品常帶著一段回憶。收藏一張手寫食譜，可能是為了留住做這道菜的人與時光。',
+ '慷慨表達欣賞是這個金星的主題。替喜歡的作品仔細挑一個相框，就是把重視化為看得見的形式。',
+ '美感來自恰到好處的細節。書封的一點留白、縫線的收尾，都能讓人察覺有人為它花過心思。',
+ '它關注部分之間能否相互襯托。選花時，一枝的位置可能比多添幾枝更能讓整束花顯得完整。',
+ '吸引力帶著情感的重量。一件能喚回深刻記憶的舊物，往往比標價更能解釋它為何珍貴。',
+ '美感與發現相連。從一種陌生的曲調追到它背後的文化，喜歡的世界便往外延伸了一點。',
+ '這個金星看重能經得起使用的美。器物如何保養、修補後能否繼續陪伴，也是欣賞的一部分。',
+ '它容易在意外的組合裡看見美。為舊物換一種用途，或讓共同創作容納不同筆跡，都能表達這個主題。',
+ '氣氛能把平凡的東西染上色彩。光線、旋律和一個短暫瞬間相遇時，可能留下格外深的美感。'],
+ Mars:[
+ '行動傾向從明確的第一步展開。替眼前挑戰設一個短回合，就有機會立即試出方向。',
+ '這種力道擅長持續推進。找到能長久維持的速度以後，重複的小動作也足以造成變化。',
+ '行動從試驗不同方案開始。快速比較兩個小版本，有助於把好奇心用在真正有效的方向。',
+ '保護所珍惜的事物會帶出行動力。先看清自己想守住的是什麼，再決定這次該往前還是該設界線。',
+ '把一件事做得有聲有色，是投入的動機。明確的創作挑戰能讓這股力氣集中起來。',
+ '火星的力氣用在精準調整上。找出最常失手的一步，單獨練幾次，比從頭重做更切中問題。',
+ '行動前會衡量雙方條件。先談好一條彼此都明白的規則，接下來反而更容易果斷出手。',
+ '力道容易集中在一個深處的目標。辨認眼前最要緊的阻力，再把資源投入那一處，是這個火星的讀法。',
+ '清楚的目的地能喚起行動力。設定一次想完成的探索，走到途中再依眼前地形修正路線。',
+ '它偏好把力氣分段使用。先處理決定後續能不能進行的一步，讓每一次投入都留下進度。',
+ '行動可能指向規則本身。發現同一個限制反覆出現時，先做一個可試用的新做法，看看大家如何使用。',
+ '力氣隨感受找到方向。先用草圖或即興動作試一遍，往往比一開始就訂死流程更容易起步。'],
+ Jupiter:[
+ '成長來自親自發起一次嘗試。即使規模很小，第一手經驗也可能打開原來看不到的機會。',
+ '擴展可以很緩慢。照料一項既有資源、學會把它用得更好，也是一種豐盛。',
+ '新知常從意外的交談展開。順著一個問題尋找多個來源，讓見聞逐步連成網。',
+ '成長的空間可能從照料和接納開始。一張願意為新來者加座的餐桌，就是這個木星的意象。',
+ '創作的勇氣在被鼓勵時擴大。替一個未完成的想法留上場的機會，可能會發現比預期更多的可能。',
+ '學習可以透過小幅改進累積。每次記下哪個步驟真的有用，長久下來就成為可傳下去的方法。',
+ '擴展視野的契機常出現在平等交換中。聽懂另一套判斷準則，原先的選擇也會更有餘地。',
+ '向深處追問，可能發現原有資源的新用途。理解一件事背後的交換條件，是這個木星的切入點。',
+ '這個木星把遠方看成學習的入口。讓既有信念接受不同經驗的考驗，探索才會帶來真正的新理解。',
+ '成長藉由可累積的架構延伸。替所學建立一份能逐年修訂的紀錄，小成果便有機會支持更遠的目標。',
+ '集體共享的知識能把可能性放大。讓更多人有機會參與測試，常能補上一個人看不到的角度。',
+ '想像和同理拓展了理解的範圍。透過故事暫借另一雙眼睛，陌生的經驗也可能變得可親。'],
+ Saturn:[
+ '這個土星關乎如何承擔第一步。把風險限在可承受的範圍，反覆練習做決定，勇氣便有了根基。',
+ '課題落在有限資源的長久使用。區分什麼需要保存、什麼能夠替換，是建立穩固感的一部分。',
+ '思考的責任包括查核消息。留意哪些說法已求證、哪些還只是聽聞，有助於建立可信的表達。',
+ '界線在照料中成形。分清可以承擔多少、哪些需要分擔，才能讓支持長久維持。',
+ '創作也需要耐心。為喜歡的作品留出固定練習的時間，允許技巧慢慢跟上想表達的東西。',
+ '標準必須能用來完成事情。先訂出可接受的完成條件，才知道何時該修正，何時該交卷。',
+ '約定需要清楚的責任。把彼此答應的內容說明白，是這個土星建立公平的一種方式。',
+ '共同資源帶來信任與界線的課題。先釐清誰能決定、誰需承擔，深入的承諾才有依據。',
+ '信念需要經過檢驗。替自己最相信的一句話找反例，再決定哪些部分仍然站得住。',
+ '時間在這個位置變得具體。分階段立下可履行的承諾，也定期檢查舊規則是否仍然合用。',
+ '集體理想需要能運作的規則。設計制度時，把少數意見和退出機制一起考慮進去。',
+ '模糊的願望需要一個容器。替想像安排一頁筆記或一段安靜時間，感受才有機會逐步成形。'],
+ Uranus:[
+ '從世代主題讀，這個位置象徵對先行者與自主行動的重新想像。','從世代主題讀，變動落在物質與資源的使用方式，熟悉的價值尺度可能受到挑戰。','從世代主題讀，革新集中在訊息怎麼傳遞，以及誰有機會參與交流。','從世代主題讀，家的形式與歸屬的界線可能出現新的想像。','從世代主題讀，集體開始嘗試新的舞台，重新思考誰能創作、誰被看見。','從世代主題讀，新工具可能改寫習以為常的程序，細節成了改變的起點。','從世代主題讀，平等與合作的既有形式受到挑戰，新的約定方式成為實驗對象。','從世代主題讀，長久隱藏的權力和資源分配可能被重新討論。','從世代主題讀，既有信念與教育方式遇上不同觀點，世界的邊界顯得可以重畫。','從世代主題讀，制度與權威成為改造的對象，傳統架構也可能被賦予新的用途。','從世代主題讀，共同網絡與群體自治成為實驗的場所，也帶來誰被排除的提問。','從世代主題讀，藝術、信仰和集體想像彼此滲透，原本清楚的分類可能鬆動。'],
+ Neptune:[
+ '這個世代意象把夢想投向開拓者，也提醒讀者分辨勇氣與被美化的冒險。','這個世代意象把理想投向土地與豐盛，也適合追問人們想像中的富足需要什麼條件。','這個世代意象讓語言與媒介帶上想像力，故事如何被傳為事實也值得留意。','這個世代意象描繪理想中的家園；記憶裡的故鄉，可能與真實地方互有出入。','這個世代意象集中在舞台、偶像與創作，照見人們把哪些夢想交給了公眾人物。','這個世代意象指向理想中的秩序，也帶出完美標準與真實日常之間的距離。','這個世代意象投射對和諧的想望，閱讀時也可留意好看的表面下是否容得下歧見。','這個世代意象被祕密與禁忌吸引，想像能揭開深層主題，也可能放大未經證實的猜測。','這個世代意象把遠方、信仰與追尋理想化，親身經驗能為宏大的願景補上細節。','這個世代意象把理想放進制度與成就，值得追問哪些目標真有意義，哪些只是集體期待。','這個世代意象投向科技、社群與共享未來，既描繪共同的願景，也提醒人們察覺群體盲點。','這個世代意象關乎共感與界線的消融。藝術能讓人感到彼此相連，也留下分辨真實與投射的課題。'],
+ Pluto:[
+ '這個較長的世代主題關乎自主與力量。誰有權率先行動、衝突如何改變秩序，是可追問的事。','這個世代主題關乎土地、所有權與價值重估，可以從資源如何集中或轉手來讀。','這個世代主題關乎語言與資訊的力量。誰能傳播、誰能命名，會影響哪些故事被留下。','這個世代主題探問家庭、歸屬與保護背後的權力，舊有的安全感也可能經歷重整。','這個世代主題與個人意志及舞台上的權威有關，適合觀察誰獲得代表集體發聲的位置。','這個世代主題把變革帶到技術、分工與日常制度；看似微小的標準也可能改變資源流向。','這個世代主題牽涉契約與平等，適合追問一段看似對等的約定背後，誰握有選擇權。','這個世代主題直指隱藏的權力、共享資源與重生，閱讀時可從集體如何面對失去切入。','這個世代主題關乎信念與知識的權威。什麼說法能被教導，什麼觀點遭排除，是理解的線索。','這個世代主題關注制度如何維繫權力，以及當舊結構承受壓力時，哪些部分必須重建。','這個世代主題關注網絡與群體的力量。技術讓更多人參與時，也要看決定權最後落在哪裡。','這個世代主題牽涉共享的神話、信念與集體想像，適合觀察一個時代如何告別舊夢。'],
+ Ascendant:[
+ '上升在這裡時，進入陌生場合的第一步可以從主動嘗試來讀。先做一件小事，環境便逐漸有了輪廓。','這個上升用感官定位。先感覺空間的聲音、座位與步調，再決定從哪裡開始參與。','這個上升透過好奇進入環境。一句提問或一次短暫交談，往往就是探索新場合的起點。','這個上升會先辨認能安心停留的位置。找到熟悉的線索後，才慢慢把注意力往外打開。','這個上升關於如何現身。一個帶有自己選擇的招呼或開場，會讓參與變得更有實感。','這個上升從觀察細節開始定位。先看流程、辨認哪裡需要調整，是進入新環境的一種節奏。','這個上升先讀取場合中的相對位置。找到合適的距離與開場方式，互動便較容易展開。','這個上升會留意表面以下的訊息。在決定投入多少之前，先確認界線與信任感。','這個上升從尋找方向進入情境。知道此行可以探索什麼，便較容易跨出第一步。','這個上升先辨認規則和時間。大致掌握場合的結構後，便能決定如何參與。','這個上升可能先站遠一點，看清人群如何組成，再找一個能保留自主的位置加入。','這個上升先接收氣氛。光線、聲音或一個友善的表情，都可能影響進入場合的節奏。']
+};
 </script><script>const $=id=>document.getElementById(id);
 let chart=calcChart(demo), selected=1, currentTab='positions', currentPage='chart', dayOffset=0;
 let isDemo=true, stored=[],preferred=null, noticeTimer, showAspectLines=true;
@@ -373,7 +496,11 @@ function svgWheel(){
  let out='<svg viewBox="0 0 430 430" aria-label="互動本命星盤"><g fill="none">';
  for(const [r,color,w] of [[195,'#55736b',.65],[189,'#c3b67e',1.2],[164,'#9c9d77',.8],[155,'#7c9281',.9],[115,'#8f9d87',.6],[93,'#5d8079',.7]])out+=circle(r,stroke(color,w));out+='</g>';
  for(let d=0;d<360;d+=2)out+=line(d,155,d,d%10===0?163:d%6===0?160:158,stroke(d%10===0?'#c2b98b':'#748e81',.85));
- for(let s=0;s<12;s++){out+=line(s*30,164,s*30,189,stroke('#a59d76',.8));out+=label(s*30+15,176,zodiac[s],'fill="#ede3b8" font-family="DejaVu Sans,serif" font-size="17"');}
+ for(let s=0;s<12;s++){
+  const start=s*30,end=start+30;
+  const path='M '+point(start,163)+' L '+point(start,193)+' A 193 193 0 0 0 '+point(end,193)+' L '+point(end,163)+' A 163 163 0 0 1 '+point(start,163)+' Z';
+  out+='<g class="sign-sector" role="button" tabindex="0" data-guide="'+s+'" aria-label="閱讀'+signs[s]+'座解讀" aria-haspopup="dialog"><title>'+signs[s]+'座・星座解讀</title><path d="'+path+'"/>'+line(start,164,start,189,stroke('#a59d76',.8))+label(start+15,176,zodiac[s],'fill="#ede3b8" font-family="DejaVu Sans,serif" font-size="17"')+'</g>';
+ }
  if(cusps){cusps.forEach((lon,i)=>{const k=i%3===0;out+=line(lon,94,lon,154,stroke(k?'#bbad78':'#587972',k?1.25:.7));out+=label(lon+norm(cusps[(i+1)%12]-lon)/2,104,i+1,'fill="#b6c5ae" font-size="9" font-family="Arial"');});out+=label(cusps[0],205,'AC','fill="#efe2ae" font-size="10" font-family="Arial"');out+=label(cusps[9],204,'MC','fill="#efe2ae" font-size="10" font-family="Arial"');}
  if($('aspectToggle').checked&&cusps){for(const a of chart.aspects){const active=a.a===selected||a.b===selected;out+=line(bodies[a.a].lon,93,bodies[a.b].lon,93,stroke(a.degree===90||a.degree===180?'#dc9b7c':'#8dc2b5',active?1.6:.85)+' opacity="'+(active?.96:.46)+'"');}}
  out+=circle(3,'fill="#d0bf8d"');
@@ -385,15 +512,25 @@ function svgWheel(){
  for(let start=0;start<spaced.length;){let end=start;while(end+1<spaced.length&&spaced[end+1].at>spaced[end+1].actual+.001)end++;const shift=(spaced[end].at-spaced[end].actual)/2;for(let j=start;j<=end;j++)spaced[j].at-=shift;start=end+1;}
  for(const v of spaced){const b=bodies[v.i],sel=v.i===selected,L=v.at+order[0].lon,[x,y]=p(L,135);out+=line(b.lon,155,L,139,stroke(sel?'#f3df9a':'#91aaa0',1));out+=line(b.lon,93,b.lon,98,stroke('#b3bca0',1));out+='<g class="hit" role="button" tabindex="0" data-planet="'+v.i+'" aria-label="'+b.name+'，'+posSign(b)+'" aria-pressed="'+sel+'"><title>'+b.name+'・'+posSign(b)+'</title><circle cx="'+x+'" cy="'+y+'" r="15" fill="transparent"/><circle class="disc" cx="'+x+'" cy="'+y+'" r="'+(sel?12:10)+'" fill="'+(sel?'#e7d49b':'#174447')+'" stroke="'+(sel?'#f4e4ac':'#77958c')+'"/><text x="'+x+'" y="'+y+'" dominant-baseline="central" text-anchor="middle" fill="'+(sel?'#183c3c':'#e3e8d6')+'" font-size="'+(v.i===10?10:16)+'" font-family="DejaVu Sans,Georgia,serif">'+b.glyph+'</text></g>';}
  $('wheel').innerHTML=out+'</svg>';
- $('wheelhint').textContent=input.unknown?'以當地中午示意星體位置・上升與宮位待補':'點選星體符號，查看對應落點';
+ $('wheelhint').textContent=input.unknown?'外圈可讀十二星座・星體以當地中午位置示意':'點外圈讀十二星座，點內圈看星體落點';
 }
 function renderDetails(){
  const b=chart.bodies[selected],un=chart.input.unknown,where=posSign(b);
  $('planetEn').textContent=b.id;$('planetName').textContent=b.name;
  $('globe').className='globe'+(b.id==='Moon'?' moon':'');$('globe').textContent=b.id==='Moon'?'':b.glyph;
  $('readouts').innerHTML=[['星座',where],['度數',un?'待補時間':b.deg+'°'],['宮位',housesLabel(b.house)]].map(([k,v])=>'<div><small>'+k+'</small><b>'+v+'</b></div>').join('');
- $('reading').textContent=b.meaning+' '+(un&&b.possible.length>1?'當日可能跨越兩個星座，出生時刻會決定實際落點。':where+'在占星中對應「'+signTheme[b.sign]+'」的主題。');
- $('houseReading').textContent=b.house?'這個落點位於'+housesLabel(b.house)+'。讀這張盤時，可以把它連到「'+houseNames[b.house-1]+'」這個生活領域。':'補上出生時間後，可以看到這顆星體落入哪一宮。';
+ const candidates=candidateSigns(b),uncertain=candidates.length>1;
+ $('placementTitle').textContent=uncertain?b.name+'的兩個可能落點':b.name+'在'+where;
+ $('reading').replaceChildren();
+ if(uncertain){
+  $('reading').append('出生時間決定實際落點。可對照兩種讀法：');
+  for(const s of candidates){
+   const note=document.createElement('span');note.className='possible-note';
+   note.textContent=signs[s]+'座｜'+placementNotes[b.id][s];$('reading').append(note);
+  }
+ }else{$('reading').textContent=placementNotes[b.id][candidates[0]];}
+ $('bodyGuideLinks').innerHTML=candidates.map(guideButton).join('');
+ $('houseReading').textContent=b.meaning+' '+(b.house?'落在'+housesLabel(b.house)+'，可從「'+houseNames[b.house-1]+'」的經驗觀察。':'補上出生時間後可查看宮位。');
  $('counter').textContent=(selected+1)+' / '+chart.bodies.length;
 }
 function choose(i,fromWheel=false){
@@ -401,7 +538,7 @@ function choose(i,fromWheel=false){
  if(fromWheel)document.querySelector('#wheel [data-planet="'+i+'"]')?.focus({preventScroll:true});
 }
 $('wheel').addEventListener('click',e=>{let g=e.target.closest('[data-planet]');if(g){choose(+g.dataset.planet);if(window.matchMedia('(max-width:650px)').matches){document.querySelector('.detail').scrollIntoView({block:'nearest'});}}});
-$('wheel').addEventListener('keydown',e=>{let g=e.target.closest('[data-planet]');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();choose(+g.dataset.planet,true);}});
+$('wheel').addEventListener('keydown',e=>{const sector=e.target.closest('[data-guide]');if(sector&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openGuide(Number(sector.dataset.guide));return;}let g=e.target.closest('[data-planet]');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();choose(+g.dataset.planet,true);}});
 $('aspectToggle').onchange=()=>{showAspectLines=$('aspectToggle').checked;svgWheel();};
 $('prev').onclick=()=>choose((selected-1+chart.bodies.length)%chart.bodies.length);
 $('next').onclick=()=>choose((selected+1)%chart.bodies.length);
@@ -409,9 +546,10 @@ function table(headers,rows){return '<div class="tablewrap"><table class="planet
 function renderLower(){
  document.querySelectorAll('[data-tab]').forEach(t=>{t.classList.toggle('active',t.dataset.tab===currentTab);t.setAttribute('aria-pressed',t.dataset.tab===currentTab);});
  if(currentTab==='positions'){$('lower').innerHTML=table(['星體','星座','度數','宮位'],chart.bodies.map((b,i)=>'<tr data-id="'+i+'" class="'+(i===selected?'sel':'')+'"><td><button class="bodybtn" aria-pressed="'+(i===selected)+'"><span class="dotglyph">'+b.glyph+'</span>'+b.name+'</button></td><td>'+posSign(b)+'</td><td>'+(chart.input.unknown?'—':b.deg+'°')+'</td><td>'+housesLabel(b.house)+'</td></tr>').join(''));return;}
+ if(currentTab==='signs'){$('lower').innerHTML=guideIndex();return;}
  if(currentTab==='aspects'){
  $('lower').innerHTML=chart.input.unknown?'<p class="note">補上出生時間後，可查看確切時刻的主要相位。</p>':table(['星體組合','相位','標準角度','偏差'],chart.aspects.map(a=>'<tr><td>'+chart.bodies[a.a].name+' × '+chart.bodies[a.b].name+'</td><td>'+a.name+'</td><td>'+a.degree+'°</td><td>'+a.diff.toFixed(1)+'°</td></tr>').join(''));return;}
- $('lower').innerHTML='<div class="expl"><h3>星盤怎麼讀？</h3><p>外圈十二個符號標示黃道星座，內圈數字標示宮位。選取星體後，亮色圓點對應目前的解讀。相位線顯示星體間的角度關係。</p><h3>計算設定</h3><p>採用回歸黃道、地心視黃經與普拉西德宮位制（Placidus）。落點度數顯示至整度，宮位依完整角度判定。支援 1901 年起的台灣出生資料，使用縣市代表位置與 Asia/Taipei 歷史時區。時間未知時，圓盤以中午示意，表格列出當日可能的星座。</p><h3>資料與隱私</h3><p>排盤在這台裝置完成。按下儲存後，可從「已存命盤」找回或刪除。初次開啟的資料為虛構範例。</p><p class="note">星體位置計算採用 <a target="_blank" rel="noopener" href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>。月面圖使用 <a target="_blank" rel="noopener" href="https://github.com/mrdoob/three.js/tree/dev/examples/textures/planets">three.js 範例月面材質</a>製成。文字屬占星象徵解讀。</p></div>';
+ $('lower').innerHTML='<div class="expl"><h3>星盤怎麼讀？</h3><p>點選外圈的十二星座符號可閱讀星座解讀，內圈數字標示宮位。選取星體後，亮色圓點對應目前的解讀。相位線顯示星體間的角度關係。</p><h3>計算設定</h3><p>採用回歸黃道、地心視黃經與普拉西德宮位制（Placidus）。落點度數顯示至整度，宮位依完整角度判定。支援 1901 年起的台灣出生資料，使用縣市代表位置與 Asia/Taipei 歷史時區。時間未知時，圓盤以中午示意，表格列出當日可能的星座。</p><h3>資料與隱私</h3><p>排盤在這台裝置完成。按下儲存後，可從「已存命盤」找回或刪除。初次開啟的資料為虛構範例。</p><p class="note">星體位置計算採用 <a target="_blank" rel="noopener" href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>。月面圖使用 <a target="_blank" rel="noopener" href="https://github.com/mrdoob/three.js/tree/dev/examples/textures/planets">three.js 範例月面材質</a>製成。文字屬占星象徵解讀。</p></div>';
 }
 $('tabs').onclick=e=>{if(e.target.dataset.tab){currentTab=e.target.dataset.tab;renderLower();}};
 $('lower').onclick=e=>{let row=e.target.closest('[data-id]');if(row){choose(+row.dataset.id);document.querySelector('.detail').scrollIntoView({block:'nearest'});if(e.detail===0)document.querySelector('.detail h2').focus?.({preventScroll:true});}};
@@ -468,5 +606,71 @@ function renderDaily(){
 }
 function rollover(){let d=todayTaipei();if(d!==shownTaipeiDate){shownTaipeiDate=d;$('birthDate').max=d;dayCache.clear();if(currentPage==='daily')renderDaily();}}
 window.addEventListener('focus',rollover);setInterval(rollover,30000);
+function candidateSigns(body) {
+  return chart.input.unknown ? body.possible : [body.sign];
+}
+function signMeta(index) {
+  return elementNames[index % 4] + '元素・' + modeNames[index % 3] + '模式';
+}
+function signBookList() {
+  return '<details class="guide-sources"><summary>解讀參考書目</summary><p>本站採用西洋占星的象徵語言，生活例子由星序撰寫。以下列出參考的公開資料。</p><ul>' +
+    '<li><a href="https://www.books.com.tw/products/0010731609" target="_blank" rel="noopener">韓良露《十二星座：行星與星座互動的生命密碼》</a>：參考書介與內容連載，區分同一星座裡不同星體的讀法。</li>' +
+    '<li><a href="https://www.cite.com.tw/book?id=103349" target="_blank" rel="noopener">蘇．湯普金《當代占星研究》</a>：參考公開目錄與推薦序，將星體、星座和宮位合併閱讀。</li>' +
+    '<li><a href="https://catalogimages.wiley.com/images/db/pdf/9780470098400.excerpt.pdf" target="_blank" rel="noopener">Rae Orion《Astrology For Dummies》第二版</a>：參考 Wiley 試閱章節，核對四元素、三種模式和十二星座的對應。</li></ul></details>';
+}
+function guideIndex() {
+  return '<div class="guide-grid">'+signNotes.map((note,i)=>
+    '<button class="guide-item" data-guide="'+i+'"><span class="guide-icon" aria-hidden="true">'+zodiac[i]+'</span><span><strong>'+signs[i]+'座</strong><small>'+note.title+'</small></span></button>'
+  ).join('')+'</div>'+signBookList();
+}
+function renderGuide(index) {
+  const name=signs[index]+'座', note=signNotes[index];
+  $('guidePick').value=index;
+  $('guideName').textContent=name;
+  $('guideGlyph').textContent=zodiac[index];
+  $('guideMeta').textContent=signMeta(index);
+  $('guideTitle').textContent=note.title;
+  $('guideText').textContent=note.text;
+  const placements=chart.bodies.map((body,i)=>({body,i})).filter(({body})=>candidateSigns(body).includes(index));
+  if(!placements.length){
+    $('guideBodies').innerHTML='<p>這張盤列出的星體與上升點在此沒有落點。仍可從上方認識'+name+'的象徵。</p>';
+  }else{
+    $('guideBodies').innerHTML=placements.map(({body,i})=>{
+      const uncertain=candidateSigns(body).length>1;
+      const suffix=uncertain?'（可能落入，待確認時間）':body.house?'・'+housesLabel(body.house):'（宮位待確認）';
+      return '<article><h4>'+body.name+suffix+'</h4><p>'+placementNotes[body.id][index]+'</p><button class="textlink" data-jump-body="'+i+'">在星盤查看'+body.name+'</button></article>';
+    }).join('');
+  }
+  if(chart.input.unknown){
+    $('guideBodies').insertAdjacentHTML('beforeend','<p class="note">出生時間未知，上升點待補；當天跨星座的星體會列出可能落點。</p>');
+  }
+  $('guideSources').open=false;
+}
+function openGuide(index) {
+  renderGuide(index);
+  if(!$('signGuide').open) $('signGuide').showModal();
+  $('signGuide').scrollTop=0;
+}
+$('guidePick').innerHTML=signs.map((name,i)=>'<option value="'+i+'">'+name+'座</option>').join('');
+$('guideSourcesHost').innerHTML=signBookList();
+$('guideSourcesHost').querySelector('details').id='guideSources';
+$('guidePick').onchange=e=>renderGuide(Number(e.target.value));
+$('guideBodies').onclick=e=>{
+  const button=e.target.closest('[data-jump-body]');
+  if(!button)return;
+  $('signGuide').close();
+  currentTab='positions';
+  choose(Number(button.dataset.jumpBody));
+  $('planetName').focus({preventScroll:true});
+  document.querySelector('.detail').scrollIntoView({block:'nearest'});
+};
+function guideButton(index) {
+  return '<button class="textlink" data-guide="'+index+'">認識'+signs[index]+'座</button>';
+}
+document.addEventListener('click',e=>{
+  const target=e.target.closest('[data-guide]');
+  if(target)openGuide(Number(target.dataset.guide));
+});
+
 renderChart();activate(location.hash==='#daily'?'daily':'chart');
 </script></body></html>
